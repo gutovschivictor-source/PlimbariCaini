@@ -7,15 +7,21 @@
 <link rel="icon" href="logo-câine.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-#contact .contact-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+#contact .info-btn:hover {
+    transform: scale(1.15);
+    background: #ffad69;
+    color: #fff;
+    box-shadow: 0 0 12px #ffad69;
 }
-
+#contact .contact-card {
+    background: rgba(255, 255, 255, 0.15); /* sau 0.2 */
+    backdrop-filter: blur(12px);
+}
+#contact .info-btn:hover {
+    background: #ffad69;
+    color: #fff;
+    box-shadow: 0 0 10px #ffad69;
+}
 #contact .contact-card {
     flex: 1 1 250px;       /* toate cardurile ocupă spațiul egal */
     max-width: 300px;      /* nu devin prea late */
@@ -93,8 +99,13 @@ section {padding: 6rem 2rem 4rem; color: #000;}
 h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 
 /* Glassmorphism cards */
-.card, .step, .plan, .contact-card {background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 10px; padding: 2rem; text-align: center; box-shadow: 0 4px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;}
-.card:hover, .step:hover, .plan:hover, .contact-card:hover {transform: scale(1.05); box-shadow: 0 8px 40px rgba(0,0,0,0.2);}
+.card, .step, .plan, .contact-card {background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 4px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;}
+.card:hover,
+.step:hover,
+.plan:hover,
+.contact-card:hover {
+    transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);;}
 .card h3, .step h3, .plan h3, .contact-card h3 {color: #614636; margin-bottom: 1rem;}
 
 /* Services */
