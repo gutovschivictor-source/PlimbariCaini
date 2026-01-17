@@ -3,11 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta keywords content=Cini,câini,plimbari câini>
-<title>Plimbări Câini</title>
+<meta name="keywords" content="câini, plimbări câini, dog walking, Chisinau"><title>Plimbări Câini</title>
 <link rel="icon" href="logo-câine.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* Animație apariție la scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .hero-image img {
     max-width: 800px; /* ajustează dimensiunea după nevoie */
     width: 100%;
@@ -141,7 +152,7 @@ html {scroll-behavior: smooth;}
 <!-- Hero -->
 <section class="hero" id="hero">
     <!-- Înlocuiește textul cu imagine -->
-    <div class="hero-image">
+    <div class="hero-image reveal">
         <img src="PFPCT (2).png" alt="Poză centrală">
     </div>
     <a href="#contact" class="hero-button">Vizualizează</a>
@@ -157,8 +168,8 @@ html {scroll-behavior: smooth;}
 </section>
 
 <!-- Services -->
-<section id="services">
-<h2>Ce oferim</h2>
+<section id="services" class="reveal">
+<h2 >Ce oferim</h2>
 <div class="services">
     <div class="card">
         <h3>Plimbare individuală</h3>
@@ -176,7 +187,7 @@ html {scroll-behavior: smooth;}
 </section>
 
 <!-- How it works -->
-<section id="how-it-works">
+<section id="how-it-works" class="reveal">
 <h2>Cum funcționează</h2>
 <div class="steps">
     <div class="step">
@@ -199,7 +210,7 @@ html {scroll-behavior: smooth;}
 </section>
 
 <!-- Pricing -->
-<section id="pricing">
+<section id="pricing" class="reveal">
 <h2>Prețuri</h2>
 <div class="pricing">
     <div class="plan">
@@ -216,7 +227,7 @@ html {scroll-behavior: smooth;}
 </section>
 
 <!-- Contact -->
-<section id="contact">
+<section id="contact" class="reveal">
 <h2>Contact</h2>
 <div class="contact-grid">
     <div class="contact-card">
@@ -312,7 +323,25 @@ if (p) p.style.color = "#ddd";
     document.querySelector("footer").style.color = "#ccc";
     modeIcon.textContent = "🌙";
 });
-</script>
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 120;
+
+    reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - revealPoint) {
+            el.classList.add("active");
+        } else {
+            el.classList.remove("active"); // ⬅ DISPARIȚIE la scroll în sus
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);</script>
 <script>
 // Efect mini-explozie de particule la click
 document.addEventListener("click", function(e) {
