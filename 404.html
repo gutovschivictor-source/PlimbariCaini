@@ -14,13 +14,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     background-color: #ffad69;
     color: #fff;
     text-align: center;
 }
 
 h1 {
+    letter-spacing: 2px; /* mai spațiat */
+    text-shadow: 1px 1px 0 #bb7e4b, -2px -2px 0 #bb7e4b; /* margini sharp */
     font-size: 10rem;
     margin-bottom: 1rem;
     line-height: 1;
@@ -31,34 +33,12 @@ p {
     margin-bottom: 2rem;
 }
 
-a {
-    padding: 1.2rem 4rem;
-    font-size: 1.2rem;
-    background: rgba(255, 255, 255, 0.0);
-    color: #fff;
-    border-radius: 50px;
-    font-weight: 700;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: block;
-    z-index: 2;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
-                inset 0 1px 1px rgba(255,255,255,0.5),
-                inset 0 -1px 1px rgba(0,0,0,0.2);
-    transition: all 0.3s ease, background 0.3s ease;
-}
+a {padding: 1rem 2rem; background: rgba(255,255,255,0.02); color: #fff; border-radius: 50px; font-weight: 7; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(0px); transition: all 0.3s ease; z-index: 10;}
 
-a:hover {
-    transform: translateY(-3px) scale(1.05);
-    background: rgba(255, 173, 105, 0.25);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2),
-                inset 0 1px 3px rgba(255,255,255,0.8),
-                inset 0 -1px 1px rgba(0,0,0,0.2);
-}
+
+
+a:hover {background: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 3px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,0.2);}
+
 
 @media screen and (max-width: 600px) {
     h1 { font-size: 6rem; }
