@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
+<meta name="robots" content="index, follow">
+<meta name="author" content="Victor Gutovschi">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="câini, plimbări câini, dog walking, Chisinau"><title>Plimbări Câini</title>
+<meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale sau în grup. Program flexibil. Sună acum!">
+<title>Plimbări Câini Chișinău | Dog Walking Profesional</title>
+
 <link rel="icon" href="logo-câine.png" type="image/png">
+<link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 
@@ -125,6 +130,15 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
       box-shadow 0.3s ease,
       background 0.3s ease;
 }
+.hero h1,
+.hero p {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+
 
 .card:hover,
 .step:hover,
@@ -152,7 +166,7 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 #overlay.active {opacity: 1; visibility: visible; background: rgba(0,0,0,0.35); backdrop-filter: blur(2px);}
 
 /* Chenar popup program */
-#extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,0.0); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(5px); border-radius: 15px; padding: 2rem;  box-shadow:
+#extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,0.0); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem;  box-shadow:
       0 4px 30px rgba(0,0,0,0.1),
       inset 0 1px 1px rgba(255,255,255,0.4),
       inset 0 -1px 1px rgba(0,0,0,0.05); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
@@ -192,6 +206,13 @@ html {scroll-behavior: smooth;}
     opacity: 1;
     transition: background-image 0.4s ease, opacity 0.4s ease;
 }
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media (max-width: 389px) {
     .secondary-bg {
         background-position: left 1vw top 79vh;
@@ -200,6 +221,21 @@ html {scroll-behavior: smooth;}
     }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Plimbări Câini Chișinău",
+  "description": "Servicii profesionale de plimbări câini în Chișinău",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chișinău",
+    "addressCountry": "MD"
+  },
+  "telephone": "+37360400898",
+  "url": "https://gutovschivictor-source.github.io/PlimbariCaini/"
+}
+</script>
 
 </head>
 <body>
@@ -238,9 +274,13 @@ html {scroll-behavior: smooth;}
 
 <!-- Hero -->
 <section class="hero" id="hero">
+
+    <h1>Plimbări câini în Chișinău</h1>
+    <p>Servicii profesionale de dog walking</p>
+
     <!-- Înlocuiește textul cu imagine -->
     <div class="hero-image reveal">
-        <img src="PFPCT (2).png" alt="Poză">
+        <img src="PFPCT (2).png" alt="Plimbări câini profesionale în Chișinău">
     </div>
     <a href="#services" class="hero-button">Vizualizează</a>
 <div class="secondary-bg"></div>
@@ -257,7 +297,7 @@ html {scroll-behavior: smooth;}
 
 <!-- Services -->
 <section id="services" class="reveal">
-<h2 >Ce oferim</h2>
+<h2>Servicii de plimbări câini în Chișinău</h2>
 <div class="services">
     <div class="card">
         <h3>Plimbare individuală</h3>
@@ -279,7 +319,7 @@ html {scroll-behavior: smooth;}
 <h2>Cum funcționează</h2>
 <div class="steps">
     <div class="step">
-        <h3>1. Contact</h3>
+        <h3>1. Detalii</h3>
         <p>Trimite mesaj sau sună pentru rezervare.</p>
     </div>
     <div class="step">
@@ -299,7 +339,7 @@ html {scroll-behavior: smooth;}
 
 <!-- Pricing -->
 <section id="pricing" class="reveal">
-<h2>Prețuri</h2>
+<h2>Prețuri plimbări câini Chișinău</h2>
 <div class="pricing">
     <div class="plan">
         <h3>30 minute</h3>
@@ -316,7 +356,7 @@ html {scroll-behavior: smooth;}
 
 <!-- Contact -->
 <section id="contact" class="reveal">
-<h2>Contact</h2>
+<h2>Detalii</h2>
 <div class="contact-grid">
     <div class="contact-card">
         <h3>Telefon</h3>
@@ -336,12 +376,17 @@ html {scroll-behavior: smooth;}
         <h3>Aria de acoperire</h3>
         <p>Chișinău | Centru, Botanica</p>
     </div>
-    <div class="contact-card">
-        <h3>Facebook</h3>
-        <p><a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank">Victor Gutovschi</a></p>
-    </div>
+<div class="contact-card">
+    <h3>Facebook</h3>
+    <p>
+        <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="victor-btn">
+            Victor Gutovschi
+        </a>
+    </p>
+</div>
 </div>
 </section>
+
 
 <!-- Footer -->
 <footer>
@@ -360,8 +405,6 @@ const nightBtn = document.getElementById("nightBtn");
 
 // Popup program
 infoBtn.addEventListener("click", () => {
-    overlay.classList.add("active");
-    extraInfo.classList.add("active");
     overlay.classList.add("active");
     extraInfo.classList.add("active");
 });
