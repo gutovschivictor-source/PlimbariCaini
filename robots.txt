@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gutovschivictor-source.github.io/PlimbariCaini/sitemap.xml
