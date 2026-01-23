@@ -94,9 +94,9 @@ nav ul li a { color: #000 !important; }
 .hero {height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #ffad69; padding: 0 1rem; position: relative;}
 .hero h1 {font-size: 3rem; color: #fff; margin-bottom: 1rem;}
 .hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
-.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.02); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
+.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
 
-.hero-button:hover {transform: scale(1.02);background: rgba(255, 255, 255, 0.3); box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
+.hero-button:hover {transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
 
 /* Sections */
 section {padding: 6rem 2rem 4rem; color: #000;}
@@ -173,8 +173,8 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 #extra-info.active {opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);}
 
 /* Zi/Noapte Hero cu efect Vizualizeaza */
-#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.6rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
-#mode-selector:hover {transform: scale(1.02);background: rgba(255,255,255,0.2); box-shadow: 0 8px 40px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
+#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.6rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
+#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
 #mode-icon {font-size: 1.3rem; user-select: none;}
 #mode-buttons {display: none; flex-direction: column; gap: 0.3rem; margin-left: 0.5rem;}
 #mode-buttons button {padding: 0.3rem 0.6rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; background: rgba(255,255,255,0.1); color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.2); backdrop-filter: blur(15px); transition: all 0.3s ease;}
@@ -193,12 +193,11 @@ html {scroll-behavior: smooth;}
 
     background-image: url('Led.png');
     background-repeat: no-repeat;
-
-    /* JOS – STÂNGA */
     background-position: left 1vw bottom 0vh;
-
     background-size: min(220px, 40vw) auto;
+
     opacity: 1;
+    transition: opacity 0.3s ease;
 }
 @media (prefers-reduced-motion: reduce) {
   * {
