@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plimbări Câini Chișinău | Galerie | Dog Walking Profesional</</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="logo-câine2.png" type="image/png">
+<style>
+/* Lightbox full screen */
+#lightbox {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  display: none; /* ascuns implicit */
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
+}
+
+#close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+:root{
+  --text:#111;
+  --muted:#666;
+  --accent:#ffad69;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter',sans-serif;
+  background:#ffad69;
+  color:var(--text);
+}
+
+
+/* HERO – conținut sus */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;   /* sus pe verticală */
+  justify-content:flex-start; /* stânga pe orizontală */
+  position:relative;
+  padding:4px;
+  min-height:100vh;
+
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+/* Sageata stânga */
+.back-arrow{
+  position:fixed;
+  top:40px;
+  left:40px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+background: rgba(255,255,255,0.02);
+ box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;
+}
+.back-arrow:hover{
+  transform:translateX(-4px);
+  background:rgba(255,255,255,0.2)
+}
+
+/* Continut */
+.hero-content{
+  max-width:1300px;
+  width:100%;
+  margin:0 auto;
+  padding:40px;
+}
+
+.hero-header{
+  text-align:center;
+  margin-bottom:40px;
+}
+.hero-header h1{
+  font-size:2.6rem;
+  font-weight:700;
+}
+.hero-header p{
+  color:var(--muted);
+  margin-top:10px;
+}
+
+/* GALERIE */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:15px;
+  aspect-ratio:4/3;
+  background:#f3f3f3;
+ box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.5);
+}
+
+
+.gallery-item img,
+.gallery-item video,
+.gallery-item iframe{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .3s ease;
+padding: 1px;
+border-radius: 15px;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Overlay subtil */
+.gallery-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(255,255,255,0.1), transparent 60%);
+  opacity:0;
+  transition:opacity .4s ease;
+}
+.gallery-item::after {
+  pointer-events: none;
+}
+.gallery-item video {
+  cursor: pointer;
+}
+
+.gallery-item:hover::after{opacity:1}
+
+/* Responsiv */
+@media(max-width:600px){
+  .back-arrow{top:20px;left:20px}
+  .hero-header h1{font-size:2rem}
+}
+.back-arrow,
+.back-arrow:hover,
+.back-arrow:visited,
+.back-arrow:active{
+  text-decoration: none;
+  color: inherit;
+}
+.back-arrow img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.back-arrow:hover img {
+  transform: translateX(-1px);
+}
+.hero-header h1 {
+  color: #ffffff; /* alb */
+}
+.hero-header p {
+  color: #ffffff; /* alb */
+}
+/* FOOTER simplu alb full width */
+footer {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.gallery-item video {
+  background: #000;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+
+  <!-- Sageata stânga -->
+  <a href="index00.html" class="back-arrow" aria-label="Înapoi">
+    <img src="sageata.png" alt="Plimbare câine">
+  </a>
+
+  <div class="hero-content">
+    <div class="hero-header">
+      <h1>Galerie</h1>
+      <p>Plimbări câini • Momente reale • Chișinău</p>
+    </div>
+
+    <div class="gallery">
+      <!-- Imagine -->
+<div class="gallery-item">
+  <img src="Led.png" alt="Plimbare câine" class="lightbox-img">
+</div>
+
+<div class="gallery-item">
+  <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
+</div>
+
+
+      <div class="gallery-item">
+  <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
+</div>
+
+
+      <!-- Video YouTube embed -->
+      <div class="gallery-item">
+  <video controls playsinline preload="metadata">
+    <source src="vvv.mp4" type="video/mp4">
+    <source src="vvv.webm" type="video/webm">
+    Browserul tău nu suportă video.
+  </video>
+</div>
+
+
+      <div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+
+
+    </div>
+  </div>
+
+</section>
+<!-- Lightbox pentru afișare imagine full-screen -->
+<div id="lightbox">
+  <span id="close-lightbox">&times;</span>
+  <img id="lightbox-img" src="" alt="Imagine mărită">
+</div>
+<script>
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.getElementById('close-lightbox');
+
+document.querySelectorAll('.lightbox-img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src; // afișează imaginea pe tot ecranul
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+// Inchide si la click pe fundal
+lightbox.addEventListener('click', (e) => {
+  if(e.target === lightbox) {
+    lightbox.style.display = 'none';
+  }
+});
+</script>
+<!-- Footer -->
+<footer>
+&copy; 2025 Galerie • Plimbări Câini.
+</footer>
+
+</body>
+</html>
