@@ -1,628 +1,309 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta name="robots" content="index, follow">
-<meta name="author" content="Victor Gutovschi">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale sau în grup. Program flexibil. Sună acum!">
-<title>Plimbări Câini Chișinău | Dog Walking Profesional</title>
-
-<link rel="icon" href="logo-câine.png" type="image/png">
-<link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<title>Plimbări Câini Chișinău | Galerie | Dog Walking Profesional</</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="logo-câine2.png" type="image/png">
 <style>
-
-#contact .info-btn:hover {
-    transform: scale(1.15);
-    background: #ffad69;
-    color: #fff;
-    box-shadow: 0 0 12px #ffad69, inset 0 1px 1px rgba(255,255,255,1),inset 0 -1px 0px rgba(255,255,255,0.2)
-}
-#contact .contact-card:hover {
-    background: rgba(255, 255, 255, 0.25); 
-    backdrop-filter: blur(12px);
-}
-
-#contact .contact-card {
-    flex: 1 1 250px;       /* toate cardurile ocupă spațiul egal */
-    max-width: 300px;      /* nu devin prea late */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* toate au aceeași înălțime */
-    text-align: center;
-}
-/* Animație apariție la scroll */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+/* Lightbox full screen */
+#lightbox {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  display: none; /* ascuns implicit */
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
 }
 
-.hero-image img {
-    max-width: 1000px; /* ajustează dimensiunea după nevoie */
-    width: 100%;
-    height: auto;
-    margin-bottom: 30px;
+#close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-/* Reset & global */
-* {margin: 0; padding: 0; box-sizing: border-box;}
-body {font-family: 'Inter', sans-serif; line-height: 1.6; color: #000; background-color: #fff; transition: all 0.5s ease;}
+:root{
+  --text:#111;
+  --muted:#666;
+  --accent:#ffad69;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter',sans-serif;
+  background:#ffad69;
+  color:var(--text);
+}
+
+
+/* HERO – conținut sus */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;   /* sus pe verticală */
+  justify-content:flex-start; /* stânga pe orizontală */
+  position:relative;
+  padding:4px;
+  min-height:100vh;
+
+}
 html, body {
-position: relative;
-    overflow-x: hidden; /* blochează scroll-ul orizontal */
+  width: 100%;
+  overflow-x: hidden;
 }
 
-a {text-decoration: none; color: inherit;}
-img {max-width: 100%; display: block;}
 
-/* Header - izolat complet */
-header {position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000;}
-nav {display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;}
-nav .logo {position: relative; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;}
-nav .logo img {width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease;}
-nav .logo:hover img {transform: translateX(-5px);}
-nav .logo .logo-text {color: #000; font-weight: 600; font-size: 1.2rem; opacity: 0; transform: translateX(10px); transition: all 0.3s ease;}
-nav .logo:hover .logo-text {opacity: 1; transform: translateX(0);}
-nav ul {display: flex; list-style: none; gap: 1.5rem;}
-nav ul li {cursor: pointer; position: relative; opacity: 1;}
-nav ul li:hover {color: #614636;}
-/* Efect linii sub meniu */
-nav ul li::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    display: block;
-    margin-top: 5px;
-    right: 0;
-    background: #ffad69;
-    transition: width 0.3s ease;
-    border-radius: 5px;
-}
-nav ul li:hover::after {width: 100%; left: 0;
-}
-/* La click (activ), mai transparent */
-nav ul li.active {
-  opacity: 0.2; /* cât de „slab” vrei să fie vizibil */
-}
-
-/* Meniu header mereu negru */
-nav ul li a { color: #000 !important; }
-
-/* Hero */
-.hero {height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #ffad69; padding: 0 1rem; position: relative;}
-.hero h1 {font-size: 3rem; color: #fff; margin-bottom: 1rem;}
-.hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
-.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
-
-.hero-button:hover {transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
-
-/* Sections */
-section {padding: 6rem 2rem 4rem; color: #000;}
-h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
-
-/* Glassmorphism cards */
-.card,
-.step,
-.plan,
-.contact-card {
-    background: rgba(255,255,255,0.2);
-  color: #000;
-
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-
-    position: relative;
-    overflow: hidden;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    box-shadow:
-      0 5px 10px rgba(0,0,0,0.1),
-      inset 0 1px 1px rgba(255,255,255,0.4),
-      inset 0 -1px 1px rgba(0,0,0,0.05);
-
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease,
-      background 0.3s ease;
-}
-.hero h1,
-.hero p {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-}
-
-.card:hover,
-.step:hover,
-.plan:hover,
-.contact-card:hover {
-    transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);background: rgba(255,255,255,0.25);}
-.card h3, .step h3, .plan h3, .contact-card h3 {color: #614636; margin-bottom: 1rem;}
-
-/* Services */
-.services {display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;}
-.steps {display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;}
-.pricing {display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;}
-.plan span {display: block; font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; color: #614636;}
-.contact-grid {display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 900px; margin: 0 auto;}
-.contact-grid .contact-card:nth-last-child(-n+2) {flex-basis: 100%; max-width: 400px; margin-left: auto; margin-right: auto;}
-
-/* Buton "!" alb cu semn color */
-.contact-card {position: relative;}
-.info-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #ffffff; color: #614636; font-weight: 900; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.2s; }
-.info-btn:hover {transform: scale(1.1);}
-
-/* Fundal întunecat */
-#overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0); opacity: 0; visibility: hidden; transition: opacity 0.4s ease; z-index: 2000;}
-#overlay.active {opacity: 1; visibility: visible; background: rgba(0,0,0,0.35); backdrop-filter: blur(2px);}
-
-/* Chenar popup program */
-#extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,0.0); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem;  box-shadow:
-      0 4px 30px rgba(0,0,0,0.1),
-      inset 0 1px 1px rgba(255,255,255,0.4),
-      inset 0 -1px 1px rgba(0,0,0,0.05); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
-#extra-info.active {opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);}
-
-/* Zi/Noapte Hero cu efect Vizualizeaza */
-#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.6rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
-#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
-#mode-icon {font-size: 1.3rem; user-select: none;}
-#mode-buttons {display: none; flex-direction: column; gap: 0.3rem; margin-left: 0.5rem;}
-#mode-buttons button {padding: 0.3rem 0.6rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; background: rgba(255,255,255,0.1); color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.2); backdrop-filter: blur(15px); transition: all 0.3s ease;}
-#mode-buttons button:hover {transform: scale(1.04);background: rgba(255,255,255,0.3); box-shadow: 0 8px 40px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
-
-/* Footer */
-footer {background: #f9f9f9; text-align: center; padding: 2rem; color: #555; font-size: 0.9rem;}
-
-/* Scroll smooth */
-html {scroll-behavior: smooth;}
-.secondary-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-
-    background-image: url('Led.png');
-    background-repeat: no-repeat;
-    background-position: left 1vw bottom 0vh;
-    background-size: min(220px, 40vw) auto;
-
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-@media (max-width: 389px) {
-    .secondary-bg {
-        background-position: left 2vw bottom 0vh;
-        background-size: 35vw auto;
-    }
-
-}
 /* Sageata stânga */
-.back-arrow{position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.6rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;    width:60px;         /* lățime fixă */
-    height: 50px;         /* înălțime fixă */
-bottom: 90px;
+.back-arrow{
+  position:fixed;
+  top:40px;
+  left:40px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+background: rgba(255,255,255,0.02);
+ box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;
 }
-.back-arrow:hover{transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
+.back-arrow:hover{
+  transform:translateX(-4px);
+  background:rgba(255,255,255,0.2)
+}
+
+/* Continut */
+.hero-content{
+  max-width:1300px;
+  width:100%;
+  margin:0 auto;
+  padding:40px;
+}
+
+.hero-header{
+  text-align:center;
+  margin-bottom:40px;
+}
+.hero-header h1{
+  font-size:2.6rem;
+  font-weight:700;
+}
+.hero-header p{
+  color:var(--muted);
+  margin-top:10px;
+}
+
+/* GALERIE */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:15px;
+  aspect-ratio:4/3;
+  background:#f3f3f3;
+ box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.5);
+}
+
+
+.gallery-item img,
+.gallery-item video,
+.gallery-item iframe{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .3s ease;
+padding: 1px;
+border-radius: 15px;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Overlay subtil */
+.gallery-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(255,255,255,0.1), transparent 60%);
+  opacity:0;
+  transition:opacity .4s ease;
+}
+.gallery-item::after {
+  pointer-events: none;
+}
+.gallery-item video {
+  cursor: pointer;
+}
+
+.gallery-item:hover::after{opacity:1}
+
+/* Responsiv */
+@media(max-width:600px){
+  .back-arrow{top:20px;left:20px}
+  .hero-header h1{font-size:2rem}
+}
+.back-arrow,
+.back-arrow:hover,
+.back-arrow:visited,
+.back-arrow:active{
+  text-decoration: none;
+  color: inherit;
+}
+.back-arrow img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.back-arrow:hover img {
+  transform: translateX(-1px);
+}
+.hero-header h1 {
+  color: #ffffff; /* alb */
+}
+.hero-header p {
+  color: #ffffff; /* alb */
+}
+/* FOOTER simplu alb full width */
+footer {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.gallery-item video {
+  background: #000;
+}
+
+
 
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Plimbări Câini Chișinău",
-  "description": "Servicii profesionale de plimbări câini în Chișinău",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Chișinău",
-    "addressCountry": "MD"
-  },
-  "telephone": "+37360400898",
-  "url": "https://gutovschivictor-source.github.io/PlimbariCaini/"
-}
-</script>
-
 </head>
 <body>
 
+<section class="hero">
 
-<!-- Overlay -->
-<div id="overlay"></div>
+  <!-- Sageata stânga -->
+  <a href="index.html" class="back-arrow" aria-label="Înapoi">
+    <img src="sageata.png" alt="Plimbare câine">
+  </a>
 
-<!-- Popup program -->
-<div id="extra-info">
-    <h3>Detalii program</h3>
-    <p>Disponibil doar în weekend.<br>
-       Ore: 10:00 – 20:00.<br>
-       Programarea se face in avans.</p>
+  <div class="hero-content">
+    <div class="hero-header">
+      <h1>Galerie</h1>
+      <p>Plimbări câini • Momente reale • Chișinău</p>
+    </div>
+
+    <div class="gallery">
+      <!-- Imagine -->
+<div class="gallery-item">
+  <img src="Led.png" alt="Plimbare câine" class="lightbox-img">
 </div>
 
-<!-- Header -->
-<header>
-<nav>
-    <div class="logo">
-        <img src="logo-câine.png" alt="Logo Câine" class="header-logo">
-        <span class="logo-text">Plimbări Câini</span>
+<div class="gallery-item">
+  <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
+</div>
+
+
+      <div class="gallery-item">
+  <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
+</div>
+
+
+      <!-- Video YouTube embed -->
+      <div class="gallery-item">
+  <video controls playsinline preload="metadata">
+    <source src="vvv.mp4" type="video/mp4">
+    <source src="vvv.webm" type="video/webm">
+    Browserul tău nu suportă video.
+  </video>
+</div>
+
+
+      <div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+<div class="gallery-item">
+  <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
+</div>
+
+
     </div>
-
-    <!-- Hamburger -->
-    <div class="menu-toggle" id="menu-toggle">☰</div>
-
-    <ul id="nav-links">
-        <li><a href="#services">Servicii</a></li>
-        <li><a href="#pricing">Prețuri</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
-
-</header>
-
-<!-- Hero -->
-<section class="hero" id="hero">
-
-    <h1>Plimbări câini în Chișinău</h1>
-    <p>Servicii profesionale de dog walking</p>
-
-    <!-- Înlocuiește textul cu imagine -->
-    <div class="hero-image reveal">
-        <img src="PFPCT (2).png" alt="Plimbări câini profesionale în Chișinău">
-    </div>
-    <a href="#services" class="hero-button">Vizualizează</a>
-<div class="secondary-bg">
-    </div>
-
-<!-- Butoane suplimentare -->
-  <div class="hero-selector-buttons">
-     <a href="galerie.html" class="back-arrow" aria-label="Înapoi" target="_blank">
-    <img src="logo-câine20.png" alt="Plimbare câine">
-  </a>
   </div>
 
-    <!-- Zi/Noapte -->
-    <div id="mode-selector">
-        <span id="mode-icon">☀️</span>
-        <div id="mode-buttons">
-            <button id="dayBtn">Zi</button>
-            <button id="nightBtn">Noapte</button>
-        </div>
-    </div>
-
 </section>
-
-<!-- Services -->
-<section id="services" class="reveal">
-<h2>Servicii de plimbări câini în Chișinău</h2>
-<div class="services">
-    <div class="card">
-        <h3>Plimbare individuală</h3>
-        <p>Atenție personalizată, plimbare în ritmul câinelui.</p>
-    </div>
-    <div class="card">
-        <h3>Plimbare în grup</h3>
-        <p>Grupuri mici pentru siguranță și armonie.</p>
-    </div>
-    <div class="card">
-        <h3>Servicii extra</h3>
-        <p>Transport, hrană.</p>
-    </div>
+<!-- Lightbox pentru afișare imagine full-screen -->
+<div id="lightbox">
+  <span id="close-lightbox">&times;</span>
+  <img id="lightbox-img" src="" alt="Imagine mărită">
 </div>
-</section>
-
-<!-- How it works -->
-<section id="how-it-works" class="reveal">
-<h2>Cum funcționează</h2>
-<div class="steps">
-    <div class="step">
-        <h3>1. Detalii</h3>
-        <p>Trimite mesaj sau sună pentru rezervare.</p>
-    </div>
-    <div class="step">
-        <h3>2. Stabilim detalii</h3>
-        <p>Preferințe câine, alergii, necesități speciale.</p>
-    </div>
-    <div class="step">
-        <h3>3. Plimbare de probă</h3>
-        <p>Prima plimbare pentru a cunoaște câinele și rutina.</p>
-    </div>
-    <div class="step">
-        <h3>4. Program regulat</h3>
-        <p>Stabilim un program regulat de plimbări și feedback.</p>
-    </div>
-</div>
-</section>
-
-<!-- Pricing -->
-<section id="pricing" class="reveal">
-<h2>Prețuri plimbări</h2>
-<div class="pricing">
-    <div class="plan">
-        <h3>30 minute</h3>
-        <p>Plimbare scurtă, atenție personalizată</p>
-        <span>60 lei</span>
-    </div>
-    <div class="plan">
-        <h3>60 minute</h3>
-        <p>Plimbare completă, atenție personalizată</p>
-        <span>100 lei</span>
-    </div>
-</div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="reveal">
-<h2>Detalii</h2>
-<div class="contact-grid">
-    <div class="contact-card">
-        <h3>Telefon</h3>
-        <p><a href="tel:+37360400898">+37360400898</a></p>
-    </div>
-    <div class="contact-card">
-        <h3>Gmail</h3>
-        <p><a href="mailto:gutovschivictor@gmail.com">gutovschivictor@gmail.com</a>
-</p>
-    </div>
-    <div class="contact-card">
-        <div class="info-btn">!</div>
-        <h3>Program</h3>
-        <p>Weekend <br>10:00–20:00</p>
-    </div>
-    <div class="contact-card">
-        <h3>Aria de acoperire</h3>
-        <p>Chișinău | Centru, Botanica</p>
-    </div>
-<div class="contact-card">
-    <h3>Facebook</h3>
-    <p>
-        <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="victor-btn">
-            Victor Gutovschi
-        </a>
-    </p>
-</div>
-</div>
-</section>
-
-
-<!-- Footer -->
-<footer>
-&copy; 2025 Plimbări Câini.
-</footer>
-
 <script>
-const infoBtn = document.querySelector(".info-btn");
-const overlay = document.getElementById("overlay");
-const extraInfo = document.getElementById("extra-info");
-const modeSelector = document.getElementById("mode-selector");
-const modeButtons = document.getElementById("mode-buttons");
-const modeIcon = document.getElementById("mode-icon");
-const dayBtn = document.getElementById("dayBtn");
-const nightBtn = document.getElementById("nightBtn");
-const menuItems = document.querySelectorAll('nav ul li');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.getElementById('close-lightbox');
 
-menuItems.forEach(item => {
-  item.addEventListener('click', () => {
-    menuItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
+document.querySelectorAll('.lightbox-img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src; // afișează imaginea pe tot ecranul
   });
 });
 
-
-// Popup program
-infoBtn.addEventListener("click", () => {
-    overlay.classList.add("active");
-    extraInfo.classList.add("active");
-});
-overlay.addEventListener("click", () => {
-    overlay.classList.remove("active");
-    extraInfo.classList.remove("active");
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
 });
 
-// Afisare butoane Zi/Noapte
-modeSelector.addEventListener("click", (e) => {
-    e.stopPropagation();
-    modeButtons.style.display = modeButtons.style.display === "flex" ? "none" : "flex";
-});
-document.addEventListener("click", () => {
-    modeButtons.style.display = "none";
-});
-
-// Zi/Noapte cu tranziție lină - header-ul izolat complet
-dayBtn.addEventListener("click", () => {
-    document.querySelector(".secondary-bg").style.backgroundImage = "url('Led.png')";
-    document.body.style.transition = "background 0.8s, color 0.8s";
-    document.body.style.backgroundColor = "#fff";
-    document.body.style.color = "#000";
-    document.querySelector(".hero").style.backgroundColor = "#ffad69";
-const h1 = document.querySelector(".hero h1");
-if (h1) h1.style.color = "#fff";
-
-const p = document.querySelector(".hero p");
-if (p) p.style.color = "#fff";
-
-    document.querySelectorAll("h2, .card h3, .step h3, .plan h3, .contact-card h3, .plan span").forEach(el => el.style.color = "#614636");
-    document.querySelector("footer").style.backgroundColor = "#f9f9f9";
-    document.querySelector("footer").style.color = "#555";
-    modeIcon.textContent = "☀️";
-    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1)";
- // ✅ Resetează box-shadow la alb
-    const heroBtn = document.querySelector(".hero-button");
-    heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
-// ✅ Back arrow button
-    const backArrow = document.querySelector(".back-arrow");
-    backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
-});
-
-nightBtn.addEventListener("click", () => {
-    document.querySelector(".secondary-bg").style.backgroundImage = "url('Led2.png')";
-    document.body.style.transition = "background 0.8s, color 0.8s";
-    document.body.style.backgroundColor = "#1e1e1e";
-    document.body.style.color = "#f0f0f0";
-    document.querySelector(".hero").style.backgroundColor = "#333";
-const h1 = document.querySelector(".hero h1");
-if (h1) h1.style.color = "#fff";
-
-const p = document.querySelector(".hero p");
-if (p) p.style.color = "#ddd";
-
-    document.querySelectorAll("h2, .card h3, .step h3, .plan h3, .contact-card h3, .plan span").forEach(el => el.style.color = "#f0f0f0");
-    document.querySelector("footer").style.backgroundColor = "#111";
-    document.querySelector("footer").style.color = "#ccc";
-    modeIcon.textContent = "🌙";
-    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.1)";
-    const heroBtn = document.querySelector(".hero-button");
-    heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
-// ✅ Back arrow button
-    const backArrow = document.querySelector(".back-arrow");
-    backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
-});
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-    const revealPoint = 120;
-
-    reveals.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-
-        if (elementTop < windowHeight - revealPoint) {
-            el.classList.add("active");
-        } else {
-            el.classList.remove("active"); // ⬅ DISPARIȚIE la scroll în sus
-        }
-    });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);</script>
-<script>
-// Efect mini-explozie de particule la click
-document.addEventListener("click", function(e) {
-    const particles = [];
-    const colors = ["#ffad69","#614636","#fff"];
-    const numParticles = 5;
-
-    for (let i = 0; i < numParticles; i++) {
-        const p = document.createElement("div");
-        p.style.position = "fixed";
-        p.style.width = "6px";
-        p.style.height = "6px";
-        p.style.borderRadius = "50%";
-        p.style.background = colors[Math.floor(Math.random() * colors.length)];
-        p.style.left = e.clientX + "px";
-        p.style.top = e.clientY + "px";
-        p.style.pointerEvents = "none";
-        p.style.zIndex = 5000;
-        p.style.opacity = 1;
-        document.body.appendChild(p);
-
-        const angle = Math.random() * 2 * Math.PI;
-        const speed = Math.random() * 80 + 50;
-        const vx = Math.cos(angle) * speed;
-        const vy = Math.sin(angle) * speed;
-
-        let startTime = performance.now();
-        function animate(time) {
-            let t = (time - startTime) / 1000;
-            if (t < 1) {
-                p.style.transform = `translate(${vx*t}px, ${vy*t + 0.5*300*t*t}px)`;
-                p.style.opacity = `${1 - t}`;
-                requestAnimationFrame(animate);
-            } else {
-                p.remove();
-            }
-        }
-        requestAnimationFrame(animate);
-    }
+// Inchide si la click pe fundal
+lightbox.addEventListener('click', (e) => {
+  if(e.target === lightbox) {
+    lightbox.style.display = 'none';
+  }
 });
 </script>
-
-<style>
-/* FUNDAL PRINCIPAL */
-.hero-background{
-  position: absolute;
-  inset: 0;
-  background: url("arbore genealogic (1).png") center/contain no-repeat;
-  z-index:10;
-}
-/* Hamburger toggle */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #000;
-    user-select: none;
-}
-
-
-
-/* Responsive nav */
-@media screen and (max-width: 768px) {
-    nav ul {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100%;
-        width: 250px;
-        background: #fff;
-        flex-direction: column;
-        gap: 2rem;
-        padding-top: 4rem;
-        transition: right 0.3s ease;
-        box-shadow: -4px 0 15px rgba(0,0,0,0.1);
-        z-index: 1500;
-    }
-    nav ul.active {
-        right: 0;
-    }
-    .menu-toggle {
-        display: block;
-    }
-    nav ul li {
-        font-size: 1.2rem;
-        padding-left: 1rem;
-    }
-}
-
-
-</style>
-
-
-<script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const navLinks = document.getElementById("nav-links");
-
-  menuToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      navLinks.classList.toggle("active");
-  });
-
-  document.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-  });
-  navLinks.addEventListener("click", (e) => e.stopPropagation());
-  </script>
-
+<!-- Footer -->
+<footer>
+&copy; 2025 Galerie • Plimbări Câini.
+</footer>
 
 </body>
 </html>
-
-
