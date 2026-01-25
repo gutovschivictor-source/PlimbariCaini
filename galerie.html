@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="logo-câine2.png" type="image/png">
 <style>
+
 /* Lightbox full screen */
 #lightbox {
   position: fixed;
@@ -128,6 +129,7 @@ background: rgba(255,255,255,0.0);
   aspect-ratio:4/3;
   background:#f3f3f3;
  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.5);
+
 }
 
 
@@ -140,29 +142,30 @@ background: rgba(255,255,255,0.0);
   transition:transform .3s ease;
 padding: 1px;
 border-radius: 15px;
+
 }
 
-.gallery-item:hover img {
-  transform: scale(1.08);
+.gallery-item {
+  transition: transform .3s ease, box-shadow .3s ease;
 }
+
+
 
 /* Overlay subtil */
-.gallery-item::after{
+.gallery-item::after {
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(255,255,255,0.1), transparent 60%);
+  background:linear-gradient(to top, rgba(255,255,255,0.2), transparent 50%);
   opacity:0;
-  transition:opacity .4s ease;
-}
-.gallery-item::after {
+  transition:opacity .3s ease;
   pointer-events: none;
 }
+
 .gallery-item video {
   cursor: pointer;
 }
 
-.gallery-item:hover::after{opacity:1}
 
 /* Responsiv */
 @media(max-width:600px){
@@ -206,16 +209,41 @@ footer {
   background: #000;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
   .gallery-item {
-    border-radius: 10px;
+    border-radius: 15px;
   }
 }
+/* Efect intrare / iesire */
+.reveal {
+  opacity: 0.8;
+transform: scale(0.97);
+  transition:
+    opacity 0.8s ease,
+    transform 0.5s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover {
+    transform: scale(1.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+
+  .gallery-item:hover::after {
+    opacity:1;
+  }
+}
+
 
 
 </style>
@@ -237,22 +265,22 @@ footer {
 
     <div class="gallery">
       <!-- Imagine -->
-<div class="gallery-item">
-  <img src="Led.png" alt="Plimbare câine" class="lightbox-img">
+<div class="gallery-item reveal">
+  <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
 </div>
 
-<div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
 </div>
 
 
-      <div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Led2.png" alt="Câini fericiți" class="lightbox-img">
 </div>
 
 
       <!-- Video YouTube embed -->
-      <div class="gallery-item">
+<div class="gallery-item reveal">
   <video controls playsinline preload="metadata">
     <source src="vvv.mp4" type="video/mp4">
     <source src="vvv.webm" type="video/webm">
@@ -261,19 +289,19 @@ footer {
 </div>
 
 
-      <div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
 </div>
-<div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
 </div>
-<div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
 </div>
-<div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
 </div>
-<div class="gallery-item">
+<div class="gallery-item reveal">
   <img src="Untitled.jpeg" alt="Câini fericiți" class="lightbox-img">
 </div>
 
@@ -309,6 +337,26 @@ lightbox.addEventListener('click', (e) => {
     lightbox.style.display = 'none';
   }
 });
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      } else {
+        entry.target.classList.remove("active");
+      }
+    });
+  },
+  {
+    threshold: 0.5
+  }
+);
+
+reveals.forEach(el => observer.observe(el));
+
+
 </script>
 <!-- Footer -->
 <footer>
