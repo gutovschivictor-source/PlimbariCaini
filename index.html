@@ -218,6 +218,13 @@ html {scroll-behavior: smooth;}
     }
 
 }
+/* Sageata stânga */
+.back-arrow{position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.6rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;    width:60px;         /* lățime fixă */
+    height: 50px;         /* înălțime fixă */
+bottom: 90px;
+}
+.back-arrow:hover{transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
+
 </style>
 <script type="application/ld+json">
 {
@@ -281,7 +288,15 @@ html {scroll-behavior: smooth;}
         <img src="PFPCT (2).png" alt="Plimbări câini profesionale în Chișinău">
     </div>
     <a href="#services" class="hero-button">Vizualizează</a>
-<div class="secondary-bg"></div>
+<div class="secondary-bg">
+    </div>
+
+<!-- Butoane suplimentare -->
+  <div class="hero-selector-buttons">
+     <a href="galerie.html" class="back-arrow" aria-label="Înapoi" target="_blank">
+    <img src="logo-câine20.png" alt="Plimbare câine">
+  </a>
+  </div>
 
     <!-- Zi/Noapte -->
     <div id="mode-selector">
@@ -291,6 +306,7 @@ html {scroll-behavior: smooth;}
             <button id="nightBtn">Noapte</button>
         </div>
     </div>
+
 </section>
 
 <!-- Services -->
@@ -450,6 +466,9 @@ if (p) p.style.color = "#fff";
  // ✅ Resetează box-shadow la alb
     const heroBtn = document.querySelector(".hero-button");
     heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
+// ✅ Back arrow button
+    const backArrow = document.querySelector(".back-arrow");
+    backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
 });
 
 nightBtn.addEventListener("click", () => {
@@ -471,6 +490,9 @@ if (p) p.style.color = "#ddd";
     modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.1)";
     const heroBtn = document.querySelector(".hero-button");
     heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
+// ✅ Back arrow button
+    const backArrow = document.querySelector(".back-arrow");
+    backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
 });
 const reveals = document.querySelectorAll(".reveal");
 
