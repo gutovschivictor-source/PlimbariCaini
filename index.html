@@ -381,7 +381,7 @@ bottom: 80px;
   <div class="hero-qr-box">
     <span class="hero-qr-close">✕</span>
     <img class="hero-qr-img" alt="QR code">
-    <h4 class="hero-qr-text">Scanează site-ul nostru!</h4>
+    <h4 class="hero-qr-text">Scanează site-ul !</h4>
   </div>
 </div>
 
@@ -547,6 +547,10 @@ if (p) p.style.color = "#fff";
 // ✅ Back arrow button
     const backArrow = document.querySelector(".back-arrow");
     backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
+ // buton roșu (QR dot)
+    const qrDot = document.querySelector(".hero-qr-dot");
+    if (qrDot) qrDot.style.boxShadow = " inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
+    if (qrDot) qrDot.style.background = "rgba(255,255,255,0.5)";
 });
 
 nightBtn.addEventListener("click", () => {
@@ -571,7 +575,13 @@ if (p) p.style.color = "#ddd";
 // ✅ Back arrow button
     const backArrow = document.querySelector(".back-arrow");
     backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
+// buton roșu (QR dot)
+    const qrDot = document.querySelector(".hero-qr-dot");
+    if (qrDot) qrDot.style.boxShadow ="inset 0 -1px 1px rgba(255,0,0,0.5), inset 0 1px 0px rgba(255,255,255,0.4)";
+    if (qrDot) qrDot.style.background = "rgba(0,0,0,0.1)";
+
 });
+
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
