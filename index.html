@@ -12,6 +12,68 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+.hero-qr-text {
+  margin-top: 10px;       /* spațiu de la QR */
+  font-size: 16px;        /* mărime text */
+  color: #000;            /* culoare text */
+  font-weight: 500;       /* grosime text */
+}
+
+/* ===== QR DOAR ÎN HERO ===== */
+.hero {
+  position: relative; /* deja ai, dar e esențial */
+}
+
+/* punct roșu */
+.hero-qr-dot {
+  position: absolute;
+  top: 100px;
+  left: 20px; /* schimbă poziția aici */
+  width: 14px;
+  height: 14px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 50; /* sub mode-selector, peste fundal */
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(255,255,255,0.1);
+}
+
+/* overlay */
+.hero-qr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* chenar */
+.hero-qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* centrăm QR și textul */
+  gap: 10px;            /* distanță între imagine și text */
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+
+.hero-qr-img {
+  width: 220px;
+  height: 220px;
+}
+
+.hero-qr-close {
+  position: absolute;
+  top: 1px;
+  right: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
 
 #contact .info-btn:hover {
     transform: scale(1.15);
@@ -143,7 +205,9 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
     height: 1px;
     overflow: hidden;
     clip: rect(0,0,0,0);
+    white-space: nowrap;
 }
+
 
 .card:hover,
 .step:hover,
@@ -286,7 +350,7 @@ bottom: 80px;
 
     <!-- Înlocuiește textul cu imagine -->
     <div class="hero-image reveal">
-        <img src="PFPCT (2).png" alt="Plimbări câini profesionale în Chișinău">
+        <img src="PFPCT (2).png" alt="Plimbări câini profesionale în Chișinău" aria-label="Plimbări câini profesionale în Chișinău">
     </div>
     <a href="#services" class="hero-button">Vizualizează</a>
 <div class="secondary-bg">
@@ -307,6 +371,19 @@ bottom: 80px;
             <button id="nightBtn">Noapte</button>
         </div>
     </div>
+<!-- QR HERO (IZOLAT) -->
+<div class="hero-qr">
+  <div class="hero-qr-dot"></div>
+</div>
+
+<!-- Overlay QR -->
+<div class="hero-qr-overlay">
+  <div class="hero-qr-box">
+    <span class="hero-qr-close">✕</span>
+    <img class="hero-qr-img" alt="QR code">
+    <h4 class="hero-qr-text">Scanează site-ul nostru!</h4>
+  </div>
+</div>
 
 </section>
 
@@ -621,6 +698,28 @@ document.addEventListener("click", function(e) {
   });
   navLinks.addEventListener("click", (e) => e.stopPropagation());
   </script>
+<script>
+const qrDot = document.querySelector(".hero-qr-dot");
+const qrOverlay = document.querySelector(".hero-qr-overlay");
+const qrClose = document.querySelector(".hero-qr-close");
+const qrImg = document.querySelector(".hero-qr-img");
+
+qrDot.addEventListener("click", () => {
+  qrImg.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://gutovschivictor-source.github.io/PlimbariCaini/";
+  qrOverlay.style.display = "flex";
+});
+
+qrClose.addEventListener("click", () => {
+  qrOverlay.style.display = "none";
+});
+
+qrOverlay.addEventListener("click", (e) => {
+  if (e.target === qrOverlay) {
+    qrOverlay.style.display = "none";
+  }
+});
+</script>
 
 
 </body>
