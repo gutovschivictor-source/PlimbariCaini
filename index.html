@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="language" content="ro">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale sau în grup. Program flexibil. Sună acum!">
+<meta name="description" content="Servicii de plimbări câini în Chișinău. Plimbări individuale sau în grup. Sună acum!">
 <title>Plimbări Câini Chișinău | Servicii Profesionale</title>
 <meta name="google-site-verification" content="w7SEEKtnbIQ7qJ90wujLoo2E19ctQJG4kqAkKiQdG2c" />
 
@@ -62,6 +62,8 @@
   padding: 20px;
   border-radius: 15px;
   text-align: center;
+box-shadow: 0 5px 30px #000, inset 0 -5px 1px rgba(0,0,0,0.5);
+
 }
 
 
@@ -84,10 +86,8 @@
     color: #fff;
     box-shadow: 0 0 12px #ffad69, inset 0 1px 1px rgba(255,255,255,1),inset 0 -1px 0px rgba(255,255,255,0.2)
 }
-#contact .contact-card:hover {
-    background: rgba(255, 255, 255, 0.25); 
-    backdrop-filter: blur(12px);
-}
+
+
 
 #contact .contact-card {
     flex: 1 1 250px;       /* toate cardurile ocupă spațiul egal */
@@ -192,9 +192,9 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
     -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
-      0 5px 10px rgba(0,0,0,0.1),
-      inset 0 1px 1px rgba(255,255,255,0.4),
-      inset 0 -1px 1px rgba(0,0,0,0.05);
+       0  6px 20px rgba(0,0,0,0.12),
+      inset 0 -3px 1px rgba(0,0,0,0.4),
+      inset 0 1px 1px rgba(255,255,255,1);
 
     transition:
       transform 0.3s ease,
@@ -239,8 +239,11 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 .plan:hover,
 .contact-card:hover {
     transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);background: rgba(255,255,255,0.25);}
+ box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 1px 3px rgba(255, 173, 105,1), inset 0 -4px 1px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.25);
+}
 .card h3, .step h3, .plan h3, .contact-card h3 {color: #614636; margin-bottom: 1rem;}
+.detalii h3 {color: #000;
+}
 
 /* Services */
 .services {display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;}
@@ -332,6 +335,10 @@ bottom: 80px;
   }
 }
 
+.hero p,
+.hero a {
+    color: #fff !important;
+}
 
 </style>
 <script type="application/ld+json">
@@ -366,11 +373,11 @@ bottom: 80px;
 <div id="overlay"></div>
 
 <!-- Popup program -->
-<div id="extra-info">
-    <h3>Detalii program</h3>
+<div id="extra-info" class="detalii">
+    <h3>Detalii program:</h3>
     <p>Disponibil doar în weekend.<br>
        Ore: 10:00 – 20:00.<br>
-       Programarea se face in avans.</p>
+       Programarea se face in avans!</p>
 </div>
 
 <!-- Header -->
@@ -428,7 +435,7 @@ bottom: 80px;
 <div class="hero-qr-overlay">
   <div class="hero-qr-box">
     <span class="hero-qr-close">✕</span>
-    <img class="hero-qr-img" alt="QR code">
+    <img class="hero-qr-img"  alt="QR code">
     <h4 class="hero-qr-text">Scanează site-ul !</h4>
   </div>
 </div>
@@ -437,7 +444,7 @@ bottom: 80px;
 
 <!-- Services -->
 <section id="services" class="reveal">
-<h2>Servicii de plimbări câini în Chișinău</h2>
+<h2>Servicii de plimbare a câinilor</h2>
 <div class="services">
     <div class="card">
         <h3>Plimbare individuală</h3>
@@ -449,7 +456,7 @@ bottom: 80px;
     </div>
     <div class="card">
         <h3>Servicii extra</h3>
-        <p>Transport, hrană.</p>
+        <p>Hrană/Apă.</p>
     </div>
 </div>
 </section>
@@ -483,12 +490,12 @@ bottom: 80px;
 <div class="pricing">
     <div class="plan">
         <h3>30 minute</h3>
-        <p>Plimbare scurtă, atenție personalizată</p>
+        <p>Plimbare rapidă pentru nevoi și puțină mișcare</p>
         <span>60 lei</span>
     </div>
     <div class="plan">
         <h3>60 minute</h3>
-        <p>Plimbare completă, atenție personalizată</p>
+        <p>Plimbare extinsă cu mișcare, joacă și supraveghere completă</p>
         <span>100 lei</span>
     </div>
 </div>
@@ -584,8 +591,10 @@ if (h1) h1.style.color = "#fff";
 const p = document.querySelector(".hero p");
 if (p) p.style.color = "#fff";
 
-    document.querySelectorAll("h2, .card h3, .step h3, .plan h3, .contact-card h3, .plan span").forEach(el => el.style.color = "#614636");
-    document.querySelector("footer").style.backgroundColor = "#f9f9f9";
+document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#614636");
+document.querySelectorAll("p,a").forEach(el => el.style.color = "#000");
+document.querySelectorAll(".detalii h3").forEach(el => el.style.color = "#000");
+    document.querySelector("footer").style.backgroundColor = "#fff";
     document.querySelector("footer").style.color = "#555";
     modeIcon.textContent = "☀️";
     modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0)";
@@ -613,9 +622,12 @@ if (h1) h1.style.color = "#fff";
 const p = document.querySelector(".hero p");
 if (p) p.style.color = "#ddd";
 
-    document.querySelectorAll("h2, .card h3, .step h3, .plan h3, .contact-card h3, .plan span").forEach(el => el.style.color = "#f0f0f0");
+document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#f0f0f0");
+document.querySelectorAll("p,a").forEach(el => el.style.color = "#f0f0f0");
+document.querySelectorAll(".detalii h3").forEach(el => el.style.color = "#fff");
     document.querySelector("footer").style.backgroundColor = "#111";
     document.querySelector("footer").style.color = "#ccc";
+
     modeIcon.textContent = "🌙";
     modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0)";
     const heroBtn = document.querySelector(".hero-button");
