@@ -4,9 +4,10 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Victor Gutovschi">
 <meta charset="UTF-8">
+<meta name="language" content="ro">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale sau în grup. Program flexibil. Sună acum!">
-<title>Plimbări Câini Chișinău | Dog Walking Profesional</title>
+<title>Plimbări Câini Chișinău | Servicii Profesionale</title>
 <meta name="google-site-verification" content="w7SEEKtnbIQ7qJ90wujLoo2E19ctQJG4kqAkKiQdG2c" />
 
 <link rel="icon" href="logo-câine.png" type="image/png">
@@ -161,7 +162,7 @@ nav ul li a { color: #000 !important; }
 
 /* Hero */
 .hero {height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #ffad69; padding: 0 1rem; position: relative;}
-.hero h1 {font-size: 3rem; color: #fff; margin-bottom: 1rem;}
+
 .hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
 .hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
 
@@ -199,14 +200,36 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
       box-shadow 0.3s ease,
       background 0.3s ease;
 }
-.hero h1,
+.hero h1 {
+    position: relative;      /* NU absolute */
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+
+    color: #fff;             /* alb */
+    font-size: clamp(1.8rem, 5vw, 3.6rem);
+
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    z-index: 5;
+}
 .hero p {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
+    position: relative;      /* NU absolute */
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+
+    color: #fff;             /* alb */
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    z-index: 5;
 }
 
 
@@ -244,7 +267,7 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 
 /* Zi/Noapte Hero cu efect Vizualizeaza */
 #mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.6rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
-#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
+#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0);}
 #mode-icon {font-size: 1.3rem; user-select: none;}
 #mode-buttons {display: none; flex-direction: column; gap: 0.3rem; margin-left: 0.5rem;}
 #mode-buttons button {padding: 0.3rem 0.6rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; background: rgba(255,255,255,0.1); color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.2); backdrop-filter: blur(15px); transition: all 0.3s ease;}
@@ -289,24 +312,50 @@ html {scroll-behavior: smooth;}
 bottom: 80px;
 
 }
-.back-arrow:hover{transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
+.back-arrow:hover{transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0);}
+/* 📱 TELEFOANE */
+@media (max-width: 768px) {
+  .hero h1 {
+    padding-top: 6rem; /* să nu se lipească de header */
+    font-size: 2rem;   /* mai mic pe telefon */
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+}
+
 
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "PetService",
   "name": "Plimbări Câini Chișinău",
   "description": "Servicii profesionale de plimbări câini în Chișinău",
+  "url": "https://gutovschivictor-source.github.io/PlimbariCaini/",
+  "telephone": "+37360400898",
+  "areaServed": {
+    "@type": "City",
+    "name": "Chișinău"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Chișinău",
     "addressCountry": "MD"
   },
-  "telephone": "+37360400898",
-  "url": "https://gutovschivictor-source.github.io/PlimbariCaini/"
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61579559310786"
+  ]
 }
 </script>
+
 
 </head>
 <body>
@@ -347,12 +396,9 @@ bottom: 80px;
 <section class="hero" id="hero">
 
     <h1>Plimbări câini în Chișinău</h1>
-    <p>Servicii profesionale de dog walking</p>
+    <p>Atenție, joacă și siguranță la fiecare pas</p>
 
     <!-- Înlocuiește textul cu imagine -->
-    <div class="hero-image reveal">
-        <img src="PFPCT (2).png" alt="Plimbări câini profesionale în Chișinău" aria-label="Plimbări câini profesionale în Chișinău">
-    </div>
     <a href="#services" class="hero-button">Vizualizează</a>
 <div class="secondary-bg">
     </div>
@@ -541,7 +587,7 @@ if (p) p.style.color = "#fff";
     document.querySelector("footer").style.backgroundColor = "#f9f9f9";
     document.querySelector("footer").style.color = "#555";
     modeIcon.textContent = "☀️";
-    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.1)";
+    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0)";
  // ✅ Resetează box-shadow la alb
     const heroBtn = document.querySelector(".hero-button");
     heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
@@ -570,7 +616,7 @@ if (p) p.style.color = "#ddd";
     document.querySelector("footer").style.backgroundColor = "#111";
     document.querySelector("footer").style.color = "#ccc";
     modeIcon.textContent = "🌙";
-    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.1)";
+    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0)";
     const heroBtn = document.querySelector(".hero-button");
     heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,0,0,0.5), inset 0 -1px 1px rgba(0,0,0,0.0)";
 // ✅ Back arrow button
