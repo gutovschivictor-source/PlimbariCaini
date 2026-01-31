@@ -45,12 +45,16 @@
 .hero-qr-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
+  height: 100vh;           /* asigură înălțimea completă */
+  width: 100vw;            /* opțional, pentru siguranță */
+  display: none;           /* inițial ascuns */
+  flex-direction: column;  /* dacă ai mai multe elemente */
   align-items: center;
   justify-content: center;
+  background: rgba(0,0,0,0.6);
   z-index: 9999;
 }
+
 
 /* chenar */
 .hero-qr-box {
@@ -178,13 +182,17 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 .step,
 .plan,
 .contact-card {
+    display: flex;                /* <- adaugat */
+    flex-direction: column;
+    justify-content: center;      /* centru vertical */
+    align-items: center;          /* centru orizontal */
+
     background: rgba(255,255,255,0.2);
-  color: #000;
+    color: #000;
 
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-
     position: relative;
     overflow: hidden;
 
@@ -192,15 +200,16 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
     -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
-       0  6px 20px rgba(0,0,0,0.12),
+       0 6px 20px rgba(0,0,0,0.12),
       inset 0 -3px 1px rgba(0,0,0,0.4),
       inset 0 1px 1px rgba(255,255,255,1);
 
     transition:
       transform 0.3s ease,
-      box-shadow 0.3s ease,
+      box-shadow 0.5s ease,
       background 0.3s ease;
 }
+
 .hero h1 {
     position: relative;      /* NU absolute */
     width: auto;
@@ -432,11 +441,7 @@ bottom: 80px;
     </div>
 
 <!-- Butoane suplimentare -->
-  <div class="hero-selector-buttons">
-     <a href="galeri.html" class="back-arrow" aria-label="Înainte">
-    <img src="logo-câine20.png" alt="Plimbare câine">
-  </a>
-  </div>
+
 
     <!-- Zi/Noapte -->
     <div id="mode-selector">
