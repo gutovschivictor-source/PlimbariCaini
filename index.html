@@ -81,7 +81,7 @@ body::selection {
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),inset 0 -7px 0px rgba(255, 173, 105, 1);
+box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),inset 0 -5px 0px rgba(255, 173, 105, 1);
 
 }
 
@@ -298,17 +298,14 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 /* Chenar popup program */
 #extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,0); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem;  box-shadow:
       0 4px 30px rgba(0,0,0,0.5),
-      inset 0 1px 2px rgba(255,255,255,0.61),
-      inset 0 -2px 0px rgba(255,255,255,0.2); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
+      inset 0 1px 2px rgba(255,255,255,1),
+      inset 0 -1px 0px rgba(255,255,255,0.2); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
 #extra-info.active {opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);}
 
 /* Zi/Noapte Hero cu efect Vizualizeaza */
 #mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
 #mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),   inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
 #mode-icon img.mode-img  {font-size: 1.3rem; user-select: none;  width: 34px; height: 34px; }
-#mode-buttons {display: none; flex-direction: column; gap: 0.3rem; margin-left: 0.5rem;}
-#mode-buttons button {padding: 0.3rem 0.3rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; background: rgba(255,255,255,0); color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1); backdrop-filter: blur(15px); transition: all 0.3s ease;}
-#mode-buttons button:hover {transform: scale(1.04);background: rgba(255,255,255,0.3); box-shadow: 0 8px 40px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.8), inset 0 -1px 1px rgba(0,0,0,0.2);}
 
 /* Footer */
 footer {background: #f9f9f9; text-align: center; padding: 2rem; color: #555; font-size: 0.9rem;}
@@ -353,8 +350,7 @@ background-position: center 0.5rem;
 
 @media (max-width: 768px) {
   .hero-reserva {
-    margin-top: 20px;    /* puțin mai sus pe mobil */
-    padding: 1rem 0.5rem;
+    margin-top: 20px;      /* puțin mai sus pe mobil */
     font-size: 0.95rem;
   }
 }
@@ -497,7 +493,7 @@ bottom: 80px;
 </div>
 
 <!-- Overlay QR -->
-<div class="hero-qr-overlay">
+<div class="hero-qr-overlay" >
   <div class="hero-qr-box">
     <span class="hero-qr-close">✕</span>
     <img class="hero-qr-img"  alt="QR code">
@@ -633,83 +629,64 @@ overlay.addEventListener("click", () => {
 });
 
 
+// Zi/Noapte cu tranziție lină - header-ul izolat complet
 let isNight = false;
 
 modeSelector.addEventListener("click", () => {
 
     isNight = !isNight;
 
-    if (!isNight) {
-        // ===== MOD ZI =====
-        document.querySelector(".secondary-bg").style.backgroundImage = "url('Led.png')";
-        document.body.style.backgroundColor = "#fff";
-        document.body.style.color = "#000";
-        document.querySelector(".hero").style.backgroundColor = "#ffad69";
-
-        const h1 = document.querySelector(".hero h1");
-        if (h1) h1.style.color = "#fff";
-
-        const p = document.querySelector(".hero p");
-        if (p) p.style.color = "#fff";
-
-        document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#614636");
-        document.querySelectorAll("p,a").forEach(el => el.style.color = "#000");
-        document.querySelector("footer").style.backgroundColor = "#fff";
-        document.querySelector("footer").style.color = "#555";
-
-        modeIcon.innerHTML = `<img src="Sun.png" alt="Mod zi" class="mode-img">`;
-
-    } else {
-        // ===== MOD NOAPTE =====
+    if (isNight) {
+        // 🌙 NOAPTE
         document.querySelector(".secondary-bg").style.backgroundImage = "url('Led2.png')";
         document.body.style.backgroundColor = "#1e1e1e";
         document.body.style.color = "#f0f0f0";
         document.querySelector(".hero").style.backgroundColor = "#333";
 
-        const h1 = document.querySelector(".hero h1");
-        if (h1) h1.style.color = "#fff";
-
-        const p = document.querySelector(".hero p");
-        if (p) p.style.color = "#ddd";
-
         document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#f0f0f0");
         document.querySelectorAll("p,a").forEach(el => el.style.color = "#f0f0f0");
+
         document.querySelector("footer").style.backgroundColor = "#111";
         document.querySelector("footer").style.color = "#ccc";
 
         modeIcon.innerHTML = `<img src="Mon.png" alt="Mod noapte" class="mode-img">`;
+
+    } else {
+        // ☀️ ZI
+        document.querySelector(".secondary-bg").style.backgroundImage = "url('Led.png')";
+        document.body.style.backgroundColor = "#fff";
+        document.body.style.color = "#000";
+        document.querySelector(".hero").style.backgroundColor = "#ffad69";
+
+        document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#614636");
+        document.querySelectorAll("p,a").forEach(el => el.style.color = "#000");
+
+        document.querySelector("footer").style.backgroundColor = "#fff";
+        document.querySelector("footer").style.color = "#555";
+
+        modeIcon.innerHTML = `<img src="Sun.png" alt="Mod zi" class="mode-img">`;
     }
+
 });
 
-// ✅ Back arrow button
-const backArrow = document.querySelector(".back-arrow");
-if (backArrow) {
-  backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
-}
-// buton roșu (QR dot)
-    const qrDot = document.querySelector(".hero-qr-dot");
-    if (qrDot) qrDot.style.boxShadow ="inset 0 1px 0px rgba(255, 173, 105, 0.6), inset 0 -1px 0px rgba(255,255,255,0.2)";
-    if (qrDot) qrDot.style.background = "rgba(255,255,255,0.1)";
 
 const reveals = document.querySelectorAll(".reveal");
 
-function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-    const revealPoint = 120;
-
-    reveals.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-
-        if (elementTop < windowHeight - revealPoint) {
-            el.classList.add("active");
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
         } else {
-            el.classList.remove("active"); // ⬅ DISPARIȚIE la scroll în sus
+            entry.target.classList.remove("active");
         }
     });
-}
+}, {
+    threshold: 0.2
+});
 
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);</script>
+reveals.forEach(el => {
+    observer.observe(el);
+});</script>
 <script>
 // Efect mini-explozie de particule la click
 document.addEventListener("click", function(e) {
