@@ -15,6 +15,21 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* SELECTIE TEXT DIFERITA */
+
+header::selection {
+  background-color: #ffad69; /* culoare selectie header */
+  color: #fff;
+}
+.hero::selection {
+  background-color: #ffffff;
+  color: #ffad69;
+}
+body::selection {
+  background-color: #ffad69; /* culoare selectie rest site */
+  color: #fff;
+}
+
 .hero-qr-text {
   margin-top: 10px;       /* spațiu de la QR */
   font-size: 16px;        /* mărime text */
@@ -66,7 +81,7 @@
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),inset 0 -5px 0px rgba(255, 173, 105, 1),inset 0 2px 1px rgba(94, 255, 207, 0.7);
+box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),inset 0 -7px 0px rgba(255, 173, 105, 1);
 
 }
 
@@ -171,7 +186,13 @@ nav ul li a { color: #000 !important; }
 .hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
 .hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
 
+.hero-buttonn {padding: 1rem 1rem; background: rgba(255 0 0 / 20%); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
+
+
 .hero-button:hover {transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
+
+.hero-buttonn:hover {transform: scale(1.03);background: rgba(255 0 0 / 40%); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
+
 
 /* Sections */
 section {padding: 6rem 3rem 6rem; color: #000;}
@@ -277,12 +298,12 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #614636;}
 /* Chenar popup program */
 #extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,0); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem;  box-shadow:
       0 4px 30px rgba(0,0,0,0.5),
-      inset 0 1px 0px rgba(255,255,255,0.9),
-      inset 0 -1px 0px rgba(255,255,255,0.9); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
+      inset 0 1px 2px rgba(255,255,255,0.61),
+      inset 0 -2px 0px rgba(255,255,255,0.2); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
 #extra-info.active {opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);}
 
 /* Zi/Noapte Hero cu efect Vizualizeaza */
-#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0.5rem 1rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
+#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
 #mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),   inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
 #mode-icon img.mode-img  {font-size: 1.3rem; user-select: none;  width: 34px; height: 34px; }
 #mode-buttons {display: none; flex-direction: column; gap: 0.3rem; margin-left: 0.5rem;}
@@ -323,6 +344,21 @@ background-position: center 0.5rem;
     transition: opacity 1s ease;
 }
 
+
+.hero-reserva {
+  position: absolute;
+  bottom: 100px;        /* cât de jos vrei */
+
+}
+
+@media (max-width: 768px) {
+  .hero-reserva {
+    bottom: 25px;      /* puțin mai sus pe mobil */
+    padding: 1rem 0.5rem;
+    font-size: 0.95rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -347,7 +383,7 @@ bottom: 80px;
 /* 📱 TELEFOANE */
 @media (max-width: 768px) {
   .hero h1 {
-    padding-top: 6rem; /* să nu se lipească de header */
+    padding-top: 1rem; /* să nu se lipească de header */
     font-size: 2rem;   /* mai mic pe telefon */
     line-height: 1.2;
   }
@@ -434,7 +470,11 @@ bottom: 80px;
     <p>Atenție, joacă și siguranță la fiecare pas</p>
 
     <!-- Înlocuiește textul cu imagine -->
-    <a href="#services" class="hero-button">Vizualizează</a>
+<a href="#services" class="hero-button">Vizualizează</a>
+<a href="programare.html"  class="hero-buttonn hero-reserva">
+  Rezervă acum !!
+</a>
+
 <div class="secondary-bg">
     </div>
 <div class="third-bg">
@@ -449,10 +489,7 @@ bottom: 80px;
   <img src="Sun.png" alt="Mod zi" class="mode-img">
 </span>
 
-        <div id="mode-buttons">
-            <button id="dayBtn">Zi</button>
-            <button id="nightBtn">Noapte</button>
-        </div>
+
     </div>
 <!-- QR HERO (IZOLAT) -->
 <div class="hero-qr">
@@ -573,10 +610,8 @@ const infoBtn = document.querySelector(".info-btn");
 const overlay = document.getElementById("overlay");
 const extraInfo = document.getElementById("extra-info");
 const modeSelector = document.getElementById("mode-selector");
-const modeButtons = document.getElementById("mode-buttons");
+
 const modeIcon = document.getElementById("mode-icon");
-const dayBtn = document.getElementById("dayBtn");
-const nightBtn = document.getElementById("nightBtn");
 const menuItems = document.querySelectorAll('nav ul li');
 
 menuItems.forEach(item => {
@@ -597,80 +632,64 @@ overlay.addEventListener("click", () => {
     extraInfo.classList.remove("active");
 });
 
-// Afisare butoane Zi/Noapte
-modeSelector.addEventListener("click", (e) => {
-    e.stopPropagation();
-    modeButtons.style.display = modeButtons.style.display === "flex" ? "none" : "flex";
+
+let isNight = false;
+
+modeSelector.addEventListener("click", () => {
+
+    isNight = !isNight;
+
+    if (!isNight) {
+        // ===== MOD ZI =====
+        document.querySelector(".secondary-bg").style.backgroundImage = "url('Led.png')";
+        document.body.style.backgroundColor = "#fff";
+        document.body.style.color = "#000";
+        document.querySelector(".hero").style.backgroundColor = "#ffad69";
+
+        const h1 = document.querySelector(".hero h1");
+        if (h1) h1.style.color = "#fff";
+
+        const p = document.querySelector(".hero p");
+        if (p) p.style.color = "#fff";
+
+        document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#614636");
+        document.querySelectorAll("p,a").forEach(el => el.style.color = "#000");
+        document.querySelector("footer").style.backgroundColor = "#fff";
+        document.querySelector("footer").style.color = "#555";
+
+        modeIcon.innerHTML = `<img src="Sun.png" alt="Mod zi" class="mode-img">`;
+
+    } else {
+        // ===== MOD NOAPTE =====
+        document.querySelector(".secondary-bg").style.backgroundImage = "url('Led2.png')";
+        document.body.style.backgroundColor = "#1e1e1e";
+        document.body.style.color = "#f0f0f0";
+        document.querySelector(".hero").style.backgroundColor = "#333";
+
+        const h1 = document.querySelector(".hero h1");
+        if (h1) h1.style.color = "#fff";
+
+        const p = document.querySelector(".hero p");
+        if (p) p.style.color = "#ddd";
+
+        document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#f0f0f0");
+        document.querySelectorAll("p,a").forEach(el => el.style.color = "#f0f0f0");
+        document.querySelector("footer").style.backgroundColor = "#111";
+        document.querySelector("footer").style.color = "#ccc";
+
+        modeIcon.innerHTML = `<img src="Mon.png" alt="Mod noapte" class="mode-img">`;
+    }
 });
-document.addEventListener("click", () => {
-    modeButtons.style.display = "none";
-});
-
-// Zi/Noapte cu tranziție lină - header-ul izolat complet
-dayBtn.addEventListener("click", () => {
-    document.querySelector(".secondary-bg").style.backgroundImage = "url('Led.png')";
-    document.body.style.transition = "background 0.8s, color 0.8s";
-    document.body.style.backgroundColor = "#fff";
-    document.body.style.color = "#000";
-    document.querySelector(".hero").style.backgroundColor = "#ffad69";
-const h1 = document.querySelector(".hero h1");
-if (h1) h1.style.color = "#fff";
-
-const p = document.querySelector(".hero p");
-if (p) p.style.color = "#fff";
-
-document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#614636");
-document.querySelectorAll("p,a").forEach(el => el.style.color = "#000");
-document.querySelectorAll(".detalii h3").forEach(el => el.style.color = "#000");
-    document.querySelector("footer").style.backgroundColor = "#fff";
-    document.querySelector("footer").style.color = "#555";
-    modeIcon.innerHTML = `<img src="Sun.png" alt="Mod zi" class="mode-img">`;
-    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5)";
- // ✅ Resetează box-shadow la alb
-    const heroBtn = document.querySelector(".hero-button");
-    heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5)";
-// ✅ Back arrow button
-    const backArrow = document.querySelector(".back-arrow");
-    backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5)";
- // buton roșu (QR dot)
-    const qrDot = document.querySelector(".hero-qr-dot");
-    if (qrDot) qrDot.style.boxShadow = "  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5)";
-    if (qrDot) qrDot.style.background = "rgba(255,255,255,0.2)";
-});
-
-nightBtn.addEventListener("click", () => {
-    document.querySelector(".secondary-bg").style.backgroundImage = "url('Led2.png')";
-    document.body.style.transition = "background 0.8s, color 0.8s";
-    document.body.style.backgroundColor = "#1e1e1e";
-    document.body.style.color = "#f0f0f0";
-    document.querySelector(".hero").style.backgroundColor = "#333";
-const h1 = document.querySelector(".hero h1");
-if (h1) h1.style.color = "#fff";
-
-const p = document.querySelector(".hero p");
-if (p) p.style.color = "#ddd";
-
-document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#f0f0f0");
-document.querySelectorAll("p,a").forEach(el => el.style.color = "#f0f0f0");
-document.querySelectorAll(".detalii h3").forEach(el => el.style.color = "#fff");
-    document.querySelector("footer").style.backgroundColor = "#111";
-    document.querySelector("footer").style.color = "#ccc";
-
-    modeIcon.innerHTML = `<img src="Mon.png" alt="Mod noapte" class="mode-img">`;
-
-    modeSelector.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255, 173, 105, 0.6), inset 0 -1px 0px rgba(255,255,255,0.2)";
-    const heroBtn = document.querySelector(".hero-button");
-    heroBtn.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255, 173, 105, 0.6), inset 0 -1px 0px rgba(255,255,255,0.2)";
 
 // ✅ Back arrow button
-    const backArrow = document.querySelector(".back-arrow");
-    backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255, 173, 105, 0.6), inset 0 -1px 0px rgba(255,255,255,0.2)";
+const backArrow = document.querySelector(".back-arrow");
+if (backArrow) {
+  backArrow.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+}
 // buton roșu (QR dot)
     const qrDot = document.querySelector(".hero-qr-dot");
     if (qrDot) qrDot.style.boxShadow ="inset 0 1px 0px rgba(255, 173, 105, 0.6), inset 0 -1px 0px rgba(255,255,255,0.2)";
     if (qrDot) qrDot.style.background = "rgba(255,255,255,0.1)";
-
-});
 
 const reveals = document.querySelectorAll(".reveal");
 
