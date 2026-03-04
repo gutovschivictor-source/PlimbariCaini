@@ -15,6 +15,21 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* Stil normal (telefon) */
+.nume {
+    text-align: center;
+}
+
+/* DOAR pe laptop */
+@media (min-width: 1024px) {
+    .nume::before {
+        content: "--- ";
+    }
+
+    .nume::after {
+        content: " ---";
+    }
+}
 /* SELECTIE TEXT DIFERITA */
 
 header::selection {
@@ -178,7 +193,7 @@ nav ul li.active {
 }
 
 /* Meniu header mereu negru */
-nav ul li a { color: #000 !important; }
+nav ul li a { color: #ffad69 !important; }
 
 /* Hero */
 .hero {min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #ffad69; padding: 0 1rem; position: relative;}
@@ -275,7 +290,7 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
  box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 1px 1px rgba(255, 173, 105,1), inset 0 -4px 1px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
 }
 .card h3, .step h3, .plan h3, .contact-card h3 {color: #ffad69; margin-bottom: 1rem;}
-.detalii h3 {color: #000;
+.detalii h3 {color: #ffad69;
 }
 
 /* Services */
@@ -308,7 +323,7 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
 #mode-icon img.mode-img  {font-size: 1.3rem; user-select: none;  width: 34px; height: 34px; }
 
 /* Footer */
-footer {background: #f9f9f9; text-align: center; padding: 2rem; color: #555; font-size: 0.9rem;}
+footer {background: #ffad69; text-align: center; padding: 1rem; color: #fff; font-size: 0.9rem;}
 
 /* Scroll smooth */
 html {scroll-behavior: smooth;}
@@ -343,14 +358,16 @@ background-position: center 0.5rem;
 
 
 .hero-reserva {
-  position: absolute;
-  margin-top: 350px;       /* cât de jos vrei */
-
+  flex-direction: column;
+    margin-top: 30px;
+  align-items: center;
 }
+
+
 
 @media (max-width: 768px) {
   .hero-reserva {
-    margin-top: 400px;      /* puțin mai sus pe mobil */
+    margin-top: 20px;      /* puțin mai sus pe mobil */
     font-size: 0.95rem;
   }
 }
@@ -505,7 +522,7 @@ bottom: 80px;
 
 <!-- Services -->
 <section id="services" class="reveal">
-<h2>Servicii de plimbare a câinilor</h2>
+<h2 class=nume>Servicii de plimbare a câinilor</h2>
 <div class="services">
     <div class="card">
         <h3>Plimbare individuală</h3>
@@ -524,7 +541,7 @@ bottom: 80px;
 
 <!-- How it works -->
 <section id="how-it-works" class="reveal">
-<h2>Cum funcționează</h2>
+<h2 class=nume>Cum funcționează</h2>
 <div class="steps">
     <div class="step">
         <h3>1. Detalii</h3>
@@ -547,7 +564,7 @@ bottom: 80px;
 
 <!-- Pricing -->
 <section id="pricing" class="reveal">
-<h2>Prețuri plimbări</h2>
+<h2 class=nume>Prețuri plimbări</h2>
 <div class="pricing">
     <div class="plan">
         <h3>30 minute</h3>
@@ -564,7 +581,7 @@ bottom: 80px;
 
 <!-- Contact -->
 <section id="contact" class="reveal">
-<h2>Detalii</h2>
+<h2 class=nume>Detalii</h2>
 <div class="contact-grid">
     <div class="contact-card">
         <h3>Telefon</h3>
@@ -661,8 +678,8 @@ modeSelector.addEventListener("click", () => {
         document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#ffad69");
         document.querySelectorAll("p,a").forEach(el => el.style.color = "#000");
 
-        document.querySelector("footer").style.backgroundColor = "#f9f9f9";
-        document.querySelector("footer").style.color = "#555";
+        document.querySelector("footer").style.backgroundColor = "#ffad69";
+        document.querySelector("footer").style.color = "#fff";
 
         modeIcon.innerHTML = `<img src="Sun.png" alt="Mod zi" class="mode-img">`;
     }
