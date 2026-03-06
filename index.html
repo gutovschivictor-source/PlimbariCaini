@@ -15,6 +15,26 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+.mini-chenar{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 15px;
+  height: 60px;
+
+background: rgba(255, 173 ,105,1);
+
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+
+
+  box-shadow:inset 1px 0px 0px rgb(255,255,255,1);
+    backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
 /* Stil normal (telefon) */
 .nume {
     text-align: center;
@@ -162,7 +182,7 @@ a {text-decoration: none; color: inherit;}
 img {max-width: 100%; display: block;}
 
 /* Header - izolat complet */
-header {position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000;}
+header {position: fixed; top: 0; width: 100%; background: #fff; box-shadow: inset 0 -4px 0px rgb(255,173,105,0.2); z-index: 1000;}
 nav {display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;}
 nav .logo {position: relative; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;}
 nav .logo img {width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0), inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,0.5); transition: transform 0.3s ease;  user-select: none; -webkit-user-drag: none;}
@@ -189,7 +209,7 @@ nav ul li:hover::after {width: 100%; left: 0;
 }
 /* La click (activ), mai transparent */
 nav ul li.active {
-  opacity: 0.2; /* cât de „slab” vrei să fie vizibil */
+  opacity: 0.4; /* cât de „slab” vrei să fie vizibil */
 }
 
 /* Meniu header mereu negru */
@@ -387,8 +407,8 @@ background-position: center 0.5rem;
 
 }
 /* Sageata stânga */
-.back-arrow{position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50%; padding: 0rem 0.5rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;    width:50px;         /* lățime fixă */
-    height: 50px;         /* înălțime fixă */
+.back-arrow{position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50%; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;    width:34px;         /* lățime fixă */
+    height: 34px;         /* înălțime fixă */
 bottom: 80px;
 
 }
@@ -494,7 +514,6 @@ bottom: 80px;
     </div>
 
 <!-- Butoane suplimentare -->
-
 
     <!-- Zi/Noapte -->
     <div id="mode-selector">
@@ -611,7 +630,6 @@ bottom: 80px;
 </div>
 </div>
 </section>
-
 
 <!-- Footer -->
 <footer>
@@ -780,6 +798,8 @@ document.addEventListener("click", function(e) {
         transition: right 0.3s ease;
         box-shadow: -4px 0 15px rgba(0,0,0,0.1);
         z-index: 1500;
+  border-top-left-radius: 10px;    /* colțul sus-stânga rămâne pătrat */
+  border-bottom-left-radius: 10px; 
     }
     nav ul.active {
         right: 0;
