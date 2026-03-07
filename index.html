@@ -205,9 +205,7 @@ nav ul li::after {
     transition: width 0.3s ease;
     border-radius: 5px;
 }
-nav ul li.active::after {
-    width: 100%;  /* arată linia doar pe activ */
-    left: 0;
+nav ul li:hover::after {width: 100%; left: 0;
 }
 /* La click (activ), mai transparent */
 nav ul li {
@@ -502,6 +500,7 @@ bottom: 80px;
     <div class="menu-toggle" id="menu-toggle">☰</div>
 
     <ul id="nav-links">
+        <li><a href="#hero">Rezervare</a></li>
         <li><a href="#services">Servicii</a></li>
         <li><a href="#pricing">Prețuri</a></li>
         <li><a href="#contact">Contact</a></li>
