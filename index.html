@@ -205,11 +205,25 @@ nav ul li::after {
     transition: width 0.3s ease;
     border-radius: 5px;
 }
-nav ul li:hover::after {width: 100%; left: 0;
+nav ul li.active::after {
+    width: 100%;  /* arată linia doar pe activ */
+    left: 0;
 }
 /* La click (activ), mai transparent */
+nav ul li {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+/* Linia sub elementul activ */
+nav ul li.active::after {
+    width: 100%;
+    left: 0;
+    right: auto;
+}
 nav ul li.active {
-  opacity: 0.4; /* cât de „slab” vrei să fie vizibil */
+  opacity: 0.4;       /* evidențiere pentru secțiunea activă */
+  transform: scale(0.95);
 }
 
 /* Meniu header mereu negru */
@@ -852,6 +866,26 @@ qrOverlay.addEventListener("click", (e) => {
     qrOverlay.style.display = "none";
   }
 });
+const sections = document.querySelectorAll("section, .hero");
+const navItems = document.querySelectorAll("nav ul li");
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const id = entry.target.getAttribute("id") || "hero";
+    const navItem = document.querySelector(`nav ul li a[href="#${id}"]`)?.parentElement;
+
+    if (!navItem) return;
+
+    if (entry.isIntersecting) {
+      navItems.forEach(item => item.classList.remove("active"));
+      navItem.classList.add("active");
+    }
+  });
+}, {
+  threshold: 0.5
+});
+
+sections.forEach(section => sectionObserver.observe(section));
 </script>
 
 
