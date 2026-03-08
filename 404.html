@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pagina nu a fost găsită</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* SELECTIE TEXT DIFERITA */
+
+header::selection {
+  background-color: #ffad69; /* culoare selectie header */
+  color: #fff;
+}
+.hero::selection {
+  background-color: #ffffff;
+  color: #ffad69;
+}
+body::selection {
+  background-color: #fff; /* culoare selectie rest site */
+  color: #ffad69;
+}
 body {
     margin: 0;
     padding: 0;
@@ -22,10 +37,11 @@ body {
 
 h1 {
     letter-spacing: 2px; /* mai spațiat */
-    text-shadow: 1px 1px 0 #bb7e4b, -2px -2px 0 #bb7e4b; /* margini sharp */
+    text-shadow: 5px 0px 0 #bb7e4b; /* margini sharp */
     font-size: 10rem;
     margin-bottom: 1rem;
     line-height: 1;
+font-family:'Nunito', sans-serif;
 }
 
 p {
