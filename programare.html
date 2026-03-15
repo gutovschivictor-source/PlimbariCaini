@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezervă plimbare | Plimbări Câini Chișinău</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+header::selection {
+  background-color: #ffad69; /* culoare selectie header */
+  color: #fff;
+}
+.hero::selection {
+  background-color: #ffad69;
+  color: #fff;
+}
+body::selection {
+  background-color: #ffad69; /* culoare selectie rest site */
+  color: #fff;
+}
+  :root{
+    --red:#ff2d2d;
+    --text:#111;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#ffad69;
+    color:var(--text);
+    min-height:100vh;
+  }
+
+  .back-arrow{
+  position:fixed;
+  top:40px;
+  left:40px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+background: rgba(255,255,255,0.0);
+ box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;
+}
+
+  .back-arrow:hover{transform: translateX(-3px);}
+  .back-arrow img{width: 30px;}
+
+  .hero{
+    min-height:105vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 40px 20px;
+flex-direction: column;
+  }
+html, body{
+overflow-x: hidden;
+}
+  .card{
+    width:100%;
+    max-width: 520px;
+    background: rgba(255,255,255,1);
+
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: inset 0 -5px 0px rgba(0,0,0,0.5);
+
+    text-align:center;
+  }
+
+  .card h1{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #ffad69;
+  }
+  .card p{
+    font-size: 1rem;
+    color: #ffad69;
+    margin-bottom: 18px;
+  }
+
+  form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top: 10px;
+  }
+
+  input, textarea, select{
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.2);
+    font-size: 14px;
+    outline:none;
+  }
+  textarea{resize:none; min-height: 100px;}
+
+  button{
+    padding: 12px;
+    border:none;
+    border-radius: 15px;
+    background: #ffad69;
+    color:#fff;
+    font-weight: 700;
+    cursor:pointer;
+    transition: transform 0.2s ease;
+  }
+  button:hover{transform: translateY(-2px);}
+
+footer {background: #f9f9f9; text-align: center; padding: 1rem; color: #555; font-size: 0.9rem;}
+
+ 
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .hero{
+      padding: 20px 14px;
+    }
+    .card{
+      padding: 20px;
+      border-radius: 18px;
+    }
+    .card h1{
+      font-size: 1.7rem;
+    }
+    input, textarea, select{
+      font-size: 14px;
+    }
+    textarea{
+      min-height: 90px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <a href="index.html" class="back-arrow">
+    <img src="sageata.png" alt="Înapoi">
+  </a>
+
+  <section class="hero">
+    <div class="card">
+      <h1>Rezervă o plimbare</h1>
+      <p>Și trimite către WhatsApp</p>
+
+      <form id="rezervareForm">
+        <input type="text" id="nume" placeholder="Numele tău" required>
+        <input type="tel" id="telefon" placeholder="Telefon" required>
+
+        <select id="ora" required>
+          <option value="" disabled selected>Alege ora</option>
+          <option>10:00</option>
+          <option>13:00</option>
+          <option>17:00</option>
+          <option>18:00</option>
+          <option>19:00</option>
+        </select>
+
+        <select id="durata" required>
+          <option value="" disabled selected>Alege durata</option>
+          <option>30 min</option>
+          <option>1 ora</option>
+        </select>
+
+        <textarea id="detalii" placeholder="Detalii despre câine / data" required></textarea>
+
+        <button type="submit">Trimite</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Plimbări Câini Chișinău
+  </footer>
+
+<script>
+  document.getElementById("rezervareForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const nume = document.getElementById("nume").value.trim();
+    const telefon = document.getElementById("telefon").value.trim();
+    const ora = document.getElementById("ora").value;
+    const durata = document.getElementById("durata").value;
+    const detalii = document.getElementById("detalii").value.trim();
+
+    const mesaj = `Salut! Vreau să rezerv o plimbare.\n\nNume: ${nume}\nTelefon: ${telefon}\nOra: ${ora}\nDurata: ${durata}\nDetalii: ${detalii}`;
+
+    const waUrl = `https://wa.me/37360400898?text=${encodeURIComponent(mesaj)}`;
+
+    window.open(waUrl, "_blank");
+  });
+</script>
+
+</body>
+</html>
