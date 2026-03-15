@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezervă plimbare | Plimbări Câini Chișinău</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="logo-câine2.png" type="image/png">
+
+<style>
+:root{
+  --text:#111;
+  --muted:#fff;
+  --accent:#ffad69;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  min-height:100vh;
+  font-family:'Inter',sans-serif;
+  background:#ffad69;
+  color:var(--text);
+}
+
+.hero{
+  min-height:1vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  position:relative;
+  padding:4px;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Sageata */
+.back-arrow{
+  position:fixed;
+  top:40px;
+  left:40px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  background: rgba(255,255,255,0.0);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1),
+              inset 0 1px 0 rgba(255,255,255,0.5),
+              inset 0 -1px 0 rgba(255,255,255,0.5);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+.back-arrow:hover{
+  transform:translateX(-4px);
+  background:rgba(255,255,255,0.2)
+}
+.back-arrow img {
+  width: 30px;
+}
+
+.hero-content{
+  max-width:1300px;
+  width:100%;
+  margin:0 auto;
+  padding:100px;
+}
+
+.hero-header{
+  text-align:center;
+  margin-bottom:40px;
+}
+.hero-header h1{
+  font-size:2.6rem;
+  font-weight:700;
+  color:#fff;
+}
+.hero-header p{
+  color:#fff;
+  margin-top:10px;
+}
+
+/* ===== FORMULAR ===== */
+.form-card{
+  max-width:420px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.1);
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3),
+              inset 0 1px 0px rgba(255,255,255,1),inset 0 -2px 0px rgba(255,255,255,1);
+
+}
+
+.form-card form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.form-card input,
+.form-card textarea{
+  padding:12px 14px;
+  border-radius:15px;
+  border:none;
+  font-size:14px;
+  font-family:'Inter',sans-serif;
+box-shadow:inset 0 -2px 0px rgba(0,0,0,0.3)
+}
+
+.form-card textarea{
+  resize:none;
+  min-height:100px;
+}
+input:focus, textarea:focus, button:focus {
+    outline: none; 
+    box-shadow: inset 0 0 0 3px #d79157; 
+}
+.form-card button{
+  margin-top:10px;
+  padding:14px;
+  border:none;
+  border-radius:50px;
+  background:#ffad69;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow:inset 0 1px 0px rgba(255,255,255,0.8),inset 0 -1px 0px rgba(255,255,255,1);
+
+}
+
+.form-card button:hover{
+  transform:translateY(-2px) scale(1.01);
+  box-shadow:inset 0 -2px 0px rgba(0,0,0,0.51),inset 0 1px 0px rgba(255,255,255,0.4);
+  background:#ffad69;
+
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  margin-top:40px;
+}
+
+@media(max-width:600px){
+  .back-arrow{top:20px;left:20px}
+  .hero-header h1{font-size:2rem}
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <a href="index.html" class="back-arrow">
+    <img src="sageata.png" alt="Înapoi">
+  </a>
+
+  <div class="hero-content">
+
+    <div class="hero-header">
+      <h1>Rezervă o plimbare</h1>
+      <p>Rapid • Simplu • Chișinău</p>
+    </div>
+
+    <div class="form-card">
+      <form action="https://formspree.io/f/xwvqlzal" method="POST">
+
+        <input type="text" name="nume" placeholder="Numele tău" required>
+
+        <input type="tel" name="telefon" placeholder="Telefon" required>
+
+        <input type="text" name="nume_caine" placeholder="Numele câinelui">
+
+        <textarea name="message" placeholder="Data, ora și detalii despre câine" required></textarea>
+
+        <input type="hidden" name="_subject" value="Cerere nouă - Plimbări Câini">
+
+        <button type="submit">Trimite cererea</button>
+
+      </form>
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>
