@@ -37,19 +37,17 @@ body::selection {
   position:fixed;
   top:40px;
   left:40px;
-  width:48px;
-  height:48px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   cursor:pointer;
-background: rgba(255,255,255,0.0);
- box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;
+background: rgb(255 173 105);
+ box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;
 }
 
   .back-arrow:hover{transform: translateX(-3px);}
-  .back-arrow img{width: 30px;}
+  .back-arrow img{width: 40px;}
 
   .hero{
     min-height:105vh;
@@ -115,7 +113,9 @@ overflow-x: hidden;
     transition: transform 0.2s ease;
     box-shadow: inset 0 -3px 0px rgb(255,255,255,0.4);
   }
-  button:hover{transform: translateY(-2px);}
+  button:hover{transform: translateY(-2px);
+  background: #ffbb83;
+}
 
 footer {background: #f9f9f9; text-align: center; padding: 1rem; color: #555; font-size: 0.9rem;}
 
@@ -182,7 +182,7 @@ footer {background: #f9f9f9; text-align: center; padding: 1rem; color: #555; fon
   </section>
 
   <footer>
-    © 2026 Plimbări Câini Chișinău
+    © 2026 • Plimbări Câini Chișinău
   </footer>
 
 <script>
