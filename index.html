@@ -118,6 +118,7 @@ body::selection {
   text-align: center;
 box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),inset 0 -5px 0px rgba(255, 173, 105, 1);
 
+
 }
 
 
@@ -268,15 +269,30 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
     -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
-       0 6px 20px rgba(0,0,0,0.12),
-      inset 0 -3px 1px rgba(0,0,0,0.4),
-      inset 0 1px 1px rgba(255,255,255,1);
-
+          inset 0 -4px 0px rgba(0,0,0,0.2);
     transition:
       transform 0.3s ease,
       box-shadow 0.5s ease,
       background 0.3s ease;
 }
+/* 🌙 BORDER NOAPTE */
+body.night-mode .card,
+body.night-mode .step,
+body.night-mode .plan,
+body.night-mode .contact-card {
+    border: 2px solid rgba(255,255,255,1);
+box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
+
+}
+/* BORDER NORMAL (ZI) */
+.card,
+.step,
+.plan,
+.contact-card {
+    border: 2px solid rgba(255, 173, 105, 1);
+ box-shadow:inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+}
+
 
 .hero h1 {
     position: relative;      /* NU absolute */
@@ -311,7 +327,8 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
 }
 .card:hover {
     transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 1px 1px rgba(255, 173, 105,1), inset 0 -4px 1px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+ box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+    border: 3px solid rgba(255, 173, 105, 1);
 }
 
 
@@ -319,7 +336,8 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
 .plan:hover,
 .contact-card:hover {
     transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 1px 1px rgba(255, 173, 105,1), inset 0 -4px 1px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+ box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 1px 0px rgba(255, 173, 105,1), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+    border: 3px solid rgba(255, 173, 105, 1);
 }
 .card h3, .step h3, .plan h3, .contact-card h3 {color: #ffad69; margin-bottom: 1rem;}
 .detalii h3 {color: #ffad69;
@@ -335,7 +353,7 @@ h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
 
 /* Buton "!" alb cu semn color */
 .contact-card {position: relative;}
-.info-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #ffffff; color: #ffad69; font-weight: 900; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow:inset 0 -1px 1px rgba(0,0,0,0.4),inset 0 1px 0px rgba(252,169,102,0.1); transition: transform 0.2s; }
+.info-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #ffffff; color: #ffad69; font-weight: 900; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow:inset 0 -2px 0px rgba(252,169,102,1),inset 0 1px 0px rgba(252,169,102,0.8); transition: transform 0.2s; }
 .info-btn:hover {transform: scale(1.1);}
 
 /* Fundal întunecat */
@@ -687,6 +705,7 @@ modeSelector.addEventListener("click", () => {
         document.body.style.backgroundColor = "#1e1e1e";
         document.body.style.color = "#f0f0f0";
         document.querySelector(".hero").style.backgroundColor = "#333";
+        document.body.classList.add("night-mode");
 
         document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#fff");
         document.querySelectorAll("p,a").forEach(el => el.style.color = "#fff");
@@ -702,6 +721,7 @@ modeSelector.addEventListener("click", () => {
         document.body.style.backgroundColor = "#fff";
         document.body.style.color = "#000";
         document.querySelector(".hero").style.backgroundColor = "#ffad69";
+        document.body.classList.remove("night-mode");
 
         document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#ffad69");
         document.querySelectorAll("p,a").forEach(el => el.style.color = "#805735");
