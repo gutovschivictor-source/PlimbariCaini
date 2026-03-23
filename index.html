@@ -88,7 +88,7 @@ body::selection {
   border-radius: 50%;
   cursor: pointer;
   z-index: 50; /* sub mode-selector, peste fundal */
-  box-shadow: inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,0.5);
+  box-shadow: inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1);
 }
 
 /* overlay */
@@ -116,7 +116,8 @@ body::selection {
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),inset 0 -5px 0px rgba(255, 173, 105, 1);
+box-shadow: 0 5px 300px rgba(255, 173, 105, 6), 0 3px 20px rgba(0,0,0,4),inset 0 -5px 0px rgba(0,0,0,0.4);
+    border: 5px solid rgba(0,0,0,0.2);
 
 
 }
@@ -139,7 +140,7 @@ box-shadow: 0 5px 300px rgba(255, 173, 105, 0.6), 0 3px 20px rgba(0,0,0,0.4),ins
     transform: scale(1.15);
     background: #ffad69;
     color: #fff;
-    box-shadow: 0 0 12px #ffad69, inset 0 1px 0px rgba(255,255,255,1),inset 0 -1px 1px rgba(255,255,255,0)
+    box-shadow: 0 0 12px #ffad69, inset 0 1px 0px rgba(255,255,255,1),inset 0 -2px 0px rgba(255,255,255,1)
 }
 
 
@@ -232,14 +233,14 @@ nav ul li a { color: #ffad69 !important; }
 .hero {min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #ffad69; padding: 0 1rem; position: relative;}
 
 .hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
-.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
+.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
 
-.hero-buttonn {padding: 1rem 1rem; background: rgba(255 0 0 / 20%); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
+.hero-buttonn {padding: 1rem 1rem; background: rgba(255 0 0 / 20%); color: #fff; border-radius: 50px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;}
 
 
-.hero-button:hover {transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
+.hero-button:hover {transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1);}
 
-.hero-buttonn:hover {transform: scale(1.03);background: rgba(255 0 0 / 40%); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
+.hero-buttonn:hover {transform: scale(1.03);background: rgba(255 0 0 / 40%); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1);}
 
 
 /* Sections */
@@ -284,6 +285,15 @@ body.night-mode .contact-card {
 box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
 
 }
+/* 🌙 HOVER NOAPTE */
+body.night-mode .card:hover,
+body.night-mode .step:hover,
+body.night-mode .plan:hover,
+body.night-mode .contact-card:hover {
+ border: 2px solid rgba(255,255,255,1);
+box-shadow:0 5px 200px rgba(255,255,255,.41),inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
+}
+
 /* BORDER NORMAL (ZI) */
 .card,
 .step,
@@ -327,7 +337,7 @@ box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.1
 }
 .card:hover {
     transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+ box-shadow: 0 5px 200px rgba(255,255,255, 1), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
     border: 3px solid rgba(255, 173, 105, 1);
 }
 
@@ -336,7 +346,7 @@ box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.1
 .plan:hover,
 .contact-card:hover {
     transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 5px 200px rgba(255, 173, 105, 0.6), inset 0 1px 0px rgba(255, 173, 105,1), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+ box-shadow: 0 5px 200px rgba(255,255,255, 1), inset 0 1px 0px rgba(255, 173, 105,1), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
     border: 3px solid rgba(255, 173, 105, 1);
 }
 .card h3, .step h3, .plan h3, .contact-card h3 {color: #ffad69; margin-bottom: 1rem;}
@@ -353,7 +363,7 @@ box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.1
 
 /* Buton "!" alb cu semn color */
 .contact-card {position: relative;}
-.info-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #ffffff; color: #ffad69; font-weight: 900; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow:inset 0 -2px 0px rgba(252,169,102,1),inset 0 1px 0px rgba(252,169,102,0.8); transition: transform 0.2s; }
+.info-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #ffffff; color: #ffad69; font-weight: 900; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow:inset 0 -2px 0px rgba(255,173,105,1),inset 0 1px 0px rgba(255,173,105,1); transition: transform 0.2s; }
 .info-btn:hover {transform: scale(1.1);}
 
 /* Fundal întunecat */
@@ -363,13 +373,14 @@ box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.1
 /* Chenar popup program */
 #extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,0); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem;  box-shadow:
       0 4px 30px rgba(0,0,0,0.5),
-      inset 0 1px 2px rgba(255,255,255,1),
-      inset 0 -1px 0px rgba(255,255,255,0.2); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
+      inset 0 -4px 0px rgba(255,255,255,2);
+border: 3px solid rgba(255,255,255, 1);
+opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
 #extra-info.active {opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);}
 
 /* Zi/Noapte Hero cu efect Vizualizeaza */
-#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
-#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),   inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
+#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1);backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
+#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),   inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1);}
 #mode-icon img.mode-img  {font-size: 1.3rem; user-select: none;  width: 34px; height: 34px; }
 
 /* Footer */
