@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -8,13 +9,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Servicii de plimbări câini în Chișinău. Plimbări individuale sau în grup. Sună acum!">
 <title>Plimbări Câini Chișinău | Servicii Profesionale</title>
-<meta name="google-site-verification" content="w7SEEKtnbIQ7qJ90wujLoo2E19ctQJG4kqAkKiQdG2c" />
 
 <link rel="icon" href="logo-câine.png" type="image/png">
 <link rel="icon" href="/favicon.png" sizes="512x512" type="image/png">
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+body.loading {
+  overflow: hidden;
+}
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+
+  z-index: 9999;
+
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+.apple-dot {
+  width: 10px;
+  height: 10px;
+  background: #ffad69;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+.apple-dot:nth-child(2) { animation-delay: 0.2s; }
+.apple-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
 .mini-chenar{
   position: fixed;
   right: 0;
@@ -474,12 +511,7 @@ background-position: center 0.5rem;
     }
 
 }
-/* Sageata stânga */
-.back-arrow{position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50%; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5); backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;    width:34px;         /* lățime fixă */
-    height: 34px;         /* înălțime fixă */
-bottom: 80px;
 
-}
 .back-arrow:hover{transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
 /* 📱 TELEFOANE */
 @media (max-width: 768px) {
@@ -531,7 +563,6 @@ bottom: 80px;
 
 </head>
 <body>
-
 
 <!-- Overlay -->
 <div id="overlay"></div>
@@ -695,6 +726,14 @@ bottom: 80px;
 </div>
 </div>
 </section>
+<!-- LOADER -->
+<div id="loader">
+  <div style="display:flex; gap:10px;">
+    <div class="apple-dot"></div>
+    <div class="apple-dot"></div>
+    <div class="apple-dot"></div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer>
@@ -832,13 +871,7 @@ document.addEventListener("click", function(e) {
 </script>
 
 <style>
-/* FUNDAL PRINCIPAL */
-.hero-background{
-  position: absolute;
-  inset: 0;
-  background: url("arbore genealogic (1).png") center/contain no-repeat;
-  z-index:10;
-}
+
 /* Hamburger toggle */
 .menu-toggle {
     display: none;
@@ -945,8 +978,20 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(section => sectionObserver.observe(section));
 </script>
 
+<script>
+document.body.classList.add("loading");
 
-</body>
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.visibility = 'hidden';
+
+    document.body.classList.remove("loading"); // 🔥 permite scroll după load
+  }, 800);
+});
+</script></body>
 </html>
 
 
