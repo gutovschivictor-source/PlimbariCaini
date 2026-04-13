@@ -11,6 +11,7 @@
 <title>Plimbări Câini Chișinău | Servicii Profesionale</title>
 
 <link rel="preload" href="Led.2.png" as="image">
+<link rel="preload" href="Led.1.png" as="image">
 <link rel="icon" href="logo-câine.png" type="image/png">
 <link rel="icon" href="/favicon.png" sizes="512x512" type="image/png">
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
@@ -561,7 +562,17 @@ background-position: center 0.5rem;
 }
 </script>
 
+<script>
+  // Funcție pentru preload imagini
+  function preloadImage(url) {
+      const img = new Image();
+      img.src = url;
+  }
 
+  // Preload imagini pentru modul zi și modul noapte
+  preloadImage('Led.2.png');       // imagine zi
+  preloadImage('Led.night.png');   // imagine noapte
+</script>
 </head>
 <body>
 
@@ -878,7 +889,7 @@ document.addEventListener("click", function(e) {
     display: none;
     font-size: 2rem;
     cursor: pointer;
-    color: #000;
+    color: #855e3d;
     user-select: none;
 }
 
@@ -890,17 +901,16 @@ document.addEventListener("click", function(e) {
         position: fixed;
         top: 0;
         right: -100%;
-        height: 100vh;
+        height: 50vh;
         width: 200px;
         background: #fff;
         flex-direction: column;
         gap: 2rem;
         padding-top: 4rem;
         transition: right 0.3s ease;
-        box-shadow: -4px 0 15px rgba(0,0,0,0.4);
         z-index: 1500;
-  border-top-left-radius: 20px;    /* colțul sus-stânga rămâne pătrat */
-  border-bottom-left-radius: 0px;
+        border-radius: 15px;    /* colțul sus-stânga rămâne pătrat */
+        border: 4px solid rgba(255,173,105,0.2);
 
 
     }
