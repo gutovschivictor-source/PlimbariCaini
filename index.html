@@ -17,6 +17,36 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* layer cu imagine animată */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: 
+    linear-gradient(rgba(255,173,105,0.985), rgba(255,173,105,0.985)),
+    url('labă.png');
+
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  animation: moveBg 10s linear infinite;
+  z-index: 0;
+}
+
+/* 🌙 NIGHT MODE */
+body.night-mode .hero::before {
+  background-image: 
+    linear-gradient(rgb(51, 51, 51,0.97), rgb(51, 51, 51,0.97)),
+    url('labă.png');
+}
+@keyframes moveBg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 160px -160px;
+  }
+}
 body.loading {
   overflow: hidden;
 }
@@ -155,8 +185,8 @@ body::selection {
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-box-shadow: 0 5px 300px rgba(255, 173, 105, 6), 0 3px 20px rgba(0,0,0,4),inset 0 -5px 0px rgba(0,0,0,0.4);
-    border: 5px solid rgba(0,0,0,0.2);
+box-shadow: 0 5px 300px rgba(255,255,255,0.2), 0 3px 20px rgba(0,0,0,4),inset 0 -4px 0px rgba(0,0,0,0.4);
+    border: 5px solid rgba(0,0,0,0.4);
 
 
 }
@@ -286,7 +316,7 @@ nav ul li a { color: #ffad69 !important; }
 }
 
 .hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
-.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 25px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -3px 0px rgba(255,255,255,1); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;border: 1px solid rgba(255,255,255);}
+.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 25px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -3px 0px rgba(255,255,255,1); backdrop-filter: blur(10px); transition: all 0.3s ease; z-index: 10;border: 1px solid rgba(255,255,255);}
 
 .hero-buttonn {padding: 1rem 1rem; background: rgba(255 0 0 / 20%); color: #fff; border-radius: 25px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -3px 0px rgba(255,255,255,1); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;border: 1px solid rgba(255,255,255);}
 
@@ -361,7 +391,7 @@ body.night-mode .plan,
 body.night-mode .contact-card,
 body.night-mode #extra-info {
     border: 2px solid rgba(255,255,255,1);
-box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
+box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgb(64 64 64);
 
 }
 /* 🌙 HOVER NOAPTE */
@@ -370,7 +400,7 @@ body.night-mode .step:hover,
 body.night-mode .plan:hover,
 body.night-mode .contact-card:hover {
  border: 2px solid rgba(255,255,255,1);
-box-shadow:0 5px 200px rgba(255,255,255,.41),inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
+box-shadow:0 5px 200px rgba(255,255,255,0.41),inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
 }
 
 /* BORDER NORMAL (ZI) */
@@ -380,7 +410,7 @@ box-shadow:0 5px 200px rgba(255,255,255,.41),inset 0 -4px 0px rgba(255,255,255,1
 .contact-card,
 #extra-info {
     border: 2px solid rgba(255, 173, 105, 1);
- box-shadow:inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
+ box-shadow:inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,1);
 }
 
 
@@ -504,7 +534,11 @@ background-position: center 0.5rem;
   align-items: center;
 }
 
-
+@media (max-width: 768px) {
+  .hero::before {
+    display: none !important;
+  }
+}
 
 @media (max-width: 768px) {
   .hero-reserva {
@@ -659,8 +693,10 @@ background-position: center 0.5rem;
 <!-- Overlay QR -->
 <div class="hero-qr-overlay" >
   <div class="hero-qr-box">
-    <span class="hero-qr-close">✕</span>
-    <img class="hero-qr-img"  alt="QR code">
+    <span class="hero-qr-close"></span>
+    <img class="hero-qr-img" 
+src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://gutovschivictor-source.github.io/PlimbariCaini/" 
+alt="QR code">
     <h4 class="hero-qr-text">Scanează site-ul !</h4>
   </div>
 </div>
@@ -969,8 +1005,6 @@ const qrClose = document.querySelector(".hero-qr-close");
 const qrImg = document.querySelector(".hero-qr-img");
 
 qrDot.addEventListener("click", () => {
-  qrImg.src =
-    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://gutovschivictor-source.github.io/PlimbariCaini/";
   qrOverlay.style.display = "flex";
 });
 
