@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="language" content="ro">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Servicii de plimbări câini în Chișinău. Plimbări individuale sau în grup. Sună acum!">
+<meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale și în grup, sigure și de încredere. Programează acum!">
 <title>Plimbări Câini Chișinău | Servicii Profesionale</title>
 
 <link rel="preload" href="Led2.png" as="image">
@@ -17,6 +17,58 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+.menu-btn{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 35px;
+  z-index: 99999;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.menu-btn {
+  display: none;
+}
+.menu-btn span{
+  display: block;
+  width: 30px;
+  height: 4px;
+  background: #ffad69 !important;
+  border-radius: 2px;
+transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.menu-btn:active {
+  transform: scale(0.95);
+}
+/* ANIMAȚIE X */
+.menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* starea inițială */
+#loader {
+  transform: scale(1);
+  transition: 
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    visibility 0.6s;
+}
 /* layer cu imagine animată */
 .hero::before {
   content: "";
@@ -585,7 +637,11 @@ background-position: center 0.5rem;
 .hero a {
     color: #fff !important;
 }
-
+@media (max-width: 768px) {
+  .menu-btn {
+    display: flex;
+  }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -618,7 +674,7 @@ background-position: center 0.5rem;
   }
 
   // Preload imagini pentru modul zi și modul noapte
-  preloadImage('Led.2.png');       // imagine zi
+  preloadImage('Led2.png');       // imagine zi
   preloadImage('Led.night.png');   // imagine noapte
 </script>
 </head>
@@ -646,7 +702,7 @@ background-position: center 0.5rem;
     </div>
 
     <!-- Hamburger -->
-    <div class="menu-toggle" id="menu-toggle">☰</div>
+
 
     <ul id="nav-links">
         <li><a href="#hero">Rezervare</a></li>
@@ -655,7 +711,11 @@ background-position: center 0.5rem;
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
-
+<div class="menu-btn">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 </header>
 
 <!-- Hero -->
@@ -891,7 +951,26 @@ const observer = new IntersectionObserver((entries) => {
 
 reveals.forEach(el => {
     observer.observe(el);
-});</script>
+});
+const menuBtn = document.querySelector(".menu-btn");
+const navLinks = document.getElementById("nav-links");
+
+menuBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  menuBtn.classList.toggle("active");
+  navLinks.classList.toggle("active");
+
+  document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
+});
+
+document.addEventListener("click", () => {
+  menuBtn.classList.remove("active");
+  navLinks.classList.remove("active");
+  document.body.style.overflow = "";
+});
+
+navLinks.addEventListener("click", (e) => e.stopPropagation());</script>
 <script>
 // Efect mini-explozie de particule la click
 document.addEventListener("click", function(e) {
@@ -936,14 +1015,7 @@ document.addEventListener("click", function(e) {
 
 <style>
 
-/* Hamburger toggle */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #855e3d;
-    user-select: none;
-}
+
 
 
 
@@ -953,7 +1025,7 @@ document.addEventListener("click", function(e) {
         position: fixed;
         top: 0;
         right: -100%;
-        height: 50vh;
+        height: 100vh;
         width: 200px;
         background: #fff;
         flex-direction: column;
@@ -961,17 +1033,14 @@ document.addEventListener("click", function(e) {
         padding-top: 4rem;
         transition: right 0.3s ease;
         z-index: 1500;
-        border-radius: 15px;    /* colțul sus-stânga rămâne pătrat */
+        border-radius: 15px;
         border: 4px solid rgba(255,173,105,0.2);
-
-
     }
+
     nav ul.active {
         right: 0;
     }
-    .menu-toggle {
-        display: block;
-    }
+
     nav ul li {
         font-size: 1.2rem;
         padding-left: 1rem;
@@ -982,22 +1051,7 @@ document.addEventListener("click", function(e) {
 </style>
 
 
-<script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const navLinks = document.getElementById("nav-links");
 
-  menuToggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-    navLinks.classList.toggle("active");
-    document.body.style.overflow = "hidden";
-
-  });
-
-  document.addEventListener("click", () => {
-   navLinks.classList.remove("active");
-  });
-  navLinks.addEventListener("click", (e) => e.stopPropagation());
-  </script>
 <script>
 const qrDot = document.querySelector(".hero-qr-dot");
 const qrOverlay = document.querySelector(".hero-qr-overlay");
@@ -1037,22 +1091,17 @@ const sectionObserver = new IntersectionObserver((entries) => {
 });
 
 sections.forEach(section => sectionObserver.observe(section));
-</script>
-
-<script>
-document.body.classList.add("loading");
-
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
 
   setTimeout(() => {
-    loader.style.opacity = '0';
-    loader.style.visibility = 'hidden';
-
-    document.body.classList.remove("loading"); // 🔥 permite scroll după load
-  }, 200);
+    loader.classList.add('hide');
+    document.body.classList.remove("loading");
+  }, 200); // mic delay pentru efect smooth
 });
 </script>
+
+
 </body>
 </html>
 
