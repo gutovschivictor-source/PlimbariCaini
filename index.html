@@ -1,1110 +1,1598 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta name="robots" content="index, follow">
-<meta name="author" content="Victor Gutovschi">
 <meta charset="UTF-8">
-<meta name="language" content="ro">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale și în grup, sigure și de încredere. Programează acum!">
-<title>Plimbări Câini Chișinău | Servicii Profesionale</title>
-
-<link rel="preload" href="Led2.png" as="image">
-<link rel="preload" href="Led.png" as="image">
-<link rel="icon" href="logo-câine.png" type="image/png">
-<link rel="icon" href="/favicon.png" sizes="512x512" type="image/png">
-<link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<meta name="description" content="Servicii profesionale de plimbări câini în Chișinău. Plimbări individuale și în grup, sigure și de încredere.">
+<title>Plimbări Câini Chișinău</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-.menu-btn{
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 35px;
-  z-index: 99999;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-}
-.menu-btn {
-  display: none;
-}
-.menu-btn span{
-  display: block;
-  width: 30px;
-  height: 4px;
-  background: #ffad69 !important;
-  border-radius: 2px;
-transition: transform 0.4s ease, opacity 0.4s ease;
-}
-.menu-btn:active {
-  transform: scale(0.95);
-}
-/* ANIMAȚIE X */
-.menu-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
-}
-#loader.hide {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* starea inițială */
-#loader {
-  transform: scale(1);
-  transition: 
-    opacity 0.6s ease,
-    transform 0.6s ease,
-    visibility 0.6s;
-}
-/* layer cu imagine animată */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image: 
-    linear-gradient(rgba(255,173,105,0.985), rgba(255,173,105,0.985)),
-    url('labă.png');
-
-  background-size: 160px 160px;
-  background-repeat: repeat;
-  animation: moveBg 10s linear infinite;
-  z-index: 0;
-}
-
-/* 🌙 NIGHT MODE */
-body.night-mode .hero::before {
-  background-image: 
-    linear-gradient(rgb(51, 51, 51,0.97), rgb(51, 51, 51,0.97)),
-    url('labă.png');
-}
-@keyframes moveBg {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 160px -160px;
-  }
-}
-body.loading {
+.btn-primary {
+  position: relative;
   overflow: hidden;
 }
-/* LOADER */
-#loader {
-  position: fixed;
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  background: rgba(255,255,255,1);
-  backdrop-filter: blur(10px);
-
-  z-index: 9999;
-
-  transition: opacity 0.8s ease, visibility 0.8s;
-}
-.apple-dot {
-  width: 10px;
-  height: 10px;
-  background: #ffad69;
-  border-radius: 50%;
-  animation: bounce 1.2s infinite ease-in-out;
-}
-.apple-dot:nth-child(2) { animation-delay: 0.2s; }
-.apple-dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-  0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-  40% { transform: scale(1); opacity: 1; }
-}
-.mini-chenar{
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 15px;
-  height: 60px;
-
-background: rgba(255, 173 ,105,1);
-
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-
-
-  box-shadow:inset 1px 0px 0px rgb(255,255,255,1);
-    backdrop-filter: blur(4px);
-  z-index: 999;
+  left: -30%;
+  width: 20%;
+  height: 100%;
+  background: rgba(255,255,255,0.5);
+  transform: skewX(-20deg);
+  opacity: 0.9;
+  animation: shine 3s infinite;
 }
 
-/* Stil normal (telefon) */
-.nume {
-    text-align: center;
-}
-
-/* DOAR pe laptop */
-@media (min-width: 724px) {
-    .nume::before {
-        content: "--- ";
-    }
-
-    .nume::after {
-        content: " ---";
-    }
-}
-/* SELECTIE TEXT DIFERITA */
-
-header::selection {
-  background-color: #ffad69; /* culoare selectie header */
-  color: #fff;
-}
-.hero::selection {
-  background-color: #ffffff;
-  color: #ffad69;
-}
-body::selection {
-  background-color: #ffad69; /* culoare selectie rest site */
-  color: #fff;
-}
-
-.hero-qr-text {
-  margin-top: 10px;       /* spațiu de la QR */
-  font-size: 16px;        /* mărime text */
-  color: #000;            /* culoare text */
-  font-weight: 500;       /* grosime text */
-}
-
-/* ===== QR DOAR ÎN HERO ===== */
-.hero {
-  position: relative; /* deja ai, dar e esențial */
-}
-
-/* punct roșu */
-.hero-qr-dot {
-  position: absolute;
-  top: 100px;
-  left: 20px; /* schimbă poziția aici */
-  width: 14px;
-  height: 14px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 50; /* sub mode-selector, peste fundal */
-  box-shadow: inset 0 1px 0px rgba(255,255,255,1), inset 0 -1px 0px rgba(255,255,255,1);
-}
-
-/* overlay */
-.hero-qr-overlay {
-  position: fixed;
-  inset: 0;
-  height: 100vh;           /* asigură înălțimea completă */
-  width: 100vw;            /* opțional, pentru siguranță */
-  display: none;           /* inițial ascuns */
-  flex-direction: column;  /* dacă ai mai multe elemente */
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-}
-
-
-/* chenar */
-.hero-qr-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;  /* centrăm QR și textul */
-  gap: 10px;            /* distanță între imagine și text */
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-box-shadow: 0 5px 300px rgba(255,255,255,0.2), 0 3px 20px rgba(0,0,0,4),inset 0 -4px 0px rgba(0,0,0,0.4);
-    border: 5px solid rgba(0,0,0,0.4);
-
-
-}
-
-
-.hero-qr-img {
-  width: 220px;
-  height: 220px;
-}
-
-.hero-qr-close {
-  position: absolute;
-  top: 1px;
-  right: 6px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-#contact .info-btn:hover {
-    transform: scale(1.15);
-    background: #ffad69;
-    color: #fff;
-    box-shadow: 0 0 12px #ffad69, inset 0 1px 0px rgba(255,255,255,1),inset 0 -2px 0px rgba(255,255,255,1)
-}
-
-
-
-#contact .contact-card {
-    flex: 1 1 250px;       /* toate cardurile ocupă spațiul egal */
-    max-width: 300px;      /* nu devin prea late */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* toate au aceeași înălțime */
-    text-align: center;
-}
-/* Animație apariție la scroll */
-.reveal {
+@keyframes shine {
+  0% {
+    left: -20%;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 1.8s ease;
-}
+  }
+  10% {
+    opacity: 0.8;
+  }
+  20% {
+    left: 120%;
+    opacity: 0;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}@media (max-width: 768px) {
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 6rem 1.2rem 3rem;
+    text-align: center;
+    min-height: auto;
+  }
 
-.hero-image img {
-    max-width: 1000px; /* ajustează dimensiunea după nevoie */
-    width: 100%;
-    height: auto;
-    margin-bottom: 30px;
-}
+  .hero-desc {
+    max-width: 100%;
+  }
 
-/* Reset & global */
-* {margin: 0; padding: 0; box-sizing: border-box;}
-body {font-family: 'Inter', sans-serif; line-height: 1.6; color: #805735; background-color: #fff; transition: all 0.5s ease;}
-html, body {
-position: relative;
-    overflow-x: hidden; /* blochează scroll-ul orizontal */
-}
-
-a {text-decoration: none; color: inherit;}
-img {max-width: 100%; display: block;}
-
-/* Header - izolat complet */
-header {position: fixed; top: 0; width: 100%; background: #fff; box-shadow: inset 0 -4px 0px rgb(255,173,105,0.2); z-index: 1000;}
-nav {display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;}
-nav .logo {position: relative; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;}
-nav .logo img {width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0), inset 0 1px 10px rgba(255,255,255,0.5), inset 0 -4px 40px rgba(255,255,255,0.1); transition: transform 0.3s ease;  user-select: none; -webkit-user-drag: none;}
-nav .logo:hover img {transform: translateX(-5px);}
-nav .logo .logo-text {color: #855e3d; font-weight: 600; font-size: 1.2rem; opacity: 0; transform: translateX(10px); transition: all 0.3s ease;}
-nav .logo:hover .logo-text {opacity: 1; transform: translateX(0);}
-nav ul {display: flex; list-style: none; gap: 1.5rem;}
-nav ul li {cursor: pointer; position: relative; opacity: 1;}
-nav ul li:hover {color: #614636;}
-/* Efect linii sub meniu */
-nav ul li::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    display: block;
-    margin-top: 5px;
-    right: 0;
-    background: #ffad69;
-    transition: width 0.3s ease;
-    border-radius: 5px;
-}
-nav ul li:hover::after {width: 100%; left: 0;
-}
-/* La click (activ), mai transparent */
-nav ul li {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 0.3s ease;
-}
-/* Linia sub elementul activ */
-nav ul li.active::after {
-    width: 100%;
-    left: 0;
-    right: auto;
-}
-nav ul li.active {
-  opacity: 0.4;       /* evidențiere pentru secțiunea activă */
-  transform: scale(0.95);
-}
-
-/* Meniu header mereu negru */
-nav ul li a { color: #ffad69 !important; }
-
-/* Hero */
-.hero {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  background-color: #ffad69;
-
-  padding: 0 1rem;
-  position: relative;
-
-  transition: background-color 0.3s ease; /* 🔥 ASTA LIPSEȘTE */
-}
-
-.hero p {font-size: 1.2rem; margin-bottom: 2rem; color: #fff;}
-.hero-button {padding: 1rem 3rem; background: rgba(255,255,255,0.01); color: #fff; border-radius: 25px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -3px 0px rgba(255,255,255,1); backdrop-filter: blur(10px); transition: all 0.3s ease; z-index: 10;border: 1px solid rgba(255,255,255);}
-
-.hero-buttonn {padding: 1rem 1rem; background: rgba(255 0 0 / 20%); color: #fff; border-radius: 25px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -3px 0px rgba(255,255,255,1); backdrop-filter: blur(2px); transition: all 0.3s ease; z-index: 10;border: 1px solid rgba(255,255,255);}
-
-
-.hero-button:hover {transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 2px 0px rgba(255,255,255,1), inset 0 -2px 0px rgba(255,255,255,1);}
-
-.hero-buttonn:hover {transform: scale(1.03);background: rgba(255 0 0 / 40%); box-shadow: 0 4px 6px rgba(0,0,0,0.1),  inset 0 2px 0px rgba(255,255,255,1), inset 0 -2px 0px rgba(255,255,255,1);}
-
-  /* Efect de strălucire (shimmer) constant */
-  .hero-buttonn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width:30%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0.8) 
-    );
-    transform: skewX(-45deg);
-
-    pointer-events: none;
-      animation: shimmer 3s infinite; /* durata completă a ciclului */
-}
-
-@keyframes shimmer {
-  0%, 65% { left: -75%; opacity: 0; }    /* Pauză inițială */
-  30%, 60% { left: -75%; opacity: 1; }   /* Începe dunga să apară și treacă peste buton */
-  80% { left: 125%; opacity: 1; }        /* Dunga la finalul trecerii */
-  85%, 100% { left: 125%; opacity: 0; }  /* Pauză finală */
-}
-
-
-/* Sections */
-section {padding: 6rem 4rem 6rem; color: #000;}
-h2 {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffad69;}
-
-/* Glassmorphism cards */
-.card,
-.step,
-.plan,
-.contact-card {
-    display: flex;                /* <- adaugat */
+  .hero-buttons {
     flex-direction: column;
-    justify-content: center;      /* centru vertical */
-    align-items: center;          /* centru orizontal */
-
-    background: rgba(255,255,255,0.2);
-    color: #805735;
-
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    box-shadow:
-          inset 0 -4px 0px rgba(0,0,0,0.2);
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.5s ease,
-      background 0.3s ease;
-}
-/* 🌙 BORDER NOAPTE */
-body.night-mode .card,
-body.night-mode .step,
-body.night-mode .plan,
-body.night-mode .contact-card,
-body.night-mode #extra-info {
-    border: 2px solid rgba(255,255,255,1);
-box-shadow:inset 0 -4px 0px rgba(255,255,255,1);background: rgb(64 64 64);
+    align-items: center;
+  }
 
 }
-/* 🌙 HOVER NOAPTE */
-body.night-mode .card:hover,
-body.night-mode .step:hover,
-body.night-mode .plan:hover,
-body.night-mode .contact-card:hover {
- border: 2px solid rgba(255,255,255,1);
-box-shadow:0 5px 200px rgba(255,255,255,0.41),inset 0 -4px 0px rgba(255,255,255,1);background: rgba(255,255,255,0.15);
-}
-
-/* BORDER NORMAL (ZI) */
-.card,
-.step,
-.plan,
-.contact-card,
-#extra-info {
-    border: 2px solid rgba(255, 173, 105, 1);
- box-shadow:inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,1);
-}
-
-
-.hero h1 {
-    position: relative;      /* NU absolute */
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-
-    color: #fff;             /* alb */
-    font-size: clamp(1.8rem, 5vw, 3.6rem);
-
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1rem;
-    z-index: 1;
-}
-.hero p {
-    position: relative;      /* NU absolute */
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-
-    color: #fff;             /* alb */
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    z-index: 5;
-}
-.card:hover {
-    transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 5px 200px rgba(255,255,255, 1), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
-    border: 3px solid rgba(255, 173, 105, 1);
-}
-
-
-.step:hover,
-.plan:hover,
-.contact-card:hover {
-    transform: translateY(-5px) scale(1.05); /* ridicare + mărire */
- box-shadow: 0 5px 200px rgba(255,255,255, 1), inset 0 1px 0px rgba(255, 173, 105,1), inset 0 -4px 0px rgba(255, 173, 105, 1);background: rgba(255,255,255,0.15);
-    border: 3px solid rgba(255, 173, 105, 1);
-}
-.card h3, .step h3, .plan h3, .contact-card h3 {color: #ffad69; margin-bottom: 1rem;}
-.detalii h3 {color: #ffad69;
-}
-
-/* Services */
-.services {display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;}
-.steps {display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;}
-.pricing {display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;}
-.plan span {display: block; font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; color: #ffad69;}
-.contact-grid {display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 900px; margin: 0 auto;}
-.contact-grid .contact-card:nth-last-child(-n+2) {flex-basis: 100%; max-width: 400px; margin-left: auto; margin-right: auto;}
-
-/* Buton "!" alb cu semn color */
-.contact-card {position: relative;}
-.info-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #ffffff; color: #ffad69; font-weight: 900; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow:inset 0 -2px 0px rgba(255,173,105,1),inset 0 1px 0px rgba(255,173,105,1); transition: transform 0.2s; }
-.info-btn:hover {transform: scale(1.1);}
-
-/* Fundal întunecat */
-#overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0); opacity: 0; visibility: hidden; transition: opacity 0.4s ease; z-index: 2000;}
-#overlay.active {opacity: 1; visibility: visible; background: rgba(0,0,0,0); backdrop-filter: blur(2px);}
-
-/* Chenar popup program */
-#extra-info { position: fixed; top: 50%; right: 70px; transform: translateY(-50%) translateX(50px); width: 260px; background: rgba(255,255,255,5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem;  box-shadow:
-inset 0 -4px 0px rgba(255, 173, 105, 1);
-border: 2px solid rgba(255, 173, 105, 1);
-opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.4s ease; z-index: 3000; }
-#extra-info.active {opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);}
-
-/* Zi/Noapte Hero cu efect Vizualizeaza */
-#mode-selector {position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.0); color: #fff; border-radius: 50px; padding: 0rem 0rem; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,1), inset 0 -2px 0px rgba(255,255,255,1);backdrop-filter: blur(5px); transition: all 0.3s ease; z-index: 10;}
-#mode-selector:hover {transform: scale(1.03);background: rgba(255,255,255,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.1),   inset 0 1px 0px rgba(255,255,255,1), inset 0 -2px 0px rgba(255,255,255,1);}
-#mode-icon img.mode-img  {font-size: 1.3rem; user-select: none;  width: 34px; height: 34px; }
-
-/* Footer */
-footer {background: #ffad69; text-align: center; padding: 1rem; color: #fff; font-size: 0.9rem;
-box-shadow: inset 0 5px 0px rgb(255,255,255,0.2)}
-
-/* Scroll smooth */
-html {scroll-behavior: smooth;}
-.secondary-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-
-    background-image: url('Led.png');
-    background-repeat: no-repeat;
-    background-position: left -2vw bottom 0vh;
-    background-size: min(320px, 40vw) auto;
-
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-.third-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-
-    background-image: url('Oss.png');
-    background-repeat: no-repeat;
-background-position: center 0.5rem;
-    background-size: min(50px, 100vw) auto;
-
-    opacity: 1;
-    transition: opacity 1s ease;
-}
-
-
-.hero-reserva {
-  flex-direction: column;
-    margin-top: 30px;
-  align-items: center;
-}
-
 @media (max-width: 768px) {
-  .hero::before {
+  .cursor,
+  .cursor-ring {
     display: none !important;
   }
+
+  body {
+    cursor: auto;
+  }
+}
+:root {
+  --orange: #ffad69;
+  --orange-dark: #e8924a;
+  --orange-deep: #c97435;
+  --orange-light: #fff3e8;
+  --orange-pale: #fff9f4;
+  --brown: #5c3a1e;
+  --brown-light: #8b5e3c;
+  --cream: #fdf6ef;
+  --white: #ffffff;
+  --black: #1a0f08;
+  --gray: #6b5a4e;
+  --gray-light: #f5ede6;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease, width 0.2s, height 0.2s, opacity 0.2s;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 2px solid var(--orange);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  transition: transform 0.4s ease, width 0.3s, height 0.3s, opacity 0.3s;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+body:hover .cursor { opacity: 1; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background: rgba(253, 246, 239, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 173, 105, 0.2);
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  padding: 0.8rem 4rem;
+  box-shadow: 0 4px 30px rgba(255,173,105,0.15);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brown);
+  text-decoration: none;
+  cursor: none;
+}
+.paw-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;   /* IMPORTANT */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paw-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+border-radius: 50%
+}
+.nav-logo .paw-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  transition: transform 0.4s ease;
+}
+.nav-logo:hover .paw-icon { transform: rotate(-10deg) scale(1.1); }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  cursor: none;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--orange-deep); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--orange);
+  color: var(--white) !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--orange-dark) !important; transform: translateY(-1px); }
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: none;
+  z-index: 1001;
+}
+.hamburger span {
+  display: block; width: 26px; height: 3px;
+  background: var(--orange);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+/* MOBILE NAV */
+.mobile-nav {
+  display: flex; /* IMPORTANT: nu mai folosim none */
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 999;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+
+  /* stare ascunsă */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+
+  transition: all 0.35s ease;
+}
+
+.mobile-nav.open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.mobile-nav a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--brown);
+  text-decoration: none;
+  cursor: none;
+  transition: color 0.3s;
+}
+
+.mobile-nav a:hover {
+  color: var(--orange);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+  gap: 4rem;
+}
+
+/* Animated paw background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--cream);
+  z-index: 0;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%; right: -10%;
+  width: 70vw; height: 70vw;
+  background: radial-gradient(circle, rgba(255,173,105,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--orange-light);
+  border: 1px solid var(--orange);
+  color: var(--orange-deep);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero h1 span { color: var(--orange); position: relative; }
+.hero h1 span::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 0; right: 0;
+  height: 6px;
+  background: rgba(255,173,105,0.3);
+  border-radius: 3px;
+  z-index: -1;
+}
+
+.hero-desc {
+  font-size: 1.15rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+  font-weight: 300;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  cursor: none;
+  box-shadow: 0 4px 20px rgba(255,173,105,0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover::before { left: 140%; }
+.btn-primary:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255,173,105,0.5);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--brown);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  cursor: none;
+  border: 2px solid rgba(92,58,30,0.2);
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--orange);
+  color: var(--orange-deep);
+  transform: translateY(-2px);
+}
+
+/* HERO VISUAL */
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-card-main {
+  background: var(--white);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(92,58,30,0.1), 0 0 0 1px rgba(255,173,105,0.15);
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-card-main::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+}
+
+.big-paw {
+  font-size: 6rem;
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.stat-item {
+  background: var(--orange-pale);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid rgba(255,173,105,0.2);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--orange-deep);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Floating mini cards */
+.float-card {
+  position: absolute;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0 10px 30px rgba(92,58,30,0.12);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--brown);
+  white-space: nowrap;
+  border: 1px solid rgba(255,173,105,0.2);
+}
+.float-card-1 {
+  top: 10%; left: -15%;
+  animation: floatCard1 4s ease-in-out infinite;
+}
+.float-card-2 {
+  bottom: 20%; right: -5%;
+  animation: floatCard2 4.5s ease-in-out infinite;
+}
+@keyframes floatCard1 {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+@keyframes floatCard2 {
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50% { transform: translateY(8px) rotate(-1deg); }
+}
+
+/* SCROLL INDICATOR */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 2;
+  animation: fadeUp 1s 0.6s ease both;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--orange), transparent);
+  animation: scrollLine 1.5s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* SECTIONS */
+section {
+  padding: 7rem 4rem;
+  position: relative;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--black);
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+.section-title span { color: var(--orange); }
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--gray);
+  max-width: 560px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* SERVICES */
+#services { background: var(--white); }
+.services-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.service-card {
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255,173,105,0.15);
+  transition: all 0.4s ease;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,173,105,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--orange);
+  box-shadow: 0 20px 50px rgba(255,173,105,0.15);
+}
+.service-card:hover::before { opacity: 1; }
+.service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); }
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+.service-card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* WIDE CARD */
+.service-card.wide {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.service-card.wide .service-icon { font-size: 3rem; margin-bottom: 0; }
+
+/* HOW IT WORKS */
+#how { background: var(--cream); }
+.how-inner { max-width: 1200px; margin: 0 auto; }
+.how-header { margin-bottom: 4rem; }
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.steps-row::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: calc(12.5% + 1rem);
+  right: calc(12.5% + 1rem);
+  height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  border-radius: 2px;
+}
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+.step-num {
+  width: 52px; height: 52px;
+  background: var(--orange);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 6px var(--cream), 0 0 0 8px rgba(255,173,105,0.3);
+  transition: all 0.3s ease;
+}
+.step-item:hover .step-num {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 6px var(--cream), 0 0 0 10px var(--orange);
+}
+.step-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+.step-item p {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* PRICING */
+#pricing { background: var(--black); }
+.pricing-inner { max-width: 1000px; margin: 0 auto; }
+.pricing-header { margin-bottom: 4rem; }
+.pricing-header .section-label { color: var(--orange); }
+.pricing-header .section-title { color: var(--white); }
+.pricing-header .section-title span { color: var(--orange); }
+.pricing-header .section-subtitle { color: rgba(255,255,255,0.5); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.price-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  border: 1px solid rgba(255,173,105,0.15);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: none;
+}
+.price-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.price-card:hover { border-color: rgba(255,173,105,0.4); transform: translateY(-6px); }
+.price-card:hover::before { transform: scaleX(1); }
+.price-card.featured {
+  background: var(--orange);
+  border-color: var(--white);
+}.price-badge:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-6px); }
+.price-badge:hover::before { transform: scaleX(1); }
+
+
+}
+.price-card.featured::before { display: none; }
+.price-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+}
+.price-duration {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.price-card.featured .price-amount { color: var(--white); }
+.price-unit {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2rem;
+}
+.price-card.featured .price-unit { color: rgba(255,255,255,0.7); }
+.price-desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+.price-card.featured .price-desc { color: rgba(255,255,255,0.8); }
+.price-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.price-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 300;
+}
+.price-card.featured .price-features li { color: rgba(255,255,255,0.9); }
+.price-features li::before {
+  content: '✓';
+  width: 20px; height: 20px;
+  background: rgba(255,173,105,0.2);
+  color: var(--orange);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+.price-card.featured .price-features li::before {
+  background: rgba(255,255,255,0.2);
+  color: var(--white);
+}
+
+/* TESTIMONIALS */
+#testimonials { background: var(--orange-pale); }
+.test-inner { max-width: 1100px; margin: 0 auto; }
+.test-header { margin-bottom: 4rem; }
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.test-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255,173,105,0.15);
+  transition: all 0.3s ease;
+  cursor: none;
+}
+.test-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(255,173,105,0.15);
+  border-color: var(--orange);
+}
+.test-stars {
+  color: var(--orange);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+.test-text {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.test-author {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.test-avatar {
+  width: 40px; height: 40px;
+  background: var(--orange-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  border: 2px solid var(--orange);
+}
+.test-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brown);
+}
+.test-dog {
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-weight: 300;
+}
+
+/* CONTACT */
+#contact { background: var(--white); }
+.contact-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-left .section-subtitle { margin-bottom: 3rem; }
+.contact-items { display: flex; flex-direction: column; gap: 1.2rem; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--cream);
+  border-radius: 16px;
+  border: 1px solid rgba(255,173,105,0.15);
+  text-decoration: none;
+  color: inherit;
+  cursor: none;
+  transition: all 0.3s ease;
+}
+.contact-item:hover {
+  border-color: var(--orange);
+  transform: translateX(6px);
+  box-shadow: 0 8px 24px rgba(255,173,105,0.12);
+}
+.contact-icon {
+  width: 46px; height: 46px;
+  background: var(--orange-light);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,173,105,0.2);
+  transition: background 0.3s;
+}
+.contact-item:hover .contact-icon { background: var(--orange); }
+.contact-detail-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+.contact-detail-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--brown);
+}
+
+/* BOOKING FORM */
+.booking-form {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255,173,105,0.2);
+}
+.booking-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+.booking-form p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brown-light);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--white);
+  border: 1.5px solid rgba(255,173,105,0.2);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--brown);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  cursor: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(255,173,105,0.1);
+}
+.form-group textarea { resize: none; height: 90px; }
+.form-submit {
+  width: 100%;
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255,173,105,0.4);
+}
+.form-submit:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255,173,105,0.5);
+}
+
+/* SUCCESS MESSAGE */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+}
+.form-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+.form-success h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+.form-success p { color: var(--gray); font-size: 0.95rem; }
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  padding: 3rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+}
+.footer-logo .paw-icon { background: var(--orange); }
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links a {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  font-size: 0.85rem;
+  cursor: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--orange); }
+.footer-copy {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.9s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; text-align: center; }
+  .hero-desc { margin: 0 auto 2.5rem; }
+  .hero-buttons { justify-content: center; }
+  .hero-visual { display: none; }
+  .services-layout { grid-template-columns: 1fr; }
+  .steps-row { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .steps-row::before { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .test-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+  .contact-inner { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-  .hero-reserva {
-    margin-top: 20px;      /* puțin mai sus pe mobil */
-    font-size: 0.95rem;
-  }
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { padding: 0.7rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 5rem 1.5rem; }
+  .hero { padding: 6rem 1.5rem 4rem; }
+  .steps-row { grid-template-columns: 1fr; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card.wide { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.2rem; }
+  .section-title { font-size: 1.8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-@media (max-width: 389px) {
-    .secondary-bg {
-        background-position: left -2vw bottom 0vh;
-        background-size: 40vw auto;
-    }
-
-}
-
-.back-arrow:hover{transform: scale(1.03);background: rgba(255, 255, 255, 0.1); box-shadow: 0 3px 6px rgba(0,0,0,0.1),  inset 0 1px 0px rgba(255,255,255,0.5), inset 0 -1px 0px rgba(255,255,255,0.5);}
-/* 📱 TELEFOANE */
-@media (max-width: 768px) {
-  .hero h1 {
-    padding-top: 1rem; /* să nu se lipească de header */
-    font-size: 2rem;   /* mai mic pe telefon */
-    line-height: 1.2;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-}
-@media (max-width: 1024px) {
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-}
-
-.hero p,
-.hero a {
-    color: #fff !important;
-}
-@media (max-width: 768px) {
-  .menu-btn {
-    display: flex;
-  }
+  * { animation: none !important; transition: none !important; }
 }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "PetService",
-  "name": "Plimbări Câini Chișinău",
-  "description": "Servicii profesionale de plimbări câini în Chișinău",
-  "url": "https://gutovschivictor-source.github.io/PlimbariCaini/",
-  "telephone": "+37360400898",
-  "areaServed": {
-    "@type": "City",
-    "name": "Chișinău"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Chișinău",
-    "addressCountry": "MD"
-  },
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61579559310786"
-  ]
-}
-</script>
-
-<script>
-  // Funcție pentru preload imagini
-  function preloadImage(url) {
-      const img = new Image();
-      img.src = url;
-  }
-
-  // Preload imagini pentru modul zi și modul noapte
-  preloadImage('Led2.png');       // imagine zi
-  preloadImage('Led.night.png');   // imagine noapte
-</script>
 </head>
 <body>
 
-<!-- Overlay -->
-<div id="overlay"></div>
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<!-- Popup program -->
-<div id="extra-info" class="detalii">
-    <h3>Detalii program:</h3>
-    <p>Disponibil doar în weekend.<br>
-       Ore: 10:00 – 20:00.<br>
-       Programarea se face in avans!</p>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#hero" onclick="closeMobileNav()">Acasă</a>
+  <a href="#services" onclick="closeMobileNav()">Servicii</a>
+  <a href="#pricing" onclick="closeMobileNav()">Prețuri</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <a href="#contact" class="btn-primary" onclick="closeMobileNav()" style="margin-top:1rem;">Rezervă acum</a>
 </div>
 
-<!-- Header -->
-<header>
-<nav>
-    <div class="logo">
-          <a href="#hero">
-    <img src="logo-câine.png" alt="Logo Câine" class="header-logo">
-  </a>
-        <span class="logo-text">Plimbări Câini</span>
-    </div>
-
-    <!-- Hamburger -->
-
-
-    <ul id="nav-links">
-        <li><a href="#hero">Rezervare</a></li>
-        <li><a href="#services">Servicii</a></li>
-        <li><a href="#pricing">Prețuri</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
-<div class="menu-btn">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-</header>
-
-<!-- Hero -->
-<section class="hero" id="hero">
-
-    <h1>Plimbări câini în Chișinău</h1>
-    <p>Atenție, joacă și siguranță la fiecare pas</p>
-
-    <!-- Înlocuiește textul cu imagine -->
-<a href="#services" class="hero-button">Vizualizează</a>
-<a href="programare.html"  class="hero-buttonn hero-reserva">
-  Rezervă acum !
+<!-- NAV -->
+<nav id="navbar">
+ <a href="#hero" class="nav-logo" style="text-decoration:none;">
+  <div class="paw-icon">
+    <img src="logo-câine.png" alt="Logo Câine">
+  </div>
+  <span>Plimbări Câini</span>
 </a>
-
-<div class="secondary-bg">
-    </div>
-<div class="third-bg">
-    </div>
-
-<!-- Butoane suplimentare -->
-
-    <!-- Zi/Noapte -->
-    <div id="mode-selector">
-        <span id="mode-icon">
-  <img src="Sun.png" alt="Mod zi" class="mode-img">
-</span>
-
-
-    </div>
-<!-- QR HERO (IZOLAT) -->
-<div class="hero-qr">
-  <div class="hero-qr-dot"></div>
-</div>
-
-<!-- Overlay QR -->
-<div class="hero-qr-overlay" >
-  <div class="hero-qr-box">
-    <span class="hero-qr-close"></span>
-    <img class="hero-qr-img" 
-src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://gutovschivictor-source.github.io/PlimbariCaini/" 
-alt="QR code">
-    <h4 class="hero-qr-text">Scanează site-ul !</h4>
+  <ul class="nav-links">
+    <li><a href="#services">Servicii</a></li>
+    <li><a href="#how">Cum funcționează</a></li>
+    <li><a href="#pricing">Prețuri</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Rezervă acum</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
   </div>
-</div>
+</nav>
 
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      Disponibil în Chișinău
+    </div>
+    <h1>Câinele tău merită<br><span>cele mai bune</span> plimbări</h1>
+    <p class="hero-desc">Grijă reală, joacă și siguranță — chiar și când tu nu ai timp. Plimbări individuale și în grup, cu atenție personalizată.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Rezervă acum</a>
+      <a href="#services" class="btn-secondary">Descoperă serviciile →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="float-card float-card-1"> Programează</div>
+    <div class="hero-card-main">
+      <div class="big-paw"></div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Siguranță</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2/7</div>
+          <div class="stat-label">Zile weekend</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">60</div>
+          <div class="stat-label">Lei / 30 min</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">📸</div>
+          <div class="stat-label">Poze incluse</div>
+        </div>
+      </div>
+    </div>
+    <div class="float-card float-card-2">Chișinău</div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
 </section>
 
-<!-- Services -->
-<section id="services" class="reveal">
-<h2 class=nume>Servicii de plimbare a câinilor</h2>
-<div class="services">
-    <div class="card">
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-layout">
+    <div>
+      <div class="section-label reveal">Servicii</div>
+      <h2 class="section-title reveal reveal-delay-1">Ce oferim<br><span>câinelui tău</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Fiecare câine este unic. Adaptăm fiecare plimbare la nevoile, energia și personalitatea lui.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-icon">🦮</span>
         <h3>Plimbare individuală</h3>
-        <p>Atenție personalizată, plimbare în ritmul câinelui.</p>
-    </div>
-    <div class="card">
+        <p>Atenție 100% personalizată. Plimbare în ritmul câinelui, fără distrageri.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-icon">🐕‍🦺</span>
         <h3>Plimbare în grup</h3>
-        <p>Grupuri mici pentru siguranță și armonie.</p>
+        <p>Grupuri mici, atent supervizate, pentru socializare și armonie.</p>
+      </div>
+      <div class="service-card wide reveal reveal-delay-3">
+        <span class="service-icon">📸</span>
+        <div>
+          <h3>Servicii extra incluse</h3>
+          <p>Hrănire și apă, fotografii și video din plimbare — trimise direct pe WhatsApp. Transparență totală cu stăpânul.</p>
+        </div>
+      </div>
     </div>
-    <div class="card">
-        <h3>Servicii extra</h3>
-        <p>Hrană/Apă.</p>
-    </div>
-</div>
-</section>
-
-<!-- How it works -->
-<section id="how-it-works" class="reveal">
-<h2 class=nume>Cum funcționează</h2>
-<div class="steps">
-    <div class="step">
-        <h3>1. Detalii</h3>
-        <p>Trimite mesaj sau sună pentru rezervare.</p>
-    </div>
-    <div class="step">
-        <h3>2. Stabilim detalii</h3>
-        <p>Preferințe câine, alergii, necesități speciale.</p>
-    </div>
-    <div class="step">
-        <h3>3. Plimbare de probă</h3>
-        <p>Prima plimbare pentru a cunoaște câinele și rutina.</p>
-    </div>
-    <div class="step">
-        <h3>4. Program regulat</h3>
-        <p>Stabilim un program regulat de plimbări și feedback.</p>
-    </div>
-</div>
-</section>
-
-<!-- Pricing -->
-<section id="pricing" class="reveal">
-<h2 class=nume>Prețuri plimbări</h2>
-<div class="pricing">
-    <div class="plan">
-        <h3>30 minute</h3>
-        <p>Plimbare rapidă pentru nevoi și puțină mișcare</p>
-        <span>60 lei</span>
-    </div>
-    <div class="plan">
-        <h3>60 minute</h3>
-        <p>Plimbare extinsă cu mișcare, joacă și supraveghere completă</p>
-        <span>100 lei</span>
-    </div>
-</div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="reveal">
-<h2 class=nume>Detalii</h2>
-<div class="contact-grid">
-    <div class="contact-card">
-        <h3>Telefon</h3>
-        <p><a href="tel:+37360400898">+37360400898</a></p>
-    </div>
-    <div class="contact-card">
-        <h3>Gmail</h3>
-        <p><a href="mailto:gutovschivictor@gmail.com">gutovschivictor@gmail.com</a>
-</p>
-    </div>
-    <div class="contact-card">
-        <div class="info-btn">!</div>
-        <h3>Program</h3>
-        <p>Weekend <br>10:00–20:00</p>
-    </div>
-    <div class="contact-card">
-    <h3>Facebook</h3>
-    <p>
-        <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="victor-btn">
-            Victor Gutovschi
-        </a>
-    </p>
-</div>
-</div>
-</section>
-<!-- LOADER -->
-<div id="loader">
-  <div style="display:flex; gap:10px;">
-    <div class="apple-dot"></div>
-    <div class="apple-dot"></div>
-    <div class="apple-dot"></div>
   </div>
-</div>
+</section>
 
-<!-- Footer -->
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-label reveal">Procesul</div>
+      <h2 class="section-title reveal reveal-delay-1">Cum <span>funcționează</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Simplu, rapid și de încredere. De la primul contact la plimbări regulate.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h3>Contactează</h3>
+        <p>Sună sau scrie pentru a stabili prima întâlnire.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <h3>Stabilim detalii</h3>
+        <p>Nevoile, energia și preferințele câinelui tău.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h3>Plimbare de probă</h3>
+        <p>Ne cunoaștem și vedem ce i se potrivește cel mai bine.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-4">
+        <div class="step-num">4</div>
+        <h3>Program stabil</h3>
+        <p>Stabilim un program regulat de plimbări.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header">
+      <div class="section-label reveal">Prețuri</div>
+      <h2 class="section-title reveal reveal-delay-1">Transparent și<br><span>accesibil</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Fără costuri ascunse. Plătești doar pentru timpul câinelui tău.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-delay-1">
+        <div class="price-badge">Rapid</div>
+        <div class="price-duration">30 minute</div>
+        <div class="price-amount">60</div>
+        <div class="price-unit">lei / plimbare</div>
+        <p class="price-desc">Plimbare rapidă pentru nevoi și puțină mișcare.</p>
+        <ul class="price-features">
+          <li>Plimbare individuală</li>
+          <li>Supraveghere completă</li>
+          <li>Apă inclusă</li>
+          <li>Update WhatsApp</li>
+        </ul>
+      </div>
+      <div class="price-card featured reveal reveal-delay-2">
+        <div class="price-badge">Popular</div>
+        <div class="price-duration">60 minute</div>
+        <div class="price-amount">100</div>
+        <div class="price-unit">lei / plimbare</div>
+        <p class="price-desc">Plimbare extinsă cu mișcare, joacă și supraveghere completă.</p>
+        <ul class="price-features">
+          <li>Plimbare individuală sau grup</li>
+          <li>Supraveghere completă</li>
+          <li>Hrănire și apă</li>
+          <li>Poze & video incluse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-inner">
+    <div class="test-header">
+      <div class="section-label reveal">Recenzii</div>
+      <h2 class="section-title reveal reveal-delay-1">Ce spun <span>stăpânii</span></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal reveal-delay-1">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Victor este minunat cu câinele nostru. Max revine întotdeauna fericit și obosit după plimbări. Ne trimite poze și suntem liniștiți tot timpul."</p>
+        <div class="test-author">
+          <div class="test-avatar">👩</div>
+          <div>
+            <div class="test-name">Ana M.</div>
+            <div class="test-dog">Stăpâna lui Max 🐕</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal reveal-delay-2">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Recomand cu toată încrederea! Profesional, punctual și cu adevărat iubitor de câini. Bella adoră plimbările cu el."</p>
+        <div class="test-author">
+          <div class="test-avatar">👨</div>
+          <div>
+            <div class="test-name">Mihai T.</div>
+            <div class="test-dog">Stăpânul Bellei 🐩</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal reveal-delay-3">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Serviciu excelent! Prețurile sunt corecte și câinele meu a devenit mult mai sociabil după plimbările în grup. Mulțumesc mult!"</p>
+        <div class="test-author">
+          <div class="test-avatar">👩</div>
+          <div>
+            <div class="test-name">Elena P.</div>
+            <div class="test-dog">Stăpâna lui Biscuit 🦮</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-title reveal reveal-delay-1">Hai să <span>vorbim</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Disponibil în weekend, 09:00 – 19:00. Programarea se face în avans.</p>
+      <div class="contact-items reveal reveal-delay-3">
+        <a href="tel:+37360400898" class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Telefon</div>
+            <div class="contact-detail-value">+373 60 400 898</div>
+          </div>
+        </a>
+        <a href="mailto:gutovschivictor@gmail.com" class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">gutovschivictor@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="contact-item">
+          <div class="contact-icon">📘</div>
+          <div>
+            <div class="contact-detail-label">Facebook</div>
+            <div class="contact-detail-value">Victor Gutovschi</div>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-detail-label">Program</div>
+            <div class="contact-detail-value">Weekend · 09:00 – 19:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKING FORM -->
+    <div class="reveal reveal-delay-2">
+      <div class="booking-form" id="bookingForm">
+        <h3>Rezervă o plimbare</h3>
+        <p>Completează formularul și te contactăm în cel mai scurt timp.</p>
+        <div id="formContent">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Numele tău</label>
+              <input type="text" placeholder="Ion Popescu" id="ownerName">
+            </div>
+            <div class="form-group">
+              <label>Telefon</label>
+              <input type="tel" placeholder="+373 ..." id="phone">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Numele câinelui</label>
+              <input type="text" placeholder="Rex" id="dogName">
+            </div>
+            <div class="form-group">
+              <label>Rasa</label>
+              <input type="text" placeholder="Labrador, Pudel..." id="breed">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Serviciu dorit</label>
+            <select id="service">
+              <option value="">Selectează...</option>
+              <option value="30min">Plimbare 30 min — 60 lei</option>
+              <option value="60min">Plimbare 60 min — 100 lei</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mesaj (opțional)</label>
+            <textarea placeholder="Spune-ne mai multe despre câinele tău..." id="message"></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()">Trimite cererea</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">🎉</div>
+          <h4>Cerere trimisă cu succes!</h4>
+          <p>Te vom contacta în cel mai scurt timp pentru a confirma programarea.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-&copy; 2026 • Plimbări Câini.
+  <div class="footer-logo">
+    <div class="paw-icon" style="width:32px;height:32px;font-size:0.9rem;"><img src="logo-câine.png" alt="Logo Câine">
+</div>
+    Plimbări Câini Chișinău
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">Servicii</a></li>
+    <li><a href="#pricing">Prețuri</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Victor Gutovschi · Chișinău</div>
 </footer>
 
 <script>
-const infoBtn = document.querySelector(".info-btn");
-const overlay = document.getElementById("overlay");
-const extraInfo = document.getElementById("extra-info");
-const modeSelector = document.getElementById("mode-selector");
+// CUSTOM CURSOR
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-const modeIcon = document.getElementById("mode-icon");
-const menuItems = document.querySelectorAll('nav ul li');
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
 
-menuItems.forEach(item => {
-  item.addEventListener('click', () => {
-    menuItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .service-card, .price-card, .test-card, .contact-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+    cursorRing.style.width = '60px';
+    cursorRing.style.height = '60px';
+    cursorRing.style.opacity = '0.3';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    cursorRing.style.width = '36px';
+    cursorRing.style.height = '36px';
+    cursorRing.style.opacity = '0.5';
   });
 });
 
-
-// Popup program
-infoBtn.addEventListener("click", () => {
-    overlay.classList.add("active");
-    extraInfo.classList.add("active");
-});
-overlay.addEventListener("click", () => {
-    overlay.classList.remove("active");
-    extraInfo.classList.remove("active");
+// NAV SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-
-// Zi/Noapte cu tranziție lină - header-ul izolat complet
-let isNight = false;
-
-modeSelector.addEventListener("click", () => {
-
-    isNight = !isNight;
-
-    if (isNight) {
-        // 🌙 NOAPTE
-        document.querySelector(".secondary-bg").style.backgroundImage = "url('Led2.png')";
-        document.body.style.backgroundColor = "#1e1e1e";
-        document.body.style.color = "#f0f0f0";
-        document.querySelector(".hero").style.backgroundColor = "#333";
-        document.body.classList.add("night-mode");
-
-        document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#fff");
-        document.querySelectorAll("p,a").forEach(el => el.style.color = "#fff");
-
-        document.querySelector("footer").style.backgroundColor = "#111";
-        document.querySelector("footer").style.color = "#ccc";
-
-        modeIcon.innerHTML = `<img src="Mon.png" alt="Mod noapte" class="mode-img">`;
-
-    } else {
-        // ☀️ ZI
-        document.querySelector(".secondary-bg").style.backgroundImage = "url('Led.png')";
-        document.body.style.backgroundColor = "#fff";
-        document.body.style.color = "#000";
-        document.querySelector(".hero").style.backgroundColor = "#ffad69";
-        document.body.classList.remove("night-mode");
-
-        document.querySelectorAll("h2, h3, .plan span").forEach(el => el.style.color = "#ffad69");
-        document.querySelectorAll("p,a").forEach(el => el.style.color = "#805735");
-
-        document.querySelector("footer").style.backgroundColor = "#ffad69";
-        document.querySelector("footer").style.color = "#fff";
-
-        modeIcon.innerHTML = `<img src="Sun.png" alt="Mod zi" class="mode-img">`;
-    }
-
-});
-
-
-const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-        } else {
-            entry.target.classList.remove("active");
-        }
-    });
-}, {
-    threshold: 0.2
-});
-
-reveals.forEach(el => {
-    observer.observe(el);
-});
-const menuBtn = document.querySelector(".menu-btn");
-const navLinks = document.getElementById("nav-links");
-
-menuBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-
-  menuBtn.classList.toggle("active");
-  navLinks.classList.toggle("active");
-
-  document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
-});
-
-document.addEventListener("click", () => {
-  menuBtn.classList.remove("active");
-  navLinks.classList.remove("active");
-  document.body.style.overflow = "";
-});
-
-navLinks.addEventListener("click", (e) => e.stopPropagation());</script>
-<script>
-// Efect mini-explozie de particule la click
-document.addEventListener("click", function(e) {
-    const particles = [];
-    const colors = ["#ffad69","#614636","#fff"];
-    const numParticles = 5;
-
-    for (let i = 0; i < numParticles; i++) {
-        const p = document.createElement("div");
-        p.style.position = "fixed";
-        p.style.width = "6px";
-        p.style.height = "6px";
-        p.style.borderRadius = "50%";
-        p.style.background = colors[Math.floor(Math.random() * colors.length)];
-        p.style.left = e.clientX + "px";
-        p.style.top = e.clientY + "px";
-        p.style.pointerEvents = "none";
-        p.style.zIndex = 5000;
-        p.style.opacity = 1;
-        document.body.appendChild(p);
-
-        const angle = Math.random() * 2 * Math.PI;
-        const speed = Math.random() * 80 + 50;
-        const vx = Math.cos(angle) * speed;
-        const vy = Math.sin(angle) * speed;
-
-        let startTime = performance.now();
-        function animate(time) {
-            let t = (time - startTime) / 1000;
-            if (t < 1) {
-                p.style.transform = `translate(${vx*t}px, ${vy*t + 0.5*300*t*t}px)`;
-                p.style.opacity = `${1 - t}`;
-                requestAnimationFrame(animate);
-            } else {
-                p.remove();
-            }
-        }
-        requestAnimationFrame(animate);
-    }
-});
-</script>
-
-<style>
-
-
-
-
-
-/* Responsive nav */
-@media screen and (max-width: 768px) {
-    nav ul {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 200px;
-        background: #fff;
-        flex-direction: column;
-        gap: 2rem;
-        padding-top: 4rem;
-        transition: right 0.3s ease;
-        z-index: 1500;
-        border-radius: 15px;
-        border: 4px solid rgba(255,173,105,0.2);
-    }
-
-    nav ul.active {
-        right: 0;
-    }
-
-    nav ul li {
-        font-size: 1.2rem;
-        padding-left: 1rem;
-    }
+// MOBILE NAV
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObserver.observe(el));
 
-</style>
+// FORM SUBMIT
+function submitForm() {
+  const name = document.getElementById('ownerName').value;
+  const phone = document.getElementById('phone').value;
+  const dog = document.getElementById('dogName').value;
+  const breed = document.getElementById('breed').value;
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value;
 
+  if (!name || !phone || !dog || !service) {
+    alert('Te rugăm să completezi câmpurile obligatorii.');
+    return;
+  }
 
+  // Construim mesajul pentru WhatsApp
+  const text =
+`🐶 CERERE PLIMBARE CÂINE
+-----------------------
+👤 Nume stăpân: ${name}
+📞 Telefon: ${phone}
+🐕 Câine: ${dog}
+🐩 Rasa: ${breed}
+⏱ Serviciu: ${service}
+💬 Mesaj: ${message || "—"}`;
 
-<script>
-const qrDot = document.querySelector(".hero-qr-dot");
-const qrOverlay = document.querySelector(".hero-qr-overlay");
-const qrClose = document.querySelector(".hero-qr-close");
-const qrImg = document.querySelector(".hero-qr-img");
+  // encode pentru URL
+  const encodedText = encodeURIComponent(text);
 
-qrDot.addEventListener("click", () => {
-  qrOverlay.style.display = "flex";
-});
+  // numărul tău WhatsApp (MOLDOVA fără +)
+  const number = "37340898";
 
-qrClose.addEventListener("click", () => {
-  qrOverlay.style.display = "none";
-});
+  // link WhatsApp
+  const url = `https://wa.me/${number}?text=${encodedText}`;
 
-qrOverlay.addEventListener("click", (e) => {
-  if (e.target === qrOverlay) {
-    qrOverlay.style.display = "none";
+  // deschide WhatsApp
+  window.open(url, "_blank");
+
+  // arată succes UI
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+// CLICK PARTICLES
+document.addEventListener('click', function(e) {
+  const colors = ['#ffad69','#e8924a','#ffffff','#c97435'];
+  for (let i = 0; i < 6; i++) {
+    const p = document.createElement('div');
+    p.style.cssText = `position:fixed;width:7px;height:7px;border-radius:50%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:99999;opacity:1;`;
+    document.body.appendChild(p);
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 90 + 40;
+    const vx = Math.cos(angle) * speed;
+    const vy = Math.sin(angle) * speed;
+    let t0 = performance.now();
+    (function animate(t) {
+      const dt = (t - t0) / 1000;
+      if (dt < 0.8) {
+        p.style.transform = `translate(${vx*dt}px,${vy*dt + 200*dt*dt}px)`;
+        p.style.opacity = 1 - dt/0.8;
+        requestAnimationFrame(animate);
+      } else p.remove();
+    })(t0);
   }
 });
-const sections = document.querySelectorAll("section, .hero");
-const navItems = document.querySelectorAll("nav ul li");
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const id = entry.target.getAttribute("id") || "hero";
-    const navItem = document.querySelector(`nav ul li a[href="#${id}"]`)?.parentElement;
-
-    if (!navItem) return;
-
-    if (entry.isIntersecting) {
-      navItems.forEach(item => item.classList.remove("active"));
-      navItem.classList.add("active");
-    }
-  });
-}, {
-  threshold: 0.5
-});
-
-sections.forEach(section => sectionObserver.observe(section));
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-
-  setTimeout(() => {
-    loader.classList.add('hide');
-    document.body.classList.remove("loading");
-  }, 200); // mic delay pentru efect smooth
-});
 </script>
-
 
 </body>
 </html>
-
-
-
-
