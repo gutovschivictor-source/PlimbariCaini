@@ -1,75 +1,136 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Pagina nu a fost găsită</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="icon" href="logo-câine4.png" type="image/png">
+<meta name="robots" content="noindex, nofollow">
+<title>404 — Pagina nu a fost găsită | Plimbări Câini Chișinău</title>
+<link rel="icon" href="logo-câine.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* SELECTIE TEXT DIFERITA */
+:root {
+  --orange: #ffad69;
+  --orange-dark: #e8924a;
+  --orange-deep: #c97435;
+  --brown: #5c3a1e;
+  --cream: #fdf6ef;
+  --white: #ffffff;
+  --black: #1a0f08;
+  --gray: #6b5a4e;
+}
 
-header::selection {
-  background-color: #ffad69; /* culoare selectie header */
-  color: #fff;
-}
-.hero::selection {
-  background-color: #ffffff;
-  color: #ffad69;
-}
-body::selection {
-  background-color: #fff; /* culoare selectie rest site */
-  color: #ffad69;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    background-color: #ffad69;
-    color: #fff;
-    text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--orange);
+  opacity: 0.25;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+
+.paw {
+  font-size: 3rem;
+  margin: 0.5rem 0;
 }
 
 h1 {
-    letter-spacing: 2px; /* mai spațiat */
-    text-shadow: 5px 0px 0 #bb7e4b; /* margini sharp */
-    font-size: 10rem;
-    margin-bottom: 1rem;
-    line-height: 1;
-font-family:'Nunito', sans-serif;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--black);
+  margin-bottom: 0.75rem;
 }
 
 p {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  font-size: 1rem;
+  color: var(--gray);
+  font-weight: 300;
+  max-width: 340px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
 }
 
-a {padding: 1rem 1rem; background: rgba(255,255,255,0.02); color: #fff; border-radius: 25px; font-weight: 7; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; display: flex; gap: 0.3rem; align-items: center; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0px rgba(255,255,255,5), inset 0 -3px 0px rgba(255,255,255,5); backdrop-filter: blur(0px); transition: all 0.1s ease; z-index: 10;}
-
-
-
-a:hover {background: rgba(255, 255, 255, 0.2);
+.buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-
-@media screen and (max-width: 600px) {
-    h1 { font-size: 6rem; }
-    p { font-size: 1.5rem; }
-    a { padding: 1rem 1rem; font-size: 1rem; }
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(255,173,105,0.35);
+}
+.btn-primary:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
 }
 
+.btn-secondary {
+  background: transparent;
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1.5px solid rgba(92,58,30,0.2);
+  transition: border-color 0.25s, color 0.25s, transform 0.2s;
+}
+.btn-secondary:hover {
+  border-color: var(--orange);
+  color: var(--orange-deep);
+  transform: translateY(-2px);
+}
+
+.footer-copy {
+  position: fixed;
+  bottom: 1.5rem;
+  color: rgba(92,58,30,0.3);
+  font-size: 0.75rem;
+}
 </style>
 </head>
 <body>
-    <h1>404</h1>
-    <p>Ups! Pagina căutată nu a fost găsită.</p>
-    <a href="index.html">Înapoi la Acasă</a>
+
+<div class="error-number">404</div>
+<div class="paw"></div>
+<h1>Pagina nu a fost găsită</h1>
+<p>Poate câinele a luat-o la plimbare. Întoarce-te acasă sau rezervă o plimbare.</p>
+
+<div class="buttons">
+  <a href="index.html" class="btn-primary">Acasă</a>
+  <a href="index.html#contact" class="btn-secondary">Rezervă acum</a>
+  <a href="index.html#services" class="btn-secondary">Servicii</a>
+</div>
+
+<div class="footer-copy">© 2026 Victor Gutovschi · Chișinău</div>
+
 </body>
 </html>
