@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Victor Gutovschi — Portofoliu personal. Află cine sunt, ce fac și cum pot să te ajut.">
+<title>Victor Gutovschi · Portofoliu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+.btn-back::after {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto; }
+}
+:root {
+  --orange: #ffad69;
+  --orange-dark: #e8924a;
+  --orange-deep: #c97435;
+  --orange-light: #fff3e8;
+  --orange-pale: #fff9f4;
+  --brown: #5c3a1e;
+  --brown-light: #8b5e3c;
+  --cream: #fdf6ef;
+  --white: #ffffff;
+  --black: #1a0f08;
+  --gray: #6b5a4e;
+  --gray-light: #f5ede6;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CURSOR ── */
+.cursor {
+  width: 15px; height: 15px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform .15s ease, opacity .2s;
+  border: 1px solid var(--white);
+}
+.cursor-ring {
+  width: 30px; height: 30px;
+  border: 2px solid var(--orange);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99998;
+  transform: translate(-50%,-50%);
+  opacity: .5;
+}
+@media (max-width: 768px) {
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto; }
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background: rgba(253,246,239,.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,173,105,.2);
+  transition: all .4s ease;
+}
+nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15); }
+.nav-logo {
+  display: flex; align-items: center; gap: .7rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--brown); text-decoration: none; cursor: none;
+}
+.logo-circle {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--orange-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; overflow: hidden;
+  transition: transform .4s ease;
+}
+.logo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.nav-logo:hover .logo-circle { transform: rotate(-10deg) scale(1.1); }
+.nav-links { display: flex; list-style: none; gap: 2.5rem;  align-items: center;  }
+.nav-links a {
+  text-decoration: none; color: var(--gray);
+  font-size: .9rem; font-weight: 500;
+  letter-spacing: .05em; text-transform: uppercase;
+  position: relative; cursor: none; transition: color .3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--orange);
+  border-radius: 2px; transition: width .3s ease;
+}
+.nav-links a:hover { color: var(--orange-deep); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--orange); color: var(--white) !important;
+  padding: .6rem 1.4rem; border-radius: 15px;
+  transition: background .3s, transform .2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--orange-dark) !important; }
+
+/* back-to-index button */
+.btn-back {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--orange-light); color: var(--orange-deep);
+  border: 1.5px solid var(--orange);
+  font-size: .85rem; font-weight: 500;
+  padding: .5rem 1.1rem; border-radius: 50px;
+  text-decoration: none; cursor: none;
+  transition: all .3s ease;
+}
+.btn-backk {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: #fff3e814; color: var(--orange-deep);
+  border: 1.5px solid var(--orange);
+  font-size: .85rem; font-weight: 500;
+  padding: .5rem 1.1rem; border-radius: 50px;
+  text-decoration: none; cursor: none;
+  transition: all .3s ease;
+}
+.btn-back:hover { background: var(--orange); color: var(--white); }
+
+/* hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; }
+.hamburger span { display: block; width: 26px; height: 3px; background: var(--orange); border-radius: 3px; transition: all .3s ease; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
+.mobile-nav {
+  display: flex; position: fixed; inset: 0; background: var(--cream);
+  z-index: 999; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2.5rem; opacity: 0; visibility: hidden; transform: scale(1.05);
+  transition: all .35s ease;
+}
+.mobile-nav.open { opacity: 1; visibility: visible; transform: scale(1); }
+.mobile-nav a { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); text-decoration: none; cursor: none; transition: color .3s; }
+.mobile-nav a:hover { color: var(--orange); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 9rem 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: var(--cream);
+}
+.hero-bg::before {
+  content: '';
+  position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+  width: 80vw; height: 80vw;
+  background: radial-gradient(circle, rgba(255,173,105,.18) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%,100% { transform: translateX(-50%) scale(1); opacity: .6; }
+  50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+}
+
+/* profile photo */
+.profile-wrap {
+  position: relative; z-index: 2;
+  margin-bottom: 2.5rem;
+  animation: fadeUp .8s ease both;
+}
+.profile-ring-outer {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(var(--orange), var(--orange-dark), var(--orange-light), var(--orange), var(--orange-dark));
+  padding: 4px;
+  animation: spinRing 8s linear infinite;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px rgba(255,173,105,.35);
+}
+
+.profile-ring-inner {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: var(--cream);
+  padding: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.profile-img {
+  width: 100%; height: 100%; border-radius: 50%;
+  object-fit: cover;
+  background: var(--orange-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4.5rem;
+  overflow: hidden;
+}
+.profile-img img { width: 100%; height: 100%; object-fit: cover; }
+/* status badge */
+.profile-badge {
+  position: absolute; bottom: 8px; right: 8px;
+  background: var(--white);
+  border: 2px solid var(--orange);
+  border-radius: 50px;
+  padding: .3rem .8rem;
+  font-size: .75rem; font-weight: 500;
+  color: var(--orange-deep);
+  display: flex; align-items: center; gap: .3rem;
+  box-shadow: 0 4px 12px rgba(255,173,105,.25);
+  animation: fadeUp .8s .3s ease both;
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #4caf50;
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--orange-light);
+  border: 1px solid var(--orange);
+  color: var(--orange-deep);
+  font-size: .8rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .4rem 1rem; border-radius: 50px;
+  margin-bottom: 1.5rem;
+  animation: fadeUp .8s .1s ease both;
+  position: relative; z-index: 2;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 1.1; color: var(--black);
+  margin-bottom: 1.2rem;
+  animation: fadeUp .8s .2s ease both;
+  position: relative; z-index: 2;
+}
+.hero h1 span { color: var(--orange); position: relative; }
+.hero h1 span::after {
+  content: '';
+  position: absolute; bottom: 2px; left: 0; right: 0;
+  height: 4px; background: rgba(255,173,105,.3); border-radius: 0px; z-index: -1;
+}
+.hero-desc {
+  font-size: 1.1rem; color: var(--gray);
+  line-height: 1.7; max-width: 520px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp .8s .3s ease both;
+  font-weight: 300; position: relative; z-index: 2;
+}
+.hero-buttons {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp .8s .4s ease both; position: relative; z-index: 2;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--orange); color: var(--white);
+  font-weight: 500; font-size: 1rem;
+  padding: .9rem 2rem; border-radius: 25px;
+  text-decoration: none; cursor: none;
+  box-shadow: 0 4px 20px rgba(255,173,105,.4);
+  transition: all .3s ease; position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; top: 0; left: -30%; width: 20%; height: 100%;
+  background: rgba(255,255,255,.5); transform: skewX(-20deg);
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0% { left: -20%; opacity: 0; }
+  10% { opacity: .8; }
+  20% { left: 120%; opacity: 0; }
+  100% { left: 120%; opacity: 0; }
+}
+.btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,173,105,.5); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent; color: var(--brown);
+  font-weight: 500; font-size: 1rem;
+  padding: .9rem 2rem; border-radius: 50px;
+  text-decoration: none; cursor: none;
+  border: 2px solid rgba(92,58,30,.2);
+  transition: all .3s ease;
+}
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange-deep); transform: translateY(-2px); }
+
+/* scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--gray); font-size: .75rem;
+  letter-spacing: .1em; text-transform: uppercase; z-index: 2;
+  animation: fadeUp 1s .6s ease both;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--orange));
+  animation: scrollLine 1.5s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--white); padding: 7rem 4rem; }
+.section-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .75rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--orange-deep); margin-bottom: 1rem;
+}
+.section-label::before { content: ''; width: 24px; height: 2px; background: var(--orange); border-radius: 2px; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--black); margin-bottom: 1rem; line-height: 1.15;
+}
+.section-title span { color: var(--orange); }
+.section-subtitle { font-size: 1.05rem; color: var(--gray); max-width: 560px; line-height: 1.7; font-weight: 300; }
+.skills-inner { max-width: 1100px; margin: 0 auto; }
+.skills-header { margin-bottom: 4rem; }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.skill-card {
+  background: var(--cream); border-radius: 20px; padding: 2rem;
+  border: 1px solid rgba(255,173,105,.15);
+  transition: all .4s ease; cursor: none; position: relative; overflow: hidden;
+}
+.skill-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,173,105,.08) 0%, transparent 60%);
+  opacity: 0; transition: opacity .4s;
+}
+.skill-card:hover { transform: translateY(-6px); border-color: var(--orange); box-shadow: 0 20px 50px rgba(255,173,105,.15); }
+.skill-card:hover::before { opacity: 1; }
+.skill-card:hover .skill-icon { transform: scale(1.15) rotate(5deg); }
+.skill-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; transition: transform .3s ease; }
+.skill-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--black); margin-bottom: .6rem; }
+.skill-card p { font-size: .9rem; color: var(--gray); line-height: 1.6; font-weight: 300; }
+/* progress bars */
+.skill-bar-wrap { margin-top: 1rem; }
+.skill-bar-label { display: flex; justify-content: space-between; font-size: .78rem; color: var(--gray); margin-bottom: .3rem; }
+.skill-bar-track { background: rgba(255,173,105,.15); border-radius: 99px; height: 6px; overflow: hidden; }
+.skill-bar-fill {
+  height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--orange-dark), var(--orange));
+  width: 0; transition: width 1.2s ease;
+}
+
+/* ── ABOUT / STORY ── */
+#about { background: var(--cream); padding: 7rem 4rem; }
+.about-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+.about-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.about-photo-wrap {
+  width: 340px; height: 400px; border-radius: 28px;
+  overflow: hidden; position: relative;
+  box-shadow: 0 24px 60px rgba(92,58,30,.12);
+  border: 1px solid rgba(255,173,105,.2);
+  background: var(--orange-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 7rem;
+}
+.about-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.about-float-badge {
+  position: absolute; bottom: -1.5rem; right: -1.5rem;
+  background: var(--orange); color: var(--white);
+  border-radius: 20px; padding: 1.2rem 1.5rem;
+  box-shadow: 0 12px 30px rgba(255,173,105,.4);
+  text-align: center;
+}
+.about-float-badge .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1; }
+.about-float-badge .lbl { font-size: .75rem; opacity: .85; margin-top: .2rem; }
+.about-content .section-subtitle { margin-bottom: 2rem; }
+.about-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+.about-tag {
+  background: var(--orange-light); border: 1px solid rgba(255,173,105,.3);
+  color: var(--orange-deep); font-size: .8rem; font-weight: 500;
+  padding: .35rem .9rem; border-radius: 50px;
+}
+
+/* ── Q&A ── */
+#qa { background: var(--black); padding: 7rem 4rem; }
+.qa-inner { max-width: 800px; margin: 0 auto; }
+.qa-header { margin-bottom: 4rem; }
+.qa-header .section-label { color: var(--orange); }
+.qa-header .section-title { color: var(--white); }
+.qa-header .section-title span { color: var(--orange); }
+.qa-header .section-subtitle { color: rgba(255,255,255,.5); }
+.qa-list { display: flex; flex-direction: column; gap: 1rem; }
+.qa-item {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,173,105,.15);
+  border-radius: 18px; overflow: hidden;
+  transition: border-color .3s;
+  cursor: none;
+}
+.qa-item.open { border-color: rgba(255,173,105,.5); }
+.qa-question {
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  font-weight: 500; font-size: 1rem; color: var(--white);
+  cursor: none;
+}
+.qa-icon {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,173,105,.15); color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 1.1rem; font-weight: 700;
+  transition: all .3s ease;
+}
+.qa-item.open .qa-icon { background: var(--orange); color: var(--white); transform: rotate(45deg); }
+.qa-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height .45s ease, padding .3s ease;
+  padding: 0 2rem;
+  font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; font-weight: 300;
+}
+.qa-item.open .qa-answer { max-height: 300px; padding: 0 2rem 1.5rem; }
+
+/* ── CONTACT ── */
+#contact { background: var(--orange-pale); padding: 7rem 4rem; }
+.contact-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.contact-inner .section-subtitle { margin: 0 auto 3.5rem; }
+.contact-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  text-align: left;
+}
+.contact-card {
+  background: var(--white); border-radius: 20px; padding: 1.8rem;
+  border: 1px solid rgba(255,173,105,.2);
+  display: flex; flex-direction: column; gap: 1rem;
+  text-decoration: none; color: inherit; cursor: none;
+  transition: all .3s ease;
+}
+.contact-card:hover { transform: translateY(-6px); border-color: var(--orange); box-shadow: 0 16px 40px rgba(255,173,105,.15); }
+.cc-icon {
+  width: 50px; height: 50px; border-radius: 15px;
+  background: var(--orange-light); border: 1px solid rgba(255,173,105,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; transition: background .3s;
+}
+.contact-card:hover .cc-icon { background: var(--orange); }
+.cc-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gray); font-weight: 500; margin-bottom: .2rem; }
+.cc-value { font-size: .95rem; font-weight: 500; color: var(--brown); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black); padding: 3rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
+  color: var(--white); display: flex; align-items: center; gap: .6rem;
+}
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { color: rgba(255,255,255,.4); text-decoration: none; font-size: .85rem; cursor: none; transition: color .3s; }
+.footer-links a:hover { color: var(--orange); }
+.footer-copy { color: rgba(255,255,255,.3); font-size: .8rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .9s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-visual { justify-content: flex-start; }
+  .contact-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section, #skills, #about, #qa, #contact { padding: 5rem 1.5rem; }
+  .hero { padding: 8rem 1.5rem 5rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+  .about-photo-wrap { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#skills" onclick="closeMobileNav()">Abilități</a>
+  <a href="#about" onclick="closeMobileNav()">Despre mine</a>
+  <a href="#qa" onclick="closeMobileNav()">Întrebări</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <a href="index.html" class="btn-primary" style="margin-top:1rem;">← Înapoi la site</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-circle"><img src="logo-câine.png" alt="Logo Câine"></div>
+    <span>Victor Gutovschi</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#skills">Abilități</a></li>
+    <li><a href="#about">Despre mine</a></li>
+    <li><a href="#qa">Întrebări</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="index.html" class="btn-back">← Înapoi la site</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Profile photo circle -->
+  <div class="profile-wrap">
+    <div class="profile-ring-outer">
+      <div class="profile-ring-inner">
+        <!-- Replace with: <img src="photo.jpg" alt="Victor"> -->
+        <div class="profile-img"><img src="logo-câine.png" alt="Logo Câine"></div>
+      </div>
+    </div>
+    <div class="profile-badge">
+      <div class="status-dot"></div> Disponibil
+    </div>
+  </div>
+
+  <div class="hero-badge">Chișinău, Moldova</div>
+  <h1>Salut, sunt <span>Victor</span></h1>
+  <p class="hero-desc">Pasionat de câini, oameni și soluții simple la probleme reale. Îți ofer ajutor, claritate și grijă — indiferent de ce ai nevoie.</p>
+  <div class="hero-buttons">
+    <a href="#qa" class="btn-primary">Întrebări frecvente</a>
+    <a href="#contact" class="btn-secondary">Contactează-mă →</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-inner">
+    <div class="skills-header">
+      <div class="section-label reveal">Abilități</div>
+      <h2 class="section-title reveal reveal-delay-1">Ce știu să <span>fac bine</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Experiență practică, răbdare și pasiune — ingredientele oricărei soluții bune.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal reveal-delay-1">
+        <span class="skill-icon">🐾</span>
+        <h3>Îngrijire câini</h3>
+        <p>Plimbări individuale și în grup, hrănire, supraveghere și atenție personalizată pentru fiecare animal.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Experiență</span><span>95%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="95"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <span class="skill-icon">📸</span>
+        <h3>Fotografie & documentare</h3>
+        <p>Fotografii și videoclipuri din fiecare plimbare, trimise direct pe WhatsApp pentru liniștea stăpânilor.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Experiență</span><span>80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <span class="skill-icon">💬</span>
+        <h3>Comunicare & transparență</h3>
+        <p>Actualizări în timp real, răspuns rapid și onestitate completă în fiecare interacțiune.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Experiență</span><span>90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <span class="skill-icon">🧭</span>
+        <h3>Organizare & punctualitate</h3>
+        <p>Program stabil, respectat cu strictețe. Știi mereu când și unde se află câinele tău.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Experiență</span><span>92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <span class="skill-icon">🤝</span>
+        <h3>Construirea relațiilor</h3>
+        <p>Fiecare client devine un partener de lungă durată. Îngrijire cu inimă, nu doar cu mâna.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Experiență</span><span>88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <span class="skill-icon">🌐</span>
+        <h3>Web & prezentare digitală</h3>
+        <p>Creare de site-uri și prezențe online — exact cum ai văzut pe acest site!</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Experiență</span><span>75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-photo-wrap">
+        <!-- Replace with: <img src="photo.jpg" alt="Victor Gutovschi"> -->
+        🐾
+      </div>
+      <div class="about-float-badge">
+        <div class="num">100%</div>
+        <div class="lbl">Dedicat</div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-label reveal">Despre mine</div>
+      <h2 class="section-title reveal reveal-delay-1">Cine este <span>Victor?</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">
+        Sunt Victor Gutovschi, din Chișinău — un om care crede că fiecare câine merită atenție adevărată, nu doar o plimbare de rutină. 
+        Am pornit acest proiect din pasiune și l-am transformat într-un serviciu de care stăpânii pot depinde.
+      </p>
+      <p class="section-subtitle reveal reveal-delay-3" style="margin-top:1rem;">
+        Îmi place să rezolv probleme, să găsesc soluții simple și să construiesc relații de încredere — fie cu un câine energic, fie cu un client ocupat care are nevoie de ajutor.
+      </p>
+      <div class="about-tags reveal reveal-delay-2">
+        <span class="about-tag">🐕 Iubitor de câini</span>
+        <span class="about-tag">📍 Chișinău</span>
+        <span class="about-tag">📞 Disponibil weekend</span>
+        <span class="about-tag">🎯 Orientat spre soluții</span>
+        <span class="about-tag">📸 Fotograf amator</span>
+        <span class="about-tag">✅ De încredere</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Q & A -->
+<section id="qa">
+  <div class="qa-inner">
+    <div class="qa-header">
+      <div class="section-label reveal">Întrebări & Răspunsuri</div>
+      <h2 class="section-title reveal reveal-delay-1">Cum putem <span>rezolva</span> împreună</h2>
+      <p class="section-subtitle reveal reveal-delay-2">Cele mai frecvente întrebări — cu răspunsuri clare și directe.</p>
+    </div>
+    <div class="qa-list reveal reveal-delay-1">
+
+      <div class="qa-item" onclick="toggleQA(this)">
+        <div class="qa-question">
+          <span>Ce se întâmplă dacă câinele meu nu se înțelege cu alți câini?</span>
+          <div class="qa-icon">+</div>
+        </div>
+        <div class="qa-answer">
+          Nicio problemă! Oferim plimbări individuale 100% personalizate. La prima întâlnire evaluăm temperamentul câinelui și stabilim cel mai potrivit format — individual sau în grup. Siguranța vine mereu pe primul loc.
+        </div>
+      </div>
+
+      <div class="qa-item" onclick="toggleQA(this)">
+        <div class="qa-question">
+          <span>Cum știu că câinele meu este în siguranță în timpul plimbării?</span>
+          <div class="qa-icon">+</div>
+        </div>
+        <div class="qa-answer">
+          Trimitem fotografii și videoclipuri pe WhatsApp în timpul fiecărei plimbări. Ești informat în timp real. Folosim lesă de siguranță și urmărim tot traseul cu atenție. Transparența totală este parte din serviciu.
+        </div>
+      </div>
+
+      <div class="qa-item" onclick="toggleQA(this)">
+        <div class="qa-question">
+          <span>Cum fac prima programare?</span>
+          <div class="qa-icon">+</div>
+        </div>
+        <div class="qa-answer">
+          Simplu: suni la <strong>+373 60 400 898</strong> sau completezi formularul de pe site. Stabilim o întâlnire de cunoaștere gratuită, vedem ce i se potrivește câinelui tău, și pornim cu o plimbare de probă.
+        </div>
+      </div>
+
+      <div class="qa-item" onclick="toggleQA(this)">
+        <div class="qa-question">
+          <span>Ce se întâmplă dacă vreau să anulez o plimbare?</span>
+          <div class="qa-icon">+</div>
+        </div>
+        <div class="qa-answer">
+          Înțelegem că planurile se schimbă. Anunță-ne cu cel puțin 24 de ore înainte și reprogramăm fără costuri suplimentare. Comunicarea deschisă funcționează în ambele direcții.
+        </div>
+      </div>
+
+      <div class="qa-item" onclick="toggleQA(this)">
+        <div class="qa-question">
+          <span>Lucrezi și cu câini mari sau rase energice?</span>
+          <div class="qa-icon">+</div>
+        </div>
+        <div class="qa-answer">
+          Da! Am experiență cu câini de toate mărimile și temperamentele. Rasele energice au nevoie de mai multă mișcare — și exact asta oferim. Plimbarea de 60 de minute este ideală pentru câinii activi.
+        </div>
+      </div>
+
+      <div class="qa-item" onclick="toggleQA(this)">
+        <div class="qa-question">
+          <span>Poți deveni plimbătorul permanent al câinelui meu?</span>
+          <div class="qa-icon">+</div>
+        </div>
+        <div class="qa-answer">
+          Acesta este scopul nostru! Preferăm relațiile de lungă durată — câinele se obișnuiește cu noi, capătă încredere, și tu ai liniștea unui program stabil în fiecare weekend.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label reveal" style="justify-content:center;">Contact</div>
+    <h2 class="section-title reveal reveal-delay-1">Hai să <span>vorbim</span></h2>
+    <p class="section-subtitle reveal reveal-delay-2">Disponibil în weekend, 09:00–19:00. Nu ezita să mă contactezi pentru orice întrebare.</p>
+    <div class="contact-cards reveal reveal-delay-3">
+      <a href="tel:+37360400898" class="contact-card">
+        <div class="cc-icon">📞</div>
+        <div>
+          <div class="cc-label">Telefon</div>
+          <div class="cc-value">+373 60 400 898</div>
+        </div>
+      </a>
+      <a href="mailto:gutovschivictor@gmail.com" class="contact-card">
+        <div class="cc-icon">✉️</div>
+        <div>
+          <div class="cc-label">Email</div>
+          <div class="cc-value">gutovschivictor@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="contact-card">
+        <div class="cc-icon">📘</div>
+        <div>
+          <div class="cc-label">Facebook</div>
+          <div class="cc-value">Victor Gutovschi</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-circle" style="width:32px;height:32px;font-size:.9rem;"><img src="logo-câine.png" alt="Logo Câine">
+</div>
+    Victor Gutovschi
+  </div>
+  <ul class="footer-links">
+    <li><a href="#skills">Abilități</a></li>
+    <li><a href="#qa">Întrebări</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="btn-backk"><a href="index.html">← Site principal</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Victor Gutovschi · Chișinău</div>
+</footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX=0,mouseY=0,ringX=0,ringY=0;
+document.addEventListener('mousemove',e=>{
+  mouseX=e.clientX; mouseY=e.clientY;
+  cursor.style.left=mouseX+'px'; cursor.style.top=mouseY+'px';
+});
+function animateRing(){
+  ringX+=(mouseX-ringX)*.12; ringY+=(mouseY-ringY)*.12;
+  cursorRing.style.left=ringX+'px'; cursorRing.style.top=ringY+'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a,button,.skill-card,.qa-item,.contact-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cursor.style.transform='translate(-50%,-50%) scale(1.8)';
+    cursorRing.style.width='40px'; cursorRing.style.height='40px'; cursorRing.style.opacity='.3';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cursor.style.transform='translate(-50%,-50%) scale(1)';
+    cursorRing.style.width='30px'; cursorRing.style.height='30px'; cursorRing.style.opacity='.5';
+  });
+});
+
+// NAV scroll
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
+
+// Mobile nav
+function toggleMobileNav(){
+  const nav=document.getElementById('mobileNav'), ham=document.getElementById('hamburger');
+  nav.classList.toggle('open'); ham.classList.toggle('open');
+  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+}
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Scroll reveal + skill bars
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // animate bars inside
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
+        bar.style.width=bar.dataset.w+'%';
+      });
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+// Also trigger bars for skill cards that are revealed
+document.querySelectorAll('.skill-card').forEach(card=>{
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
+          bar.style.width=bar.dataset.w+'%';
+        });
+      }
+    });
+  },{threshold:.3});
+  obs.observe(card);
+});
+
+// Q&A accordion
+function toggleQA(item){
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.qa-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+// Click particles
+document.addEventListener('click',function(e){
+  const colors=['#ffad69','#e8924a','#ffffff','#c97435'];
+  for(let i=0;i<6;i++){
+    const p=document.createElement('div');
+    p.style.cssText=`position:fixed;width:7px;height:7px;border-radius:50%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:99999;opacity:1;`;
+    document.body.appendChild(p);
+    const angle=Math.random()*Math.PI*2, speed=Math.random()*90+40;
+    const vx=Math.cos(angle)*speed, vy=Math.sin(angle)*speed;
+    let t0=performance.now();
+    (function animate(t){
+      const dt=(t-t0)/1000;
+      if(dt<.8){
+        p.style.transform=`translate(${vx*dt}px,${vy*dt+200*dt*dt}px)`;
+        p.style.opacity=1-dt/.8;
+        requestAnimationFrame(animate);
+      } else p.remove();
+    })(t0);
+  }
+});
+</script>
+</body>
+</html>
