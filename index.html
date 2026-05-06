@@ -25,7 +25,166 @@
   filter: invert(73%) sepia(83%) saturate(436%) hue-rotate(319deg) brightness(100%) contrast(103%);
 }
 
+.mobile-nav-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 15, 8, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+.mobile-nav-sheet {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: var(--cream);
+  border-radius: 50px 50px 0 0;
+  padding: 0 0 env(safe-area-inset-bottom, 16px);
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+}
 
+@keyframes shimmerBar {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+.mobile-nav-handle {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0 6px;
+  cursor: grab;
+}
+.mobile-nav-handle-bar {
+  width: 36px; height: 4px;
+  background: rgba(92,58,30,0.18);
+  border-radius: 4px;
+  transition: background 0.2s, width 0.2s;
+}
+.mobile-nav-handle:active .mobile-nav-handle-bar {
+  background: var(--orange); width: 48px;
+}
+.mobile-nav-links {
+  list-style: none;
+  padding: 12px 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-nav-links li {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  padding: 15px 18px;
+  border-radius: 16px;
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-nav-links a:active { transform: scale(0.97); }
+.mobile-nav-link-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--brown);
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.mobile-nav-link-icon {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  background: var(--orange-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.mobile-nav-links a:hover .mobile-nav-link-text { color: var(--orange-deep); }
+.mobile-nav-links a:hover .mobile-nav-link-icon {
+  background: var(--orange);
+  transform: rotate(-6deg) scale(1.05);
+}
+.mobile-nav-sep {
+  height: 1px;
+  background: rgba(255,173,105,0.2);
+  margin: 4px 20px;
+}
+.mobile-nav-cta-wrap {
+  padding: 12px 20px 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(255,173,105,0.4);
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.mobile-nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -30%;
+  width: 20%; height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-20deg);
+  animation: shine 3s infinite;
+}
+.mobile-nav-cta:active {
+  transform: scale(0.97);
+}
+.mobile-nav-footer {
+  padding: 0 20px 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-footer-dot {
+  width: 6px; height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  50%      { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+}
+.mobile-nav-footer-text {
+  font-size: 0.78rem;
+  color: var(--gray);
+  font-family: 'DM Sans', sans-serif;
+}
+.mobile-nav.open .mobile-nav-backdrop {
+  background: rgba(255,173,105,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.mobile-nav.open .mobile-nav-sheet { transform: translateY(0); }
+.mobile-nav.open .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+.mobile-nav.open .mobile-nav-links li:nth-child(1) { transition-delay: 0.15s; }
+.mobile-nav.open .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav.open .mobile-nav-links li:nth-child(3) { transition-delay: 0.25s; }
+.mobile-nav.open .mobile-nav-links li:nth-child(4) { transition-delay: 0.3s; }
+.mobile-nav.open .mobile-nav-cta-wrap { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+.mobile-nav.open .mobile-nav-footer { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
 }
 @media (min-width: 769px) {
 .pkg-dot {
@@ -121,7 +280,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1.2rem 4rem;
-  background: rgba(253, 246, 239, 0.85);
+  background: rgba(253, 246, 239, 1);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 173, 105, 0.2);
   transition: all 0.4s ease;
@@ -221,29 +380,13 @@ border-radius: 50%
 
 /* MOBILE NAV */
 .mobile-nav {
-  display: flex; /* IMPORTANT: nu mai folosim none */
   position: fixed;
   inset: 0;
-  background: var(--cream);
-  z-index: 999;
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-
-  /* stare ascunsă */
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.05);
-
-  transition: all 0.35s ease;
+  z-index: 998;
+  pointer-events: none;
 }
-
 .mobile-nav.open {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
+  pointer-events: all;
 }
 
 .mobile-nav a {
@@ -1418,11 +1561,40 @@ footer {
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#hero" onclick="closeMobileNav()">Acasă</a>
-  <a href="#services" onclick="closeMobileNav()">Servicii</a>
-  <a href="#pricing" onclick="closeMobileNav()">Prețuri</a>
-  <a href="#contact" onclick="closeMobileNav()">Contact</a>
-  <a href="#rezerva" class="btn-primary" onclick="closeMobileNav()" style="margin-top:1rem;">Rezervă acum</a>
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-sheet" id="mobileNavSheet">
+    <div class="mobile-nav-handle" id="mobileNavHandle">
+      <div class="mobile-nav-handle-bar"></div>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" onclick="closeMobileNav()">
+        <span class="mobile-nav-link-text">Acasă</span>
+        <span class="mobile-nav-link-icon">🏠</span>
+      </a></li>
+      <li><a href="#services" onclick="closeMobileNav()">
+        <span class="mobile-nav-link-text">Servicii</span>
+        <span class="mobile-nav-link-icon">🦮</span>
+      </a></li>
+      <li><a href="#pricing" onclick="closeMobileNav()">
+        <span class="mobile-nav-link-text">Prețuri</span>
+        <span class="mobile-nav-link-icon">🏷️</span>
+      </a></li>
+      <li><a href="#contact" onclick="closeMobileNav()">
+        <span class="mobile-nav-link-text">Contact</span>
+        <span class="mobile-nav-link-icon">📞</span>
+      </a></li>
+    </ul>
+    <div class="mobile-nav-sep"></div>
+    <div class="mobile-nav-cta-wrap">
+      <a href="#rezerva" class="mobile-nav-cta" onclick="closeMobileNav()">
+        🐾 Rezervă acum
+      </a>
+    </div>
+    <div class="mobile-nav-footer">
+      <div class="mobile-nav-footer-dot"></div>
+      <span class="mobile-nav-footer-text">Disponibil · Weekend 08:00 – 21:00</span>
+    </div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -1905,7 +2077,32 @@ document.addEventListener('click', function(e) {
     carousel.scrollLeft = scrollLeft - (x - startX);
   });
 })();
+document.getElementById('mobileNavBackdrop').addEventListener('click', closeMobileNav);
 
+(function() {
+  const sheet = document.getElementById('mobileNavSheet');
+  const handle = document.getElementById('mobileNavHandle');
+  let startY = 0, currentY = 0, dragging = false;
+
+  function onStart(y) { startY = y; currentY = 0; dragging = true; sheet.style.transition = 'none'; }
+  function onMove(y) { if (!dragging) return; currentY = Math.max(0, y - startY); sheet.style.transform = `translateY(${currentY}px)`; }
+  function onEnd() {
+    if (!dragging) return;
+    dragging = false;
+    sheet.style.transition = '';
+    if (currentY > 100) { closeMobileNav(); sheet.style.transform = ''; }
+    else { sheet.style.transform = ''; }
+  }
+
+  handle.addEventListener('touchstart', e => onStart(e.touches[0].clientY), { passive: true });
+  window.addEventListener('touchmove', e => { if (dragging) onMove(e.touches[0].clientY); }, { passive: true });
+  window.addEventListener('touchend', onEnd);
+  handle.addEventListener('mousedown', e => onStart(e.clientY));
+  window.addEventListener('mousemove', e => { if (dragging) onMove(e.clientY); });
+  window.addEventListener('mouseup', onEnd);
+})();
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
 </script>
 
 </body>
