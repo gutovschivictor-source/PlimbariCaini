@@ -18,6 +18,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+.dogg-img {
+  width: 20px;
+  transition: 0.2s;
+filter: invert(78%) sepia(20%) saturate(3255%) hue-rotate(325deg) brightness(96%) contrast(90%);
+
+}
+
+
+}
 @media (min-width: 769px) {
 .pkg-dot {
     display: none;;
@@ -591,7 +601,7 @@ section {
   box-shadow: 0 20px 50px rgba(255,173,105,0.15);
 }
 .service-card:hover::before { opacity: 1; }
-.service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); }
+.service-card:hover .service-icon { transform: scale(1.05) rotate(2deg); }
 .service-icon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -1646,28 +1656,28 @@ footer {
       <p class="section-subtitle reveal reveal-delay-2">Disponibil în weekend, 08:00 – 21:00. Programarea se face în avans.</p>
       <div class="contact-items reveal reveal-delay-3">
         <a href="tel:+37360400898" class="contact-item">
-          <div class="contact-icon">📞</div>
+          <div class="contact-icon"><img src="phone-call.png" class="dogg-img"></div>
           <div>
             <div class="contact-detail-label">Telefon</div>
             <div class="contact-detail-value">+373 60 400 898</div>
           </div>
         </a>
         <a href="mailto:gutovschivictor@gmail.com" class="contact-item">
-          <div class="contact-icon">✉️</div>
+          <div class="contact-icon"><img src="envelope.png" class="dogg-img"></div>
           <div>
             <div class="contact-detail-label">Email</div>
             <div class="contact-detail-value">gutovschivictor@gmail.com</div>
           </div>
         </a>
         <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="contact-item">
-          <div class="contact-icon">📘</div>
+          <div class="contact-icon"><img src="facebook.png" class="dogg-img"></div>
           <div>
             <div class="contact-detail-label">Facebook</div>
             <div class="contact-detail-value">Victor Gutovschi</div>
           </div>
         </a>
         <div class="contact-item">
-          <div class="contact-icon">🕐</div>
+          <div class="contact-icon"><img src="calendar-clock.png" class="dogg-img"></div>
           <div>
             <div class="contact-detail-label">Program</div>
             <div class="contact-detail-value">Weekend · 08:00 – 21:00</div>
@@ -1896,17 +1906,7 @@ document.addEventListener('click', function(e) {
     carousel.scrollLeft = scrollLeft - (x - startX);
   });
 })();
-el.addEventListener('mousemove', (e) => {
-  const rect = el.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
 
-  el.style.background = `
-    radial-gradient(circle at ${x}px ${y}px,
-    rgba(255,255,255,0.15),
-    transparent 60%)
-  `;
-});
 </script>
 
 </body>
