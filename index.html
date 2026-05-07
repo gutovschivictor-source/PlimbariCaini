@@ -18,11 +18,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* WHATSAPP FLOAT */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
 
+  background: #ffad69;
+  color: white;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.6rem;
+  text-decoration: none;
+
+  transition: transform 0.2s ease;
+  animation: fadeUp 1s ease 0.5s both;
+
+  transform-origin: center;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.2);
+}
+.dogi-img {
+  width: 30px;
+  transition: 0.2s;
+filter: invert(100%) sepia(400%) saturate(0%) hue-rotate(999deg) brightness(999%) contrast(100%);
+}.dog-img {
+  width: 20px;
+  transition: 0.2s;
+filter: invert(76%) sepia(100%) saturate(880%) hue-rotate(311deg) brightness(101%) contrast(106%);
+}
 .dogg-img {
   width: 20px;
   transition: 0.2s;
-  filter: invert(73%) sepia(83%) saturate(436%) hue-rotate(319deg) brightness(100%) contrast(103%);
+filter: invert(22%) sepia(19%) saturate(1748%) hue-rotate(345deg) brightness(88%) contrast(85%);
 }
 
 .mobile-nav-backdrop {
@@ -89,7 +127,7 @@
 .mobile-nav-link-text {
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
-  color: var(--brown);
+  color: #ffad69;
   font-weight: 700;
   transition: color 0.2s;
 }
@@ -173,7 +211,7 @@
   font-family: 'DM Sans', sans-serif;
 }
 .mobile-nav.open .mobile-nav-backdrop {
-  background:#0000002b;
+  background:#0000004a;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -392,7 +430,7 @@ border-radius: 50%
 .mobile-nav a {
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
-  color: var(--brown);
+  color:rgba(253, 246, 239, 1);
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -1559,7 +1597,7 @@ footer {
 </style>
 </head>
 <body>
-
+<a href="https://wa.me/37360400898" target="_blank" class="whatsapp-float" title="Scrie pe WhatsApp"><img src="social.png" class="dogi-img"></a>
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
@@ -1570,19 +1608,19 @@ footer {
     <ul class="mobile-nav-links">
       <li><a href="#hero" onclick="closeMobileNav()">
         <span class="mobile-nav-link-text">Acasă</span>
-        <span class="mobile-nav-link-icon">🏠</span>
+        <span class="mobile-nav-link-icon"><img src="home.png" class="dog-img"></span>
       </a></li>
       <li><a href="#services" onclick="closeMobileNav()">
         <span class="mobile-nav-link-text">Servicii</span>
-        <span class="mobile-nav-link-icon">🦮</span>
+        <span class="mobile-nav-link-icon"><img src="dog.png" class="dog-img"></span>
       </a></li>
       <li><a href="#pricing" onclick="closeMobileNav()">
         <span class="mobile-nav-link-text">Prețuri</span>
-        <span class="mobile-nav-link-icon">🏷️</span>
+        <span class="mobile-nav-link-icon"><img src="wallet.png" class="dog-img"></span>
       </a></li>
       <li><a href="#contact" onclick="closeMobileNav()">
         <span class="mobile-nav-link-text">Contact</span>
-        <span class="mobile-nav-link-icon">📞</span>
+        <span class="mobile-nav-link-icon"><img src="phone-call.png" class="dog-img"></span>
       </a></li>
     </ul>
     <div class="mobile-nav-sep"></div>
