@@ -6,14 +6,174 @@
 <meta name="description" content="Victor Gutovschi — Portofoliu personal. Află cine sunt, ce fac și cum pot să te ajut.">
 <title>Victor Gutovschi · Portofoliu</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="logo-câine.png" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="512x512" type="image/png">
+<link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+.mobile-nav-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 15, 8, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+.mobile-nav-sheet {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: var(--cream);
+  border-radius: 50px 50px 0 0;
+  padding: 0 0 env(safe-area-inset-bottom, 16px);
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+}
+@keyframes shimmerBar {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+.mobile-nav-handle {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0 6px;
+  cursor: grab;
+}
+.mobile-nav-handle-bar {
+  width: 36px; height: 4px;
+  background: rgba(92,58,30,0.18);
+  border-radius: 4px;
+  transition: background 0.2s, width 0.2s;
+}
+.mobile-nav-handle:active .mobile-nav-handle-bar {
+  background: var(--orange); width: 48px;
+}
+.mobile-nav-links {
+  list-style: none;
+  padding: 12px 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-nav-links li {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  padding: 15px 18px;
+  border-radius: 16px;
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-nav-links a:active { transform: scale(0.97); }
+.mobile-nav-link-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #ffad69;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.mobile-nav-link-icon {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  background: var(--orange-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.mobile-nav-links a:hover .mobile-nav-link-text { color: var(--orange-deep); }
+.mobile-nav-links a:hover .mobile-nav-link-icon {
+  background: var(--orange);
+  transform: rotate(-6deg) scale(1.05);
+}
+.mobile-nav-sep {
+  height: 1px;
+  background: rgba(255,173,105,0.5);
+  margin: 4px 20px;
+}
+.mobile-nav-cta-wrap {
+  padding: 12px 20px 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(255,173,105,0.4);
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.mobile-nav-cta:active { transform: scale(0.97); }
+.mobile-nav-footer {
+  padding: 0 35px 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-footer-dot {
+  width: 6px; height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  50%      { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+}
+.mobile-nav-footer-text {
+  font-size: 0.78rem;
+  color: var(--gray);
+  font-family: 'DM Sans', sans-serif;
+}
+.mobile-nav.open .mobile-nav-backdrop {
+  background: #0000004a;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.mobile-nav.open .mobile-nav-sheet { transform: translateY(0); }
+.mobile-nav.open .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+.mobile-nav.open .mobile-nav-links li:nth-child(1) { transition-delay: 0.15s; }
+.mobile-nav.open .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav.open .mobile-nav-links li:nth-child(3) { transition-delay: 0.25s; }
+.mobile-nav.open .mobile-nav-links li:nth-child(4) { transition-delay: 0.3s; }
+.mobile-nav.open .mobile-nav-cta-wrap { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+.mobile-nav.open .mobile-nav-footer { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+.dog-img {
+  width: 20px;
+  transition: 0.2s;
+filter: invert(76%) sepia(100%) saturate(880%) hue-rotate(311deg) brightness(101%) contrast(106%);
+}
+.dogg-img {
+  width: 20px;
+  transition: 0.2s;
+filter: invert(22%) sepia(19%) saturate(1748%) hue-rotate(345deg) brightness(88%) contrast(85%);
+}
+
 .btn-back::after {
   display: none !important;
-}
-@media (max-width: 768px) {
-  .cursor, .cursor-ring { display: none !important; }
-  body { cursor: auto; }
 }
 :root {
   --orange: #ffad69;
@@ -38,32 +198,6 @@ body {
   background: var(--cream);
   color: var(--brown);
   overflow-x: hidden;
-  cursor: none;
-}
-
-/* ── CURSOR ── */
-.cursor {
-  width: 15px; height: 15px;
-  background: var(--orange);
-  border-radius: 50%;
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 99999;
-  transform: translate(-50%,-50%);
-  transition: transform .15s ease, opacity .2s;
-  border: 1px solid var(--white);
-}
-.cursor-ring {
-  width: 30px; height: 30px;
-  border: 2px solid var(--orange);
-  border-radius: 50%;
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 99998;
-  transform: translate(-50%,-50%);
-  opacity: .5;
-}
-@media (max-width: 768px) {
-  .cursor, .cursor-ring { display: none !important; }
-  body { cursor: auto; }
 }
 
 /* ── NAV ── */
@@ -71,18 +205,19 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.2rem 4rem;
-  background: rgba(253,246,239,.88);
+  background: rgba(253,246,239,1);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,173,105,.2);
+  border-bottom: 1px solid rgba(255, 173, 105, 0.2);
   transition: all .4s ease;
 }
-nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15); }
+nav.scrolled { padding: 0.8rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15); }
 .nav-logo {
   display: flex; align-items: center; gap: .7rem;
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem; font-weight: 700;
-  color: var(--brown); text-decoration: none; cursor: none;
+  color: var(--brown); text-decoration: none;
 }
+
 .logo-circle {
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--orange-light);
@@ -92,12 +227,12 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
 }
 .logo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .nav-logo:hover .logo-circle { transform: rotate(-10deg) scale(1.1); }
-.nav-links { display: flex; list-style: none; gap: 2.5rem;  align-items: center;  }
+.nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
 .nav-links a {
   text-decoration: none; color: var(--gray);
   font-size: .9rem; font-weight: 500;
   letter-spacing: .05em; text-transform: uppercase;
-  position: relative; cursor: none; transition: color .3s;
+  position: relative; transition: color .3s;
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0;
@@ -114,14 +249,13 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
 .nav-cta::after { display: none !important; }
 .nav-cta:hover { background: var(--orange-dark) !important; }
 
-/* back-to-index button */
 .btn-back {
   display: inline-flex; align-items: center; gap: .5rem;
   background: var(--orange-light); color: var(--orange-deep);
   border: 1.5px solid var(--orange);
   font-size: .85rem; font-weight: 500;
   padding: .5rem 1.1rem; border-radius: 50px;
-  text-decoration: none; cursor: none;
+  text-decoration: none;
   transition: all .3s ease;
 }
 .btn-backk {
@@ -130,25 +264,43 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   border: 1.5px solid var(--orange);
   font-size: .85rem; font-weight: 500;
   padding: .5rem 1.1rem; border-radius: 50px;
-  text-decoration: none; cursor: none;
+  text-decoration: none;
   transition: all .3s ease;
 }
 .btn-back:hover { background: var(--orange); color: var(--white); }
 
-/* hamburger */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; }
-.hamburger span { display: block; width: 26px; height: 3px; background: var(--orange); border-radius: 3px; transition: all .3s ease; }
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
-.mobile-nav {
-  display: flex; position: fixed; inset: 0; background: var(--cream);
-  z-index: 999; flex-direction: column; align-items: center; justify-content: center;
-  gap: 2.5rem; opacity: 0; visibility: hidden; transform: scale(1.05);
-  transition: all .35s ease;
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
 }
-.mobile-nav.open { opacity: 1; visibility: visible; transform: scale(1); }
-.mobile-nav a { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); text-decoration: none; cursor: none; transition: color .3s; }
+.hamburger span {
+  display: block; width: 26px; height: 3px;
+  background: var(--orange);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+/* MOBILE NAV */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  pointer-events: none;
+}
+.mobile-nav.open { pointer-events: all; }
+.mobile-nav a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: rgba(253, 246, 239, 1);
+  text-decoration: none;
+  transition: color 0.3s;
+}
 .mobile-nav a:hover { color: var(--orange); }
 
 /* ── HERO ── */
@@ -177,22 +329,20 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
 }
 
-/* profile photo */
 .profile-wrap {
   position: relative; z-index: 2;
   margin-bottom: 2.5rem;
-  animation: fadeUp .8s ease both;
+
 }
 .profile-ring-outer {
   width: 200px; height: 200px;
   border-radius: 50%;
-  background: conic-gradient(var(--orange), var(--orange-dark), var(--orange-light), var(--orange), var(--orange-dark));
+  background: conic-gradient(var(--orange), var(--orange-dark), var(--orange-light), var(--orange), var(--orange));
   padding: 4px;
-  animation: spinRing 8s linear infinite;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 0 40px rgba(255,173,105,.35);
 }
-
+@keyframes spinRing { to { transform: rotate(360deg); } }
 .profile-ring-inner {
   width: 100%; height: 100%; border-radius: 50%;
   background: var(--cream);
@@ -208,7 +358,6 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   overflow: hidden;
 }
 .profile-img img { width: 100%; height: 100%; object-fit: cover; }
-/* status badge */
 .profile-badge {
   position: absolute; bottom: 8px; right: 8px;
   background: var(--white);
@@ -270,7 +419,7 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   background: var(--orange); color: var(--white);
   font-weight: 500; font-size: 1rem;
   padding: .9rem 2rem; border-radius: 25px;
-  text-decoration: none; cursor: none;
+  text-decoration: none;
   box-shadow: 0 4px 20px rgba(255,173,105,.4);
   transition: all .3s ease; position: relative; overflow: hidden;
 }
@@ -292,13 +441,12 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   background: transparent; color: var(--brown);
   font-weight: 500; font-size: 1rem;
   padding: .9rem 2rem; border-radius: 50px;
-  text-decoration: none; cursor: none;
+  text-decoration: none;
   border: 2px solid rgba(92,58,30,.2);
   transition: all .3s ease;
 }
 .btn-secondary:hover { border-color: var(--orange); color: var(--orange-deep); transform: translateY(-2px); }
 
-/* scroll indicator */
 .scroll-indicator {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: .5rem;
@@ -318,8 +466,8 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* ── SKILLS ── */
-#skills { background: var(--white); padding: 7rem 4rem; }
+/* ── ABOUT ── */
+#about { background: var(--cream); padding: 7rem 4rem; }
 .section-label {
   display: inline-flex; align-items: center; gap: .5rem;
   font-size: .75rem; font-weight: 500;
@@ -334,39 +482,6 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
 }
 .section-title span { color: var(--orange); }
 .section-subtitle { font-size: 1.05rem; color: var(--gray); max-width: 560px; line-height: 1.7; font-weight: 300; }
-.skills-inner { max-width: 1100px; margin: 0 auto; }
-.skills-header { margin-bottom: 4rem; }
-.skills-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-}
-.skill-card {
-  background: var(--cream); border-radius: 20px; padding: 2rem;
-  border: 1px solid rgba(255,173,105,.15);
-  transition: all .4s ease; cursor: none; position: relative; overflow: hidden;
-}
-.skill-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,173,105,.08) 0%, transparent 60%);
-  opacity: 0; transition: opacity .4s;
-}
-.skill-card:hover { transform: translateY(-6px); border-color: var(--orange); box-shadow: 0 20px 50px rgba(255,173,105,.15); }
-.skill-card:hover::before { opacity: 1; }
-.skill-card:hover .skill-icon { transform: scale(1.15) rotate(5deg); }
-.skill-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; transition: transform .3s ease; }
-.skill-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--black); margin-bottom: .6rem; }
-.skill-card p { font-size: .9rem; color: var(--gray); line-height: 1.6; font-weight: 300; }
-/* progress bars */
-.skill-bar-wrap { margin-top: 1rem; }
-.skill-bar-label { display: flex; justify-content: space-between; font-size: .78rem; color: var(--gray); margin-bottom: .3rem; }
-.skill-bar-track { background: rgba(255,173,105,.15); border-radius: 99px; height: 6px; overflow: hidden; }
-.skill-bar-fill {
-  height: 100%; border-radius: 99px;
-  background: linear-gradient(90deg, var(--orange-dark), var(--orange));
-  width: 0; transition: width 1.2s ease;
-}
-
-/* ── ABOUT / STORY ── */
-#about { background: var(--cream); padding: 7rem 4rem; }
 .about-inner {
   max-width: 1100px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
@@ -415,14 +530,14 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   border: 1px solid rgba(255,173,105,.15);
   border-radius: 18px; overflow: hidden;
   transition: border-color .3s;
-  cursor: none;
+  cursor: pointer;
 }
 .qa-item.open { border-color: rgba(255,173,105,.5); }
 .qa-question {
   padding: 1.5rem 2rem;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   font-weight: 500; font-size: 1rem; color: var(--white);
-  cursor: none;
+  cursor: pointer;
 }
 .qa-icon {
   width: 32px; height: 32px; border-radius: 50%;
@@ -452,7 +567,7 @@ nav.scrolled { padding: .7rem 4rem; box-shadow: 0 4px 30px rgba(255,173,105,.15)
   background: var(--white); border-radius: 20px; padding: 1.8rem;
   border: 1px solid rgba(255,173,105,.2);
   display: flex; flex-direction: column; gap: 1rem;
-  text-decoration: none; color: inherit; cursor: none;
+  text-decoration: none; color: inherit;
   transition: all .3s ease;
 }
 .contact-card:hover { transform: translateY(-6px); border-color: var(--orange); box-shadow: 0 16px 40px rgba(255,173,105,.15); }
@@ -477,7 +592,7 @@ footer {
   color: var(--white); display: flex; align-items: center; gap: .6rem;
 }
 .footer-links { display: flex; gap: 2rem; list-style: none; }
-.footer-links a { color: rgba(255,255,255,.4); text-decoration: none; font-size: .85rem; cursor: none; transition: color .3s; }
+.footer-links a { color: rgba(255,255,255,.4); text-decoration: none; font-size: .85rem; transition: color .3s; }
 .footer-links a:hover { color: var(--orange); }
 .footer-copy { color: rgba(255,255,255,.3); font-size: .8rem; }
 
@@ -494,18 +609,17 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .skills-grid { grid-template-columns: 1fr 1fr; }
   .about-inner { grid-template-columns: 1fr; }
   .about-visual { justify-content: flex-start; }
   .contact-cards { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
+nav.scrolled { padding: 0.7rem 1.5rem; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  section, #skills, #about, #qa, #contact { padding: 5rem 1.5rem; }
+  #about, #qa, #contact { padding: 5rem 1.5rem; }
   .hero { padding: 8rem 1.5rem 5rem; }
-  .skills-grid { grid-template-columns: 1fr; }
   .contact-cards { grid-template-columns: 1fr; }
   footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
@@ -514,22 +628,46 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
-
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#skills" onclick="closeMobileNav()">Abilități</a>
-  <a href="#about" onclick="closeMobileNav()">Despre mine</a>
-  <a href="#qa" onclick="closeMobileNav()">Întrebări</a>
-  <a href="#contact" onclick="closeMobileNav()">Contact</a>
-  <a href="index.html" class="btn-primary" style="margin-top:1rem;">← Înapoi la site</a>
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-sheet" id="mobileNavSheet">
+    <div class="mobile-nav-handle" id="mobileNavHandle">
+      <div class="mobile-nav-handle-bar"></div>
+    </div>
+    <ul class="mobile-nav-links">
+  <li><a href="#hero" onclick="closeMobileNav()">
+    <span class="mobile-nav-link-text">Acasă</span>
+    <span class="mobile-nav-link-icon"><img src="home.png" class="dog-img"></span>
+  </a></li>
+  <li><a href="#about" onclick="closeMobileNav()">
+    <span class="mobile-nav-link-text">Despre mine</span>
+    <span class="mobile-nav-link-icon"><img src="user.png" class="dog-img"></span>
+  </a></li>
+  <li><a href="#qa" onclick="closeMobileNav()">
+    <span class="mobile-nav-link-text">Întrebări</span>
+    <span class="mobile-nav-link-icon"><img src="request.png" class="dog-img"></span>
+  </a></li>
+  <li><a href="#contact" onclick="closeMobileNav()">
+    <span class="mobile-nav-link-text">Contact</span>
+    <span class="mobile-nav-link-icon"><img src="phone-call.png" class="dog-img"></span>
+  </a></li>
+</ul>
+    <div class="mobile-nav-sep"></div>
+<div class="mobile-nav-cta-wrap">
+  <a href="index.html" class="mobile-nav-cta" onclick="closeMobileNav()">
+    ← Site principal
+  </a>
+</div>
+<div class="mobile-nav-footer">
+  <div class="mobile-nav-footer-dot"></div>
+  <span class="mobile-nav-footer-text">Victor Gutovschi · Chișinău</span>
+</div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -539,7 +677,6 @@ footer {
     <span>Victor Gutovschi</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#skills">Abilități</a></li>
     <li><a href="#about">Despre mine</a></li>
     <li><a href="#qa">Întrebări</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -554,11 +691,9 @@ footer {
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
 
-  <!-- Profile photo circle -->
   <div class="profile-wrap">
     <div class="profile-ring-outer">
       <div class="profile-ring-inner">
-        <!-- Replace with: <img src="photo.jpg" alt="Victor"> -->
         <div class="profile-img"><img src="logo-câine.png" alt="Logo Câine"></div>
       </div>
     </div>
@@ -577,74 +712,6 @@ footer {
 
   <div class="scroll-indicator">
     <div class="scroll-line"></div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="skills-inner">
-    <div class="skills-header">
-      <div class="section-label reveal">Abilități</div>
-      <h2 class="section-title reveal reveal-delay-1">Ce știu să <span>fac bine</span></h2>
-      <p class="section-subtitle reveal reveal-delay-2">Experiență practică, răbdare și pasiune — ingredientele oricărei soluții bune.</p>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal reveal-delay-1">
-        <span class="skill-icon">🐾</span>
-        <h3>Îngrijire câini</h3>
-        <p>Plimbări individuale și în grup, hrănire, supraveghere și atenție personalizată pentru fiecare animal.</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Experiență</span><span>95%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="95"></div></div>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <span class="skill-icon">📸</span>
-        <h3>Fotografie & documentare</h3>
-        <p>Fotografii și videoclipuri din fiecare plimbare, trimise direct pe WhatsApp pentru liniștea stăpânilor.</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Experiență</span><span>80%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <span class="skill-icon">💬</span>
-        <h3>Comunicare & transparență</h3>
-        <p>Actualizări în timp real, răspuns rapid și onestitate completă în fiecare interacțiune.</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Experiență</span><span>90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <span class="skill-icon">🧭</span>
-        <h3>Organizare & punctualitate</h3>
-        <p>Program stabil, respectat cu strictețe. Știi mereu când și unde se află câinele tău.</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Experiență</span><span>92%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <span class="skill-icon">🤝</span>
-        <h3>Construirea relațiilor</h3>
-        <p>Fiecare client devine un partener de lungă durată. Îngrijire cu inimă, nu doar cu mâna.</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Experiență</span><span>88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <span class="skill-icon">🌐</span>
-        <h3>Web & prezentare digitală</h3>
-        <p>Creare de site-uri și prezențe online — exact cum ai văzut pe acest site!</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Experiență</span><span>75%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -652,10 +719,7 @@ footer {
 <section id="about">
   <div class="about-inner">
     <div class="about-visual reveal">
-      <div class="about-photo-wrap">
-        <!-- Replace with: <img src="photo.jpg" alt="Victor Gutovschi"> -->
-        🐾
-      </div>
+      <div class="about-photo-wrap">🐾</div>
       <div class="about-float-badge">
         <div class="num">100%</div>
         <div class="lbl">Dedicat</div>
@@ -665,7 +729,7 @@ footer {
       <div class="section-label reveal">Despre mine</div>
       <h2 class="section-title reveal reveal-delay-1">Cine este <span>Victor?</span></h2>
       <p class="section-subtitle reveal reveal-delay-2">
-        Sunt Victor Gutovschi, din Chișinău — un om care crede că fiecare câine merită atenție adevărată, nu doar o plimbare de rutină. 
+        Sunt Victor Gutovschi, din Chișinău — un om care crede că fiecare câine merită atenție adevărată, nu doar o plimbare de rutină.
         Am pornit acest proiect din pasiune și l-am transformat într-un serviciu de care stăpânii pot depinde.
       </p>
       <p class="section-subtitle reveal reveal-delay-3" style="margin-top:1rem;">
@@ -765,21 +829,21 @@ footer {
     <p class="section-subtitle reveal reveal-delay-2">Disponibil în weekend, 09:00–19:00. Nu ezita să mă contactezi pentru orice întrebare.</p>
     <div class="contact-cards reveal reveal-delay-3">
       <a href="tel:+37360400898" class="contact-card">
-        <div class="cc-icon">📞</div>
+        <div class="cc-icon"><img src="phone-call.png" class="dogg-img"></div>
         <div>
           <div class="cc-label">Telefon</div>
           <div class="cc-value">+373 60 400 898</div>
         </div>
       </a>
       <a href="mailto:gutovschivictor@gmail.com" class="contact-card">
-        <div class="cc-icon">✉️</div>
+        <div class="cc-icon"><img src="envelope.png" class="dogg-img"></div>
         <div>
           <div class="cc-label">Email</div>
           <div class="cc-value">gutovschivictor@gmail.com</div>
         </div>
       </a>
       <a href="https://www.facebook.com/profile.php?id=61579559310786" target="_blank" class="contact-card">
-        <div class="cc-icon">📘</div>
+        <div class="cc-icon"><img src="facebook.png" class="dogg-img"></div>
         <div>
           <div class="cc-label">Facebook</div>
           <div class="cc-value">Victor Gutovschi</div>
@@ -792,12 +856,11 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <div class="logo-circle" style="width:32px;height:32px;font-size:.9rem;"><img src="logo-câine.png" alt="Logo Câine">
-</div>
+    <div class="logo-circle" style="width:32px;height:32px;font-size:.9rem;"><img src="logo-câine.png" alt="Logo Câine"></div>
     Victor Gutovschi
   </div>
   <ul class="footer-links">
-    <li><a href="#skills">Abilități</a></li>
+    <li><a href="#about">Despre mine</a></li>
     <li><a href="#qa">Întrebări</a></li>
     <li><a href="#contact">Contact</a></li>
     <li class="btn-backk"><a href="index.html">← Site principal</a></li>
@@ -806,104 +869,62 @@ footer {
 </footer>
 
 <script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-let mouseX=0,mouseY=0,ringX=0,ringY=0;
-document.addEventListener('mousemove',e=>{
-  mouseX=e.clientX; mouseY=e.clientY;
-  cursor.style.left=mouseX+'px'; cursor.style.top=mouseY+'px';
-});
-function animateRing(){
-  ringX+=(mouseX-ringX)*.12; ringY+=(mouseY-ringY)*.12;
-  cursorRing.style.left=ringX+'px'; cursorRing.style.top=ringY+'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-document.querySelectorAll('a,button,.skill-card,.qa-item,.contact-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{
-    cursor.style.transform='translate(-50%,-50%) scale(1.8)';
-    cursorRing.style.width='40px'; cursorRing.style.height='40px'; cursorRing.style.opacity='.3';
-  });
-  el.addEventListener('mouseleave',()=>{
-    cursor.style.transform='translate(-50%,-50%) scale(1)';
-    cursorRing.style.width='30px'; cursorRing.style.height='30px'; cursorRing.style.opacity='.5';
-  });
-});
-
 // NAV scroll
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
 // Mobile nav
-function toggleMobileNav(){
-  const nav=document.getElementById('mobileNav'), ham=document.getElementById('hamburger');
-  nav.classList.toggle('open'); ham.classList.toggle('open');
-  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
 }
-function closeMobileNav(){
+function closeMobileNav() {
   document.getElementById('mobileNav').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
 
-// Scroll reveal + skill bars
-const revealObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      // animate bars inside
-      e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
-        bar.style.width=bar.dataset.w+'%';
-      });
-    }
-  });
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+document.getElementById('mobileNavBackdrop').addEventListener('click', closeMobileNav);
 
-// Also trigger bars for skill cards that are revealed
-document.querySelectorAll('.skill-card').forEach(card=>{
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
-          bar.style.width=bar.dataset.w+'%';
-        });
-      }
-    });
-  },{threshold:.3});
-  obs.observe(card);
-});
+(function() {
+  const sheet = document.getElementById('mobileNavSheet');
+  const handle = document.getElementById('mobileNavHandle');
+  let startY = 0, currentY = 0, dragging = false;
+  function onStart(y) { startY = y; currentY = 0; dragging = true; sheet.style.transition = 'none'; }
+  function onMove(y) { if (!dragging) return; currentY = Math.max(0, y - startY); sheet.style.transform = `translateY(${currentY}px)`; }
+  function onEnd() {
+    if (!dragging) return;
+    dragging = false;
+    sheet.style.transition = '';
+    if (currentY > 100) { closeMobileNav(); sheet.style.transform = ''; }
+    else { sheet.style.transform = ''; }
+  }
+  handle.addEventListener('touchstart', e => onStart(e.touches[0].clientY), { passive: true });
+  window.addEventListener('touchmove', e => { if (dragging) onMove(e.touches[0].clientY); }, { passive: true });
+  window.addEventListener('touchend', onEnd);
+  handle.addEventListener('mousedown', e => onStart(e.clientY));
+  window.addEventListener('mousemove', e => { if (dragging) onMove(e.clientY); });
+  window.addEventListener('mouseup', onEnd);
+})();
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
+
+// Scroll reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 // Q&A accordion
-function toggleQA(item){
-  const isOpen=item.classList.contains('open');
-  document.querySelectorAll('.qa-item').forEach(i=>i.classList.remove('open'));
-  if(!isOpen) item.classList.add('open');
+function toggleQA(item) {
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.qa-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
 }
 
-// Click particles
-document.addEventListener('click',function(e){
-  const colors=['#ffad69','#e8924a','#ffffff','#c97435'];
-  for(let i=0;i<6;i++){
-    const p=document.createElement('div');
-    p.style.cssText=`position:fixed;width:7px;height:7px;border-radius:50%;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:99999;opacity:1;`;
-    document.body.appendChild(p);
-    const angle=Math.random()*Math.PI*2, speed=Math.random()*90+40;
-    const vx=Math.cos(angle)*speed, vy=Math.sin(angle)*speed;
-    let t0=performance.now();
-    (function animate(t){
-      const dt=(t-t0)/1000;
-      if(dt<.8){
-        p.style.transform=`translate(${vx*dt}px,${vy*dt+200*dt*dt}px)`;
-        p.style.opacity=1-dt/.8;
-        requestAnimationFrame(animate);
-      } else p.remove();
-    })(t0);
-  }
-});
 </script>
 </body>
 </html>
