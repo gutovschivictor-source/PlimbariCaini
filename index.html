@@ -782,7 +782,7 @@ section { padding:7rem 4rem; position:relative; }
   border-radius:50%; display:flex; align-items:center; justify-content:center;
   font-family:'Nunito',sans-serif; font-size:1.3rem; font-weight:900;
   margin-bottom:1.4rem; position:relative; z-index:1;
-  box-shadow:0 6px 20px rgba(74,44,10,.2);
+  box-shadow:0 2px 0px rgba(74,44,10,.2);
   transition:all .3s cubic-bezier(.34,1.56,.64,1);
 }
 .step-item:hover .step-num { transform:scale(1.15) rotate(-8deg); }
@@ -1089,6 +1089,24 @@ footer {
       <button class="pkg-dot" onclick="scrollToCard(1)"></button>
     </div>
   </div>
+<div style="position:absolute; bottom:0; left:0; right:0; line-height:0; pointer-events:none; z-index:1;">
+  <svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffad69">
+      <circle cx="-10" cy="220" r="75"/>
+      <circle cx="50"  cy="220" r="60"/>
+      <circle cx="130" cy="200" r="60"/>
+      <circle cx="200" cy="200" r="55"/>
+      <circle cx="270" cy="220" r="55"/>
+      <circle cx="340" cy="220" r="65"/>
+      <circle cx="400" cy="220" r="65"/>
+      <circle cx="470" cy="220" r="55"/>
+      <circle cx="540" cy="200" r="55"/>
+      <circle cx="610" cy="200" r="60"/>
+      <circle cx="680" cy="210" r="60"/>
+      <circle cx="730" cy="210" r="75"/>
+    </g>
+  </svg>
+</div>
 </section>
 <!-- HOW IT WORKS -->
 <section id="how">
@@ -1105,6 +1123,7 @@ footer {
       <div class="step-item reveal reveal-delay-4"><div class="step-num">4</div><h3>Program stabil</h3><p>Stabilim un program regulat de plimbări.</p></div>
     </div>
   </div>
+
 </section>
 
 <!-- CONTACT -->
