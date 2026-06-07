@@ -364,16 +364,21 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
   display:flex; flex-direction:column; align-items:center; gap:.4rem;
   color:rgba(255,255,255,.6); font-size:.66rem; font-weight:700;
   letter-spacing:.12em; text-transform:uppercase; z-index:2;
-  animation:fadeUp 1s .7s ease both;
+  animation:fadeUp 1s .3s ease both;
 }
 .scroll-line {
-  width:1.5px; height:36px;
-  background:linear-gradient(to bottom, transparent, rgba(255,255,255,.7));
-  animation:scrollLine 1.6s ease-in-out infinite;
+  width: 12px;
+  height: 12px;
+  border-right: 5px solid rgba(255,255,255,0.7);
+  border-bottom: 5px solid rgba(255,255,255,0.7);
+  transform: rotate(45deg);
+  animation: scrolline 1.6s ease-in-out infinite;
 }
-@keyframes scrollLine {
-  0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}
-  51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}
+
+@keyframes scrolline {
+  0%   { opacity: 0.5; transform: rotate(45deg)  }
+  50%  { opacity: 1; transform: rotate(45deg)  }
+  100% { opacity: 0.5; transform: rotate(45deg)  }
 }
 
 /* ── SECTIONS ────────────────────────────── */
@@ -412,7 +417,7 @@ section { padding:7rem 4rem; position:relative; }
 
 
 }
-.service-card:hover { transform:translateY(-5px); border-color:var(--hero); box-shadow:var(--sh-lg); transition: all .3s ease;}
+.service-card:hover {   background:#fff;transform:translateY(-5px); border-color:var(--hero); box-shadow:var(--sh-lg); transition: all .3s ease;}
 .svc-icon {
   width:50px; height:50px; background:var(--hero-pale); border-radius:var(--r-md);
   display:flex; align-items:center; justify-content:center; margin-bottom:1rem;
@@ -787,7 +792,7 @@ section { padding:7rem 4rem; position:relative; }
   box-shadow:0 2px 0px rgba(74,44,10,.2);
   transition:all .3s cubic-bezier(.34,1.56,.64,1);
 }
-.step-item:hover .step-num { transform:scale(1.15) rotate(-8deg); }
+.step-item:hover .step-num { transform:scale(1.15) rotate(-8deg);  box-shadow:0 3px 0px rgba(74,44,10,.2); }
 .step-item h3 { font-family:'Nunito',sans-serif; font-size:.97rem; font-weight:800; color:var(--white); margin-bottom:.4rem; }
 .step-item p { font-size:.84rem; color:rgba(255,255,255,.78); line-height:1.65; font-weight:500; }
 
@@ -802,7 +807,8 @@ section { padding:7rem 4rem; position:relative; }
   border:1.5px solid rgba(255,173,89,.5); text-decoration:none; color:inherit;
   transition:all .25s ease;
 }
-.contact-item:hover { border-color:var(--hero); transform:translateX(5px);  }
+.contact-item:hover { background:#fff;border-color:var(--hero); transform:translateX(5px);  box-shadow:0 3px 0px rgba(255,173,89,1);
+  transition:all .3s cubic-bezier(.34,1.56,.64,1); }
 .contact-icon { width:42px;height:42px; background:var(--hero-pale); border-radius:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .25s; }
 .contact-item:hover .contact-icon { background:#ffad69; }
 .contact-detail-label { font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gray); font-weight:700; margin-bottom:.12rem; }
@@ -1149,6 +1155,7 @@ footer {
     <rect x="0" y="0" width="680" height="10" fill="#eea160"/>
   </svg>
 </div>
+
 </section>
 
 <!-- CONTACT -->
