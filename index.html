@@ -17,6 +17,11 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+.os-mobile { display: none; }
+
+@media (max-width: 768px) {
+  .os-mobile { display: block; }
+}
 @media (max-width: 768px) {
   .collar-divider {
     display: none;
@@ -328,7 +333,7 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
 .hero-visual { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:1.5rem; animation:fadeUp .8s .15s ease both; }
 .hero-card {
   background:var(--white); border-radius:var(--r-lg); padding:2.2rem;
-  box-shadow:0 20px 60px rgba(74,44,10,.2); width:100%; max-width:400px;
+ width:100%; max-width:400px;
   position:relative; overflow:hidden;
 }
 .hero-card::after {
@@ -345,7 +350,7 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
   border-radius:var(--r-md); padding:.9rem; text-align:center;
   transition:transform .2s, border-color .2s;
 }
-.stat-chip:hover { transform:translateY(-3px); border-color:var(--hero); }
+.stat-chip:hover { transform:translateY(-3px); border-color:var(--hero);box-shadow: 0 3px 0 #ffad69; background:#fff;}
 .stat-n { font-family:'Nunito',sans-serif; font-size:1.75rem; font-weight:900; color:var(--hero-deep); line-height:1; }
 .stat-l { font-size:.66rem; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:.08em; margin-top:.25rem; }
 
@@ -354,7 +359,6 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
     background: var(--white);
     border-radius: 15px;
     padding: .58rem 1.1rem;
-    box-shadow: var(--sh-md);
     font-family: 'Nunito', sans-serif;
     font-size: .8rem;
     font-weight: 800;
@@ -368,7 +372,7 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
 @keyframes fp2 { 0%,100%{transform:translateY(0) rotate(1.5deg);}50%{transform:translateY(8px) rotate(-1.5deg);} }
 
 .scroll-indicator {
-  position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+  position:absolute; bottom:1.2rem; left:50%; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:.4rem;
   color:rgba(255,255,255,.6); font-size:.66rem; font-weight:700;
   letter-spacing:.12em; text-transform:uppercase; z-index:2;
@@ -384,9 +388,9 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
 }
 
 @keyframes updown {
-  0%   { opacity: 0;transform: rotate(45deg) translateY(-3px) translateX(-3px); }
-  50%  { opacity: 1;transform: rotate(45deg) translateY(3px)  translateX(3px); }
-  100% { opacity: 0;transform: rotate(45deg) translateY(-3px) translateX(-3px); }
+  0%   { opacity: 0.7;transform: rotate(45deg) translateY(-2px) translateX(-2px); }
+  50%  { opacity: 1;transform: rotate(45deg) translateY(2px)  translateX(2px); }
+  100% { opacity: 0.7;transform: rotate(45deg) translateY(-2px) translateX(-2px); }
 }
 
 /* ── SECTIONS ────────────────────────────── */
@@ -1158,7 +1162,28 @@ footer {
       <div class="step-item reveal reveal-delay-4"><div class="step-num">4</div><h3>Program stabil</h3><p>Stabilim un program regulat de plimbări.</p></div>
     </div>
   </div>
-
+<div class="os-mobile" style="position:absolute; bottom:-30px; right:40px; pointer-events:none; z-index:10; transform:rotate(15deg); transform-origin:bottom center;">
+  <svg width="30" height="60" viewBox="0 0 30 60" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+      <rect x="10" y="12" width="10" height="36" rx="3"/>
+      <circle cx="7" cy="12" r="7"/>
+      <circle cx="23" cy="12" r="7"/>
+      <circle cx="7" cy="48" r="7"/>
+      <circle cx="23" cy="48" r="7"/>
+    </g>
+  </svg>
+</div>
+<div class="os-mobile" style="position:absolute; bottom:-35px; right:66px; pointer-events:none; z-index:10; transform:rotate(-10deg); transform-origin:bottom center;">
+  <svg width="30" height="60" viewBox="0 0 30 60" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+      <rect x="10" y="12" width="10" height="36" rx="3"/>
+      <circle cx="7" cy="12" r="7"/>
+      <circle cx="23" cy="12" r="7"/>
+      <circle cx="7" cy="48" r="7"/>
+      <circle cx="23" cy="48" r="7"/>
+    </g>
+  </svg>
+</div>
 </section>
 
 <!-- CONTACT -->
@@ -1228,7 +1253,7 @@ footer {
   <rect x="0" y="13" width="680" height="18" rx="4" fill="#ffad69"/>
   <rect x="0" y="16" width="680" height="3"  fill="#ffc48a" opacity="1"/>
 
-  <g fill="#c07040">
+  <g fill="#c07040c7">
     <rect x="18"  y="8" width="8" height="28" rx="2"/>
     <rect x="58"  y="8" width="8" height="28" rx="2"/>
     <rect x="98"  y="8" width="8" height="28" rx="2"/>
@@ -1263,6 +1288,7 @@ footer {
 
 </svg>
 </div>
+
 
 </section>
 
