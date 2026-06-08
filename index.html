@@ -17,6 +17,23 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+@keyframes floatUpDown {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+.float-divider circle:nth-child(1)  { animation: floatUpDown 3.0s ease-in-out infinite; }
+.float-divider circle:nth-child(2)  { animation: floatUpDown 3.2s ease-in-out infinite 0.1s; }
+.float-divider circle:nth-child(3)  { animation: floatUpDown 2.8s ease-in-out infinite 0.2s; }
+.float-divider circle:nth-child(4)  { animation: floatUpDown 3.4s ease-in-out infinite 0.3s; }
+.float-divider circle:nth-child(5)  { animation: floatUpDown 3.1s ease-in-out infinite 0.4s; }
+.float-divider circle:nth-child(6)  { animation: floatUpDown 2.9s ease-in-out infinite 0.5s; }
+.float-divider circle:nth-child(7)  { animation: floatUpDown 3.3s ease-in-out infinite 0.4s; }
+.float-divider circle:nth-child(8)  { animation: floatUpDown 3.0s ease-in-out infinite 0.3s; }
+.float-divider circle:nth-child(9)  { animation: floatUpDown 2.7s ease-in-out infinite 0.2s; }
+.float-divider circle:nth-child(10) { animation: floatUpDown 3.2s ease-in-out infinite 0.1s; }
+.float-divider circle:nth-child(11) { animation: floatUpDown 3.0s ease-in-out infinite 0.2s; }
+.float-divider circle:nth-child(12) { animation: floatUpDown 2.8s ease-in-out infinite 0.0s; }
 .os-mobile { display: none; }
 
 @media (max-width: 768px) {
@@ -1110,7 +1127,7 @@ footer {
       <button class="pkg-dot" onclick="scrollToCard(1)"></button>
     </div>
   </div>
-<div style="position:absolute; bottom:0; left:0; right:0; line-height:0; pointer-events:none; z-index:1;">
+<div class="float-divider" style="position:absolute; bottom:0; left:0; right:0; line-height:0; pointer-events:none; z-index:1;">
   <svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
     <g fill="#ffad69">
       <circle cx="-10" cy="224" r="75"/>
@@ -1128,7 +1145,7 @@ footer {
     </g>
   </svg>
 </div>
-<div style="position:absolute; bottom:0; left:0; right:0; line-height:0; pointer-events:none; z-index:0;">
+<div class="float-divider" style="position:absolute; bottom:0; left:0; right:0; line-height:0; pointer-events:none; z-index:0;">
   <svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
     <g fill="#ffefe2">
       <circle cx="-10" cy="138" r="80"/>
