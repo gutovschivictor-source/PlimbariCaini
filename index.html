@@ -1386,14 +1386,38 @@ document.querySelectorAll('.reveal').forEach(el =>
 );
 
 function submitForm() {
-  const n=document.getElementById('ownerName').value, p=document.getElementById('phone').value,
-        d=document.getElementById('dogName').value, b=document.getElementById('breed').value,
-        s=document.getElementById('service').value, m=document.getElementById('message').value;
-  if(!n||!p||!d||!s){alert('Te rugăm să completezi câmpurile obligatorii.');return;}
-  const text=`Cerere plimbare caine\n-----------------------\nNume: ${n}\nTelefon: ${p}\nCaine: ${d}\nRasa: ${b}\nServiciu: ${s}\nMesaj: ${m||'—'}`;
-  window.open(`https://wa.me/37360400898?text=${encodeURIComponent(text)}`,'_blank');
-  document.getElementById('formContent').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+  const fields = [
+    document.getElementById('ownerName'),
+    document.getElementById('phone'),
+    document.getElementById('dogName'),
+    document.getElementById('service')
+  ];
+
+  for (const field of fields) {
+    if (!field.value.trim()) {
+      field.focus();
+      field.style.borderColor = 'var(--hero-dark)';
+      field.style.boxShadow = '0 0 0 4px rgba(255,173,89,.2)';
+      field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        field.style.borderColor = '';
+        field.style.boxShadow = '';
+      }, 2000);
+      return;
+    }
+  }
+
+  const n = document.getElementById('ownerName').value;
+  const p = document.getElementById('phone').value;
+  const d = document.getElementById('dogName').value;
+  const b = document.getElementById('breed').value;
+  const s = document.getElementById('service').value;
+  const m = document.getElementById('message').value;
+
+  const text = `Cerere plimbare caine\n-----------------------\nNume: ${n}\nTelefon: ${p}\nCaine: ${d}\nRasa: ${b}\nServiciu: ${s}\nMesaj: ${m || '—'}`;
+  window.open(`https://wa.me/37360400898?text=${encodeURIComponent(text)}`, '_blank');
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
 }
 
 (function(){
