@@ -74,7 +74,7 @@
   --sh-lg: 0 5px 0px rgb(253 172 104);
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; font-size:16px; }
+html { scroll-behavior: auto; font-size:16px; }
 body {
     font-family: 'Sora', sans-serif;
     background: var(--off);
@@ -93,7 +93,7 @@ body::before {
 
 /* ── NAV (white) ────────────────────────── */
 nav {
-  position:fixed; top:0; left:0; right:0; z-index:1000;
+  position:fixed; top:0; left:0; right:0; z-index:99999;
   display:flex; align-items:center; justify-content:space-between;
   padding:1rem 3.5rem;
   background:var(--white);
@@ -440,7 +440,7 @@ section { padding:7rem 4rem; position:relative; }
 
 .service-card {
   background:var(--off); border-radius:var(--r-lg); padding:1.75rem;
-  border:1.5px solid rgba(255,173,89,.16);
+  border:1.5px solid rgba(255,173,89,.5);
   transition:all .3s cubic-bezier(.34,1.56,.64,1);
   position:relative; overflow:hidden;
 
@@ -468,6 +468,8 @@ section { padding:7rem 4rem; position:relative; }
 /* PRICING */
 #pricing {
   background: #fffbf7;
+  position: relative;
+}
 }
 #pricing .pricing-inner {
   max-width: 1200px;
@@ -1073,7 +1075,6 @@ footer {
   </div>
 </section>
 
-</section>
 <!-- PRICING -->
 <section id="pricing">
   <div class="pricing-inner">
@@ -1227,6 +1228,7 @@ footer {
     </g>
   </svg>
 </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -1354,6 +1356,121 @@ footer {
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
 
+function easeOutExpo(t) { return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+function easeInOutQuart(t) { return t < 0.5 ? 8*t*t*t*t : 1 - Math.pow(-2*t+2,4)/2; }
+
+function runScroll(from, to, dur, fn, done) {
+  var start = null;
+  function frame(ts) {
+    if (!start) start = ts;
+    var p = Math.min((ts - start) / dur, 1);
+    window.scrollTo(0, from + (to - from) * fn(p));
+    if (p < 1) requestAnimationFrame(frame);
+    else if (done) done();
+  }
+  requestAnimationFrame(frame);
+}
+
+function smoothScrollTo(target) {
+  var el = typeof target === 'string' ? document.querySelector(target) : target;
+  if (!el) return;
+  var cur = window.scrollY;
+  var dest = el.getBoundingClientRect().top + window.scrollY - 70;
+  var dist = Math.abs(dest - cur);
+  var dir = dest > cur ? 'down' : 'up';
+  var kick = dir === 'down' ? -28 : 28;
+
+var sections = Array.from(document.querySelectorAll('section, footer'));
+var sectionsInRange = sections.filter(function(s) {
+  var top = s.getBoundingClientRect().top + window.scrollY;
+  var min = Math.min(cur, dest);
+  var max = Math.max(cur, dest);
+  return top > min && top < max;
+}).length;
+
+if (sectionsInRange >= 2) {
+  setTimeout(showWindLines, 500);
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 8900;
+  `;
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    overlay.style.transition = 'opacity 1s ease';
+    overlay.style.opacity = '1';
+  }, 20);
+
+  const scrollDur = Math.min(Math.max(dist * 0.55, 650), 1400);
+  setTimeout(() => {
+    overlay.style.transition = 'opacity 0.4s ease';
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.remove(), 400);
+  }, scrollDur);
+}
+
+  runScroll(cur, cur + kick, 200, easeOutExpo, function() {
+    var after = window.scrollY;
+    var d = Math.abs(dest - after);
+    var dur = Math.min(Math.max(d * 0.55, 650), 1400);
+    runScroll(after, dest, dur, easeInOutQuart, null);
+  });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    e.preventDefault();
+    closeMobileNav();
+    smoothScrollTo(href);
+  });
+});
+function showWindLines() {
+  const count = 8;
+  for (let i = 0; i < count; i++) {
+const line = document.createElement('div');
+const minGap = 5;
+const slotWidth = (window.innerWidth - minGap) / count;
+const x = i * slotWidth + Math.random() * (slotWidth - minGap);
+const length = 1500 + Math.random() * 80;
+const topPos = window.innerHeight / 2 - length / 2 + (Math.random() - 0.5) * 100;
+const delay = 0;
+const duration = 350 + Math.random() * 5;
+    line.style.cssText = `
+      position: fixed;
+      left: ${x}px;
+      top: ${topPos}px;
+      width: ${13 + Math.random() * 6}px;
+      height: ${length}px;
+      background:rgba(255,255,255,1);
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translateY(0);
+      opacity: 0;
+    `;
+    document.body.appendChild(line);
+
+    setTimeout(() => {
+      const start = performance.now();
+requestAnimationFrame(function anim(ts) {
+  const p = Math.min((ts - start) / duration, 1);
+  const wave = Math.sin(p * Math.PI * 6) * 8;
+  const opacity = Math.sin(p * Math.PI) * 1;
+  line.style.transform = `translateY(${wave}px)`;
+  line.style.opacity = opacity;
+  if (p < 1) requestAnimationFrame(anim);
+  else line.remove();
+});    }, delay);
+  }
+}
 function toggleMobileNav() {
   const nav = document.getElementById('mobileNav'), ham = document.getElementById('hamburger');
   nav.classList.toggle('open'); ham.classList.toggle('open');
@@ -1392,7 +1509,6 @@ function submitForm() {
     document.getElementById('dogName'),
     document.getElementById('service')
   ];
-
   for (const field of fields) {
     if (!field.value.trim()) {
       field.focus();
@@ -1406,14 +1522,12 @@ function submitForm() {
       return;
     }
   }
-
   const n = document.getElementById('ownerName').value;
   const p = document.getElementById('phone').value;
   const d = document.getElementById('dogName').value;
   const b = document.getElementById('breed').value;
   const s = document.getElementById('service').value;
   const m = document.getElementById('message').value;
-
   const text = `Cerere plimbare caine\n-----------------------\nNume: ${n}\nTelefon: ${p}\nCaine: ${d}\nRasa: ${b}\nServiciu: ${s}\nMesaj: ${m || '—'}`;
   window.open(`https://wa.me/37360400898?text=${encodeURIComponent(text)}`, '_blank');
   document.getElementById('formContent').style.display = 'none';
