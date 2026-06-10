@@ -1420,7 +1420,7 @@ footer {
           <button class="form-submit" onclick="submitForm()">
   <span id="fs-icon"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></span>
   <span id="fs-text">Trimite cererea</span>
-  <span id="fs-check">✓</span>
+
 </button>
         </div>
         <div class="form-success" id="formSuccess">
@@ -1715,11 +1715,13 @@ playSubmitSound();
 
 const btn = document.querySelector('.form-submit');
 btn.classList.add('sent');
-setTimeout(() => { btn.classList.remove('sent'); }, 3800);
 
+setTimeout(() => {
+  btn.classList.remove('sent');
   window.open(`https://wa.me/37360400898?text=${encodeURIComponent(text)}`, '_blank');
   document.getElementById('formContent').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
+}, 700);
 }
 
 (function(){
