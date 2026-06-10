@@ -17,6 +17,15 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+.form-submit { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+.form-submit #fs-icon { display:flex; align-items:center; transition: transform 0.7s cubic-bezier(0.2,0,0.4,1), opacity 0.4s ease 0.35s; }
+.form-submit #fs-icon svg { width:17px; height:17px; fill:white; }
+.form-submit #fs-text { transition: opacity 0.2s ease, transform 0.2s ease; }
+.form-submit #fs-check { position:absolute; opacity:0; transform:scale(0.5); transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s; font-size:1.1rem; }
+.form-submit.sent #fs-text { opacity:0; transform:translateX(10px); }
+.form-submit.sent #fs-icon { transform:translateX(220px) scale(2.8); opacity:0; }
+.form-submit.sent #fs-check { opacity:1; transform:scale(1); }
+
 @keyframes bonShake15 {
   0%   { transform: rotate(15deg); }
   15%  { transform: rotate(15deg) translate(4px, -4px) rotate(-8deg); }
@@ -1408,7 +1417,11 @@ footer {
             </select>
           </div>
           <div class="form-group"><label>Mesaj (opțional)</label><textarea placeholder="Spune-ne mai multe despre câinele tău..." id="message"></textarea></div>
-          <button class="form-submit" onclick="submitForm()">Trimite cererea</button>
+          <button class="form-submit" onclick="submitForm()">
+  <span id="fs-icon"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></span>
+  <span id="fs-text">Trimite cererea</span>
+  <span id="fs-check">✓</span>
+</button>
         </div>
         <div class="form-success" id="formSuccess">
           <div class="success-icon">
@@ -1631,7 +1644,46 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileN
 document.querySelectorAll('.reveal').forEach(el =>
   new IntersectionObserver(([e])=>{ if(e.isIntersecting) e.target.classList.add('visible'); },{threshold:.12}).observe(el)
 );
+const _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+function playSubmitSound() {
+  const now = _audioCtx.currentTime;
+  const notes = [
+    { freq: 1047, vol: 0.13, delay: 0,    dur: 0.09 },
+    { freq: 1318, vol: 0.09, delay: 0.03, dur: 0.08 },
+    { freq: 1568, vol: 0.07, delay: 0.06, dur: 0.07 },
+  ];
+  notes.forEach(n => {
+    const t = now + n.delay;
+    const filter = _audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(2800, t);
+    filter.Q.setValueAtTime(0.5, t);
+    filter.connect(_audioCtx.destination);
+    const osc = _audioCtx.createOscillator();
+    const gain = _audioCtx.createGain();
+    osc.connect(gain); gain.connect(filter);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(n.freq, t);
+    osc.frequency.exponentialRampToValueAtTime(n.freq * 0.7, t + n.dur);
+    gain.gain.setValueAtTime(n.vol, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + n.dur);
+    osc.start(t); osc.stop(t + n.dur + 0.01);
+  });
+  const tail = _audioCtx.createOscillator();
+  const tailGain = _audioCtx.createGain();
+  const tailFilter = _audioCtx.createBiquadFilter();
+  tailFilter.type = 'lowpass';
+  tailFilter.frequency.setValueAtTime(2200, now + 0.06);
+  tail.connect(tailGain); tailGain.connect(tailFilter); tailFilter.connect(_audioCtx.destination);
+  tail.type = 'sine';
+  tail.frequency.setValueAtTime(1760, now + 0.06);
+  tail.frequency.exponentialRampToValueAtTime(1200, now + 0.6);
+  tailGain.gain.setValueAtTime(0.0, now + 0.06);
+  tailGain.gain.linearRampToValueAtTime(0.055, now + 0.1);
+  tailGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
+  tail.start(now + 0.06); tail.stop(now + 0.7);
+}
 function submitForm() {
   const fields = [
     document.getElementById('ownerName'),
@@ -1659,6 +1711,12 @@ function submitForm() {
   const s = document.getElementById('service').value;
   const m = document.getElementById('message').value;
   const text = `Cerere plimbare caine\n-----------------------\nNume: ${n}\nTelefon: ${p}\nCaine: ${d}\nRasa: ${b}\nServiciu: ${s}\nMesaj: ${m || '—'}`;
+playSubmitSound();
+
+const btn = document.querySelector('.form-submit');
+btn.classList.add('sent');
+setTimeout(() => { btn.classList.remove('sent'); }, 3800);
+
   window.open(`https://wa.me/37360400898?text=${encodeURIComponent(text)}`, '_blank');
   document.getElementById('formContent').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
