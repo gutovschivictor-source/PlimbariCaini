@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Plimbări Câini Chișinău</title>
+<link rel="icon" href="logo-câine.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hero:        #ffad69;
+  --hero-dark:   #e8924a;
+  --hero-deep:   #c97435;
+  --hero-light:  #ffd4a3;
+  --hero-pale:   #fff5eb;
+  --hero-soft:   #fffaf4;
+  --brown:       #4a2c0a;
+  --brown-mid:   #7a4a1e;
+  --brown-light: #a0663a;
+  --white:  #ffffff;
+  --off:    #fdf8f4;
+  --gray:   #8a7060;
+  --gray-2: #c4a882;
+  --ink:    #2d1a08;
+  --green:      #16a34a;
+  --green-light:#dcfce7;
+  --green-deep: #15803d;
+  --red:        #dc2626;
+  --red-light:  #fee2e2;
+  --red-deep:   #b91c1c;
+  --r-sm: 12px; --r-md: 20px; --r-lg: 32px;
+  --sh-sm: 0 2px 8px rgba(74,44,10,0.07);
+  --sh-md: 0 6px 24px rgba(74,44,10,0.11);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; }
+body { font-family:'Sora',sans-serif; background:var(--off); color:var(--ink); }
+img { max-width:100%; display:block; }
+
+/* ── LOGIN ───────────────────────────────── */
+.login-overlay {
+  position:fixed; inset:0; z-index:500;
+  background:var(--hero);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; padding:1.5rem;
+}
+.login-blob { position:absolute; background:rgba(255,255,255,.16); border-radius:50%; pointer-events:none; }
+.login-blob-1 { width:380px; height:380px; top:-12%; left:-10%; }
+.login-blob-2 { width:320px; height:320px; bottom:-15%; right:-8%; }
+.login-card {
+  position:relative; z-index:2; width:100%; max-width:380px;
+  background:var(--white); border-radius:var(--r-lg);
+  padding:2.6rem 2.2rem; text-align:center;
+  box-shadow:0 20px 60px rgba(74,44,10,.25);
+}
+.login-logo { width:62px; height:62px; border-radius:50%; background:var(--hero); margin:0 auto 1.3rem; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.login-logo img { width:100%; height:100%; object-fit:contain; }
+.login-card h1 { font-family:'Nunito',sans-serif; font-size:1.4rem; font-weight:900; color:var(--hero-deep); margin-bottom:.4rem; letter-spacing:-.01em; }
+.login-card > p { font-size:.87rem; color:var(--gray); font-weight:500; margin-bottom:1.6rem; }
+.login-card input {
+  width:100%; background:var(--off); border:1.5px solid rgba(255,173,89,.3);
+  border-radius:var(--r-sm); padding:.85rem 1rem; font-family:'Sora',sans-serif;
+  font-size:.95rem; color:var(--ink); outline:none; transition:border-color .2s, box-shadow .2s;
+  margin-bottom:.6rem; text-align:center; letter-spacing:.08em;
+}
+.login-card input:focus { border-color:var(--hero); box-shadow:0 0 0 4px rgba(255,173,89,.12); }
+.login-error { display:none; color:var(--red); font-size:.78rem; font-weight:700; margin-bottom:.8rem; }
+.login-btn {
+  width:100%; background:var(--hero); color:var(--white); border:none;
+  border-radius:var(--r-md); padding:.95rem; font-family:'Nunito',sans-serif;
+  font-size:.95rem; font-weight:800; cursor:pointer; letter-spacing:.01em;
+  box-shadow:0 6px 18px rgba(255,173,89,.4); transition:all .2s ease;
+}
+.login-btn:hover { background:var(--hero-dark); transform:translateY(-1px); }
+.login-hint { margin-top:1.4rem; font-size:.73rem; color:var(--gray-2); font-weight:600; line-height:1.5; }
+
+/* ── SHELL / TOPBAR / TABS ───────────────── */
+.admin-shell { min-height:100vh; }
+.topbar {
+  position:sticky; top:0; z-index:50; background:var(--white);
+  border-bottom:1.5px solid rgba(255,173,89,.16);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem 1.8rem;
+}
+.topbar-logo { display:flex; align-items:center; gap:.65rem; font-family:'Nunito',sans-serif; font-weight:900; color:var(--gray); font-size:1.02rem; }
+.topbar-logo small { display:block; font-size:.65rem; font-weight:700; color:var(--hero-deep); letter-spacing:.1em; text-transform:uppercase; margin-top:1px; }
+.logo-circle { width:36px; height:36px; border-radius:50%; background:var(--hero); overflow:hidden; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.logo-circle img { width:100%; height:100%; object-fit:contain; }
+.btn-logout {
+  background:var(--hero-pale); color:var(--hero-deep); border:1.5px solid rgba(255,173,89,.3);
+  border-radius:50px; padding:.55rem 1.2rem; font-family:'Nunito',sans-serif;
+  font-size:.82rem; font-weight:800; cursor:pointer; transition:all .2s ease;
+}
+.btn-logout:hover { background:var(--hero); color:var(--white); }
+
+.tabs-bar {
+  position:sticky; top:58px; z-index:40; background:var(--off);
+  display:flex; gap:.5rem; padding:.9rem 1.8rem; overflow-x:auto;
+  border-bottom:1.5px solid rgba(255,173,89,.1); scrollbar-width:none;
+}
+.tabs-bar::-webkit-scrollbar { display:none; }
+.tab-btn {
+  display:flex; align-items:center; gap:.5rem; flex-shrink:0;
+  background:var(--white); border:1.5px solid rgba(255,173,89,.2); color:var(--gray);
+  border-radius:50px; padding:.6rem 1.15rem; font-family:'Nunito',sans-serif;
+  font-size:.82rem; font-weight:800; cursor:pointer; transition:all .2s ease;
+}
+.tab-icon { width:15px; height:15px; filter:invert(55%) sepia(20%) saturate(700%) hue-rotate(330deg) brightness(95%); }
+.tab-icon-emoji { font-size:.85rem; }
+.tab-btn.active { background:var(--hero); color:var(--white); border-color:var(--hero); box-shadow:0 4px 14px rgba(255,173,89,.35); }
+.tab-btn.active .tab-icon { filter:brightness(0) invert(1); }
+.tab-btn:hover:not(.active) { border-color:var(--hero); color:var(--hero-deep); }
+
+.admin-main { max-width:1100px; margin:0 auto; padding:2.2rem 1.8rem 4rem; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; animation:fadeIn .35s ease; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+/* ── DASHBOARD ───────────────────────────── */
+.dash-header h2 { font-family:'Nunito',sans-serif; font-size:1.55rem; font-weight:900; color:var(--ink); margin-bottom:.3rem; }
+.dash-header p { font-size:.9rem; color:var(--gray); font-weight:500; margin-bottom:1.8rem; }
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2.4rem; }
+.stat-card {
+  background:var(--white); border:1.5px solid rgba(255,173,89,.22); border-radius:var(--r-md);
+  padding:1.3rem; text-align:center; transition:transform .2s, box-shadow .2s;
+}
+.stat-card:hover { transform:translateY(-3px); box-shadow:var(--sh-md); }
+.stat-icon { font-size:1.5rem; margin-bottom:.4rem; }
+.stat-value { font-family:'Nunito',sans-serif; font-size:1.7rem; font-weight:900; color:var(--hero-deep); line-height:1; }
+.stat-label { font-size:.68rem; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:.07em; margin-top:.35rem; }
+.dash-recent-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+.dash-recent-header h3 { font-family:'Nunito',sans-serif; font-size:1.1rem; font-weight:800; color:var(--ink); }
+.link-btn { background:none; border:none; color:var(--hero-deep); font-weight:700; font-size:.82rem; cursor:pointer; font-family:'Nunito',sans-serif; }
+.link-btn:hover { text-decoration:underline; }
+
+/* ── PANEL HEADERS / TOOLBAR ─────────────── */
+.panel-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.4rem; flex-wrap:wrap; }
+.panel-header h2 { font-family:'Nunito',sans-serif; font-size:1.55rem; font-weight:900; color:var(--ink); }
+.btn-add {
+  background:var(--hero); color:var(--white); border:none; border-radius:50px;
+  padding:.7rem 1.4rem; font-family:'Nunito',sans-serif; font-size:.85rem; font-weight:800;
+  cursor:pointer; box-shadow:0 6px 18px rgba(255,173,89,.35); transition:all .2s ease;
+}
+.btn-add:hover { background:var(--hero-dark); transform:translateY(-1px); }
+.toolbar { display:flex; gap:.7rem; margin-bottom:1.4rem; flex-wrap:wrap; }
+.toolbar input[type="text"] {
+  flex:1; min-width:200px; background:var(--white); border:1.5px solid rgba(255,173,89,.22);
+  border-radius:var(--r-sm); padding:.7rem 1rem; font-family:'Sora',sans-serif; font-size:.87rem;
+  color:var(--ink); outline:none; transition:border-color .2s;
+}
+.toolbar select {
+  background:var(--white); border:1.5px solid rgba(255,173,89,.22); border-radius:var(--r-sm);
+  padding:.7rem 1rem; font-family:'Sora',sans-serif; font-size:.85rem; color:var(--ink); outline:none; cursor:pointer;
+}
+.toolbar input:focus, .toolbar select:focus { border-color:var(--hero); }
+
+/* ── LIST / CARDS ────────────────────────── */
+.list { display:flex; flex-direction:column; gap:.9rem; }
+.item-card {
+  background:var(--white); border:1.5px solid rgba(255,173,89,.2); border-radius:var(--r-md);
+  padding:1.2rem 1.3rem; transition:border-color .2s, transform .2s;
+}
+.item-card:hover { border-color:var(--hero); transform:translateY(-2px); }
+.item-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem; margin-bottom:.7rem; flex-wrap:wrap; }
+.item-title { font-family:'Nunito',sans-serif; font-size:1.02rem; font-weight:800; color:var(--ink); }
+.item-sub { font-size:.82rem; font-weight:600; color:var(--gray); }
+.item-meta { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.4rem; }
+.meta-chip {
+  background:var(--off); border:1px solid rgba(255,173,89,.18); color:var(--brown-light);
+  font-size:.74rem; font-weight:700; padding:.32rem .7rem; border-radius:50px;
+  text-decoration:none; display:inline-flex; align-items:center; gap:.3rem;
+}
+a.meta-chip:hover { background:var(--hero-pale); color:var(--hero-deep); }
+.item-notes { font-size:.82rem; color:var(--gray); font-style:italic; margin-top:.5rem; line-height:1.5; }
+.item-actions { display:flex; gap:.5rem; margin-top:.8rem; justify-content:flex-end; }
+.icon-btn {
+  background:var(--off); border:1.5px solid rgba(255,173,89,.2); border-radius:10px;
+  width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:.9rem; transition:all .2s ease;
+}
+.icon-btn:hover { background:var(--hero-pale); border-color:var(--hero); }
+.icon-btn.danger:hover { background:var(--red-light); border-color:var(--red); }
+
+/* status select pill */
+.status-select {
+  appearance:none; -webkit-appearance:none; border:none; cursor:pointer; outline:none;
+  font-family:'Nunito',sans-serif; font-size:.68rem; font-weight:800; text-transform:uppercase;
+  letter-spacing:.05em; padding:.4rem .9rem; border-radius:50px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%238a7060'/></svg>");
+  background-repeat:no-repeat; background-position:right .7rem center; padding-right:1.7rem;
+}
+.status-noua        { background:var(--hero-pale); color:var(--hero-deep); }
+.status-confirmata  { background:var(--green-light); color:var(--green-deep); }
+.status-finalizata  { background:var(--off); color:var(--gray); border:1.5px solid var(--gray-2); }
+.status-anulata     { background:var(--red-light); color:var(--red-deep); }
+
+/* empty state */
+.empty-state { text-align:center; padding:3rem 1.5rem; background:var(--white); border:1.5px dashed rgba(255,173,89,.3); border-radius:var(--r-lg); }
+.empty-icon { font-size:2.4rem; margin-bottom:.8rem; }
+.empty-state h4 { font-family:'Nunito',sans-serif; font-size:1.05rem; font-weight:800; color:var(--ink); margin-bottom:.4rem; }
+.empty-state p { font-size:.85rem; color:var(--gray); font-weight:500; max-width:340px; margin:0 auto 1.2rem; line-height:1.6; }
+
+/* ── SETTINGS ────────────────────────────── */
+.settings-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+.settings-card { background:var(--white); border:1.5px solid rgba(255,173,89,.22); border-radius:var(--r-md); padding:1.5rem; }
+.settings-card h3 { font-family:'Nunito',sans-serif; font-size:1.02rem; font-weight:800; color:var(--ink); margin-bottom:.35rem; }
+.settings-card > p { font-size:.83rem; color:var(--gray); font-weight:500; margin-bottom:1.1rem; line-height:1.55; }
+.settings-card.danger { border-color:rgba(220,38,38,.3); background:var(--red-light); grid-column:1/-1; }
+.settings-card.danger h3 { color:var(--red-deep); }
+.settings-actions { display:flex; gap:.7rem; flex-wrap:wrap; }
+.btn-outline {
+  background:var(--off); border:1.5px solid rgba(255,173,89,.35); color:var(--hero-deep);
+  border-radius:50px; padding:.65rem 1.2rem; font-family:'Nunito',sans-serif; font-size:.8rem;
+  font-weight:800; cursor:pointer; transition:all .2s ease;
+}
+.btn-outline:hover { background:var(--hero-pale); }
+.btn-danger {
+  background:var(--red); color:var(--white); border:none; border-radius:50px;
+  padding:.65rem 1.3rem; font-family:'Nunito',sans-serif; font-size:.8rem; font-weight:800;
+  cursor:pointer; transition:all .2s ease;
+}
+.btn-danger:hover { background:var(--red-deep); }
+.settings-note {
+  margin-top:1.3rem; background:var(--hero-pale); border:1.5px solid rgba(255,173,89,.3);
+  border-radius:var(--r-md); padding:1.1rem 1.3rem;
+}
+.settings-note p { font-size:.78rem; color:var(--brown-light); font-weight:600; line-height:1.65; }
+
+/* ── FORMS (modals) ──────────────────────── */
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin-bottom:.8rem; }
+.form-group { display:flex; flex-direction:column; gap:.3rem; margin-bottom:.8rem; }
+.form-group label { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--brown-light); }
+.form-group input, .form-group select, .form-group textarea {
+  background:var(--off); border:1.5px solid rgba(255,173,89,.22); border-radius:var(--r-sm);
+  padding:.7rem .9rem; font-family:'Sora',sans-serif; font-size:.87rem; color:var(--ink);
+  outline:none; transition:border-color .2s, box-shadow .2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--hero); box-shadow:0 0 0 4px rgba(255,173,89,.1); }
+.form-group textarea { resize:none; height:72px; }
+.form-submit {
+  width:100%; background:var(--hero); color:var(--white); border:none; border-radius:var(--r-md);
+  padding:.9rem; font-family:'Nunito',sans-serif; font-size:.92rem; font-weight:800; cursor:pointer;
+  box-shadow:0 6px 18px rgba(255,173,89,.4); transition:all .2s ease; margin-top:.3rem;
+}
+.form-submit:hover { background:var(--hero-dark); transform:translateY(-1px); }
+
+/* ── MODALS ──────────────────────────────── */
+.modal-overlay {
+  position:fixed; inset:0; z-index:600; background:rgba(20,10,0,.45);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  display:flex; align-items:center; justify-content:center; padding:1.5rem;
+  opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal-box {
+  background:var(--white); border-radius:var(--r-lg); padding:2rem; width:100%; max-width:480px;
+  max-height:88vh; overflow-y:auto; position:relative; box-shadow:0 20px 60px rgba(74,44,10,.25);
+  transform:scale(.92) translateY(14px); transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.open .modal-box { transform:scale(1) translateY(0); }
+.modal-box h3 { font-family:'Nunito',sans-serif; font-size:1.25rem; font-weight:900; color:var(--ink); margin-bottom:1.2rem; }
+.modal-close {
+  position:absolute; top:1.1rem; right:1.1rem; background:var(--off); border:none;
+  width:30px; height:30px; border-radius:50%; font-size:.85rem; color:var(--gray);
+  cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s;
+}
+.modal-close:hover { background:var(--hero-pale); }
+
+/* ── TOAST ───────────────────────────────── */
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:var(--white); font-family:'Nunito',sans-serif; font-size:.85rem;
+  font-weight:700; padding:.85rem 1.6rem; border-radius:50px; z-index:700;
+  opacity:0; pointer-events:none; transition:all .3s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+.toast.error { background:var(--red-deep); }
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width:900px) {
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .settings-grid { grid-template-columns:1fr; }
+}
+@media (max-width:640px) {
+  .topbar { padding:.85rem 1.2rem; }
+  .tabs-bar { padding:.8rem 1.2rem; top:56px; }
+  .admin-main { padding:1.6rem 1.1rem 3rem; }
+  .form-row { grid-template-columns:1fr; }
+  .topbar-logo span { display:none; }
+}
+@media (prefers-reduced-motion:reduce) { *{ animation:none!important; transition:none!important; } }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-blob login-blob-1"></div>
+  <div class="login-blob login-blob-2"></div>
+  <div class="login-card">
+    <div class="login-logo"><img src="logo-câine.png" alt="Logo"></div>
+    <h1>Panou Administrare</h1>
+    <p>Introdu parola pentru a continua</p>
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <input type="password" id="loginPass" placeholder="Parolă" autocomplete="current-password" required>
+      <div class="login-error" id="loginError">Parolă incorectă. Mai încearcă.</div>
+      <button type="submit" class="login-btn">Intră în cont</button>
+    </form>
+    <p class="login-hint">Parolă implicită: plimbari2026<br>(o poți schimba din Setări după autentificare)</p>
+  </div>
+</div>
+
+<!-- APP SHELL -->
+<div class="admin-shell" id="adminShell" style="display:none;">
+  <header class="topbar">
+    <div class="topbar-logo">
+      <div class="logo-circle"><img src="logo-câine.png" alt="Logo"></div>
+      <span>Plimbări Câini<br><small>Panou Admin</small></span>
+    </div>
+    <button class="btn-logout" onclick="handleLogout()">Deconectare</button>
+  </header>
+
+  <nav class="tabs-bar">
+    <button class="tab-btn active" data-tab="dashboard" onclick="switchTab('dashboard')">
+      <img src="home.png" class="tab-icon" alt=""><span>Dashboard</span>
+    </button>
+    <button class="tab-btn" data-tab="bookings" onclick="switchTab('bookings')">
+      <img src="calendar-clock.png" class="tab-icon" alt=""><span>Rezervări</span>
+    </button>
+    <button class="tab-btn" data-tab="clients" onclick="switchTab('clients')">
+      <img src="dog.png" class="tab-icon" alt=""><span>Clienți</span>
+    </button>
+    <button class="tab-btn" data-tab="settings" onclick="switchTab('settings')">
+      <span class="tab-icon-emoji">⚙️</span><span>Setări</span>
+    </button>
+  </nav>
+
+  <main class="admin-main">
+
+    <!-- DASHBOARD -->
+    <section class="tab-panel active" id="panel-dashboard">
+      <div class="dash-header">
+        <h2>Bună, Victor! 👋</h2>
+        <p>Iată o privire de ansamblu asupra plimbărilor tale.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value" id="statUpcoming">0</div><div class="stat-label">Rezervări viitoare</div></div>
+        <div class="stat-card"><div class="stat-icon">⏳</div><div class="stat-value" id="statPending">0</div><div class="stat-label">În așteptare</div></div>
+        <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-value" id="statRevenue">0 lei</div><div class="stat-label">Venit estimat</div></div>
+        <div class="stat-card"><div class="stat-icon">🐾</div><div class="stat-value" id="statClients">0</div><div class="stat-label">Clienți salvați</div></div>
+      </div>
+      <div class="dash-recent-header">
+        <h3>Activitate recentă</h3>
+        <button class="link-btn" onclick="switchTab('bookings')">Vezi toate →</button>
+      </div>
+      <div id="recentList" class="list"></div>
+    </section>
+
+    <!-- BOOKINGS -->
+    <section class="tab-panel" id="panel-bookings">
+      <div class="panel-header">
+        <h2>Rezervări</h2>
+        <button class="btn-add" onclick="openBookingModal()">+ Rezervare nouă</button>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="bookingSearch" placeholder="Caută după câine, stăpân sau telefon..." oninput="renderBookings()">
+        <select id="statusFilter" onchange="renderBookings()">
+          <option value="toate">Toate statusurile</option>
+          <option value="noua">Nouă</option>
+          <option value="confirmata">Confirmată</option>
+          <option value="finalizata">Finalizată</option>
+          <option value="anulata">Anulată</option>
+        </select>
+      </div>
+      <div id="bookingsList" class="list"></div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section class="tab-panel" id="panel-clients">
+      <div class="panel-header">
+        <h2>Clienți</h2>
+        <button class="btn-add" onclick="openClientModal()">+ Client nou</button>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="clientSearch" placeholder="Caută după câine, stăpân sau telefon..." oninput="renderClients()">
+      </div>
+      <div id="clientsList" class="list"></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="tab-panel" id="panel-settings">
+      <div class="panel-header"><h2>Setări</h2></div>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>Schimbă parola</h3>
+          <p>Actualizează parola folosită pentru a accesa acest panou.</p>
+          <form onsubmit="changePassword(event)">
+            <div class="form-group"><label>Parolă nouă</label><input type="password" id="newPass1" minlength="4" required></div>
+            <div class="form-group"><label>Confirmă parola</label><input type="password" id="newPass2" minlength="4" required></div>
+            <button type="submit" class="form-submit">Actualizează parola</button>
+          </form>
+        </div>
+        <div class="settings-card">
+          <h3>Backup date</h3>
+          <p>Descarcă o copie a rezervărilor și clienților salvați, sau restaurează dintr-un fișier.</p>
+          <div class="settings-actions">
+            <button class="btn-outline" onclick="exportData()">⬇ Exportă date</button>
+            <label class="btn-outline" style="cursor:pointer;">⬆ Importă date
+              <input type="file" accept=".json" style="display:none" onchange="importData(event)">
+            </label>
+          </div>
+        </div>
+        <div class="settings-card danger">
+          <h3>Zonă sensibilă</h3>
+          <p>Șterge toate rezervările și clienții salvați. Această acțiune nu poate fi anulată — fă un export înainte, dacă vrei să păstrezi o copie.</p>
+          <button class="btn-danger" onclick="resetAllData()">🗑 Șterge toate datele</button>
+        </div>
+      </div>
+      <div class="settings-note">
+        <p>⚠️ Acest panou salvează datele local, în acest browser (localStorage) — nu sunt vizibile pe alt telefon/calculator și nu se sincronizează automat cu formularul public de pe site. Parola este verificată doar local și nu oferă o protecție reală împotriva unei persoane cu acces la cod sursă. Pentru autentificare sigură și date sincronizate pe mai multe dispozitive ar fi nevoie de un serviciu backend (de exemplu Firebase sau Supabase).</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeBookingModal()">✕</button>
+    <h3 id="bookingModalTitle">Rezervare nouă</h3>
+    <form id="bookingForm" onsubmit="saveBooking(event)">
+      <input type="hidden" id="bk-id">
+      <div class="form-row">
+        <div class="form-group"><label>Nume stăpân</label><input type="text" id="bk-owner" required></div>
+        <div class="form-group"><label>Telefon</label><input type="tel" id="bk-phone" placeholder="+373..." required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Nume câine</label><input type="text" id="bk-dog" required></div>
+        <div class="form-group"><label>Rasă</label><input type="text" id="bk-breed"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Data</label><input type="date" id="bk-date" required></div>
+        <div class="form-group"><label>Ora</label><input type="time" id="bk-time"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Serviciu</label>
+          <select id="bk-service" onchange="autoFillPrice()">
+            <option value="30min">30 min — 60 lei</option>
+            <option value="60min">60 min — 100 lei</option>
+            <option value="custom">Personalizat</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Preț (lei)</label><input type="number" id="bk-price" min="0" step="5" required></div>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="bk-status">
+          <option value="noua">Nouă</option>
+          <option value="confirmata">Confirmată</option>
+          <option value="finalizata">Finalizată</option>
+          <option value="anulata">Anulată</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Notițe</label><textarea id="bk-notes" placeholder="Detalii utile despre plimbare..."></textarea></div>
+      <button type="submit" class="form-submit">Salvează rezervarea</button>
+    </form>
+  </div>
+</div>
+
+<!-- CLIENT MODAL -->
+<div class="modal-overlay" id="clientModalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeClientModal()">✕</button>
+    <h3 id="clientModalTitle">Client nou</h3>
+    <form id="clientForm" onsubmit="saveClient(event)">
+      <input type="hidden" id="cl-id">
+      <div class="form-group"><label>Nume câine</label><input type="text" id="cl-dog" required></div>
+      <div class="form-row">
+        <div class="form-group"><label>Nume stăpân</label><input type="text" id="cl-owner" required></div>
+        <div class="form-group"><label>Telefon</label><input type="tel" id="cl-phone" placeholder="+373..." required></div>
+      </div>
+      <div class="form-group"><label>Rasă</label><input type="text" id="cl-breed"></div>
+      <div class="form-group"><label>Notițe</label><textarea id="cl-notes" placeholder="Temperament, alergii, preferințe..."></textarea></div>
+      <button type="submit" class="form-submit">Salvează clientul</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_PASSWORD = 'plimbari2026';
+const STORAGE_KEY = 'pcAdminData_v1';
+const SESSION_KEY = 'pcAdminSession_v1';
+const STATUS_LABELS = { noua:'Nouă', confirmata:'Confirmată', finalizata:'Finalizată', anulata:'Anulată' };
+
+let data = { bookings: [], clients: [], settings: {} };
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) data = JSON.parse(raw);
+  } catch (e) { console.error('Eroare la încărcarea datelor', e); }
+  if (!data.bookings) data.bookings = [];
+  if (!data.clients) data.clients = [];
+  if (!data.settings) data.settings = {};
+}
+
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+  catch (e) { showToast('Eroare la salvare locală.', 'error'); }
+}
+
+function getPassword() { return data.settings.adminPassword || DEFAULT_PASSWORD; }
+
+function escapeHTML(s) {
+  return (s || '').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ── AUTH ──────────────────────────────── */
+function handleLogin(e) {
+  e.preventDefault();
+  const val = document.getElementById('loginPass').value;
+  if (val === getPassword()) {
+    try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+    showApp();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+  }
+}
+function handleLogout() {
+  try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
+  document.getElementById('adminShell').style.display = 'none';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('loginPass').value = '';
+}
+function showApp() {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('adminShell').style.display = 'block';
+  renderAll();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadData();
+  let authed = false;
+  try { authed = sessionStorage.getItem(SESSION_KEY) === '1'; } catch (e) {}
+  if (authed) showApp();
+});
+
+/* ── TABS ──────────────────────────────── */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+}
+
+/* ── HELPERS ───────────────────────────── */
+function formatDate(dateStr, timeStr) {
+  if (!dateStr) return 'Fără dată';
+  const days = ['Dum','Lun','Mar','Mie','Joi','Vin','Sâm'];
+  const months = ['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Noi','Dec'];
+  const d = new Date(dateStr + 'T00:00:00');
+  let s = days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()];
+  if (timeStr) s += ' · ' + timeStr;
+  return s;
+}
+function emptyState(icon, title, text, onclickFn, btnLabel) {
+  return `<div class="empty-state"><div class="empty-icon">${icon}</div><h4>${title}</h4><p>${text}</p>${btnLabel ? `<button class="btn-add" onclick="${onclickFn}">${btnLabel}</button>` : ''}</div>`;
+}
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'error' ? ' error' : '');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ── RENDER: DASHBOARD ────────────────── */
+function renderAll() { renderDashboard(); renderBookings(); renderClients(); }
+
+function renderDashboard() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const upcoming = data.bookings.filter(b => b.status !== 'anulata' && b.status !== 'finalizata' && b.date && new Date(b.date + 'T00:00:00') >= today);
+  const pending = data.bookings.filter(b => b.status === 'noua');
+  const revenue = upcoming.reduce((sum, b) => sum + (Number(b.price) || 0), 0);
+  document.getElementById('statUpcoming').textContent = upcoming.length;
+  document.getElementById('statPending').textContent = pending.length;
+  document.getElementById('statRevenue').textContent = revenue + ' lei';
+  document.getElementById('statClients').textContent = data.clients.length;
+
+  const recent = [...data.bookings].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 5);
+  const container = document.getElementById('recentList');
+  container.innerHTML = recent.length === 0
+    ? emptyState('🐾', 'Nicio activitate încă', 'Adaugă prima rezervare ca să vezi activitatea aici.', "openBookingModal()", '+ Rezervare nouă')
+    : recent.map(b => bookingCardHTML(b, true)).join('');
+}
+
+/* ── RENDER: BOOKINGS ──────────────────── */
+function statusSelectHTML(b) {
+  return `<select class="status-select status-${b.status}" onchange="updateStatus('${b.id}', this.value)">
+    <option value="noua" ${b.status === 'noua' ? 'selected' : ''}>Nouă</option>
+    <option value="confirmata" ${b.status === 'confirmata' ? 'selected' : ''}>Confirmată</option>
+    <option value="finalizata" ${b.status === 'finalizata' ? 'selected' : ''}>Finalizată</option>
+    <option value="anulata" ${b.status === 'anulata' ? 'selected' : ''}>Anulată</option>
+  </select>`;
+}
+function bookingCardHTML(b, compact) {
+  const serviceLabel = b.service === '30min' ? '30 min' : (b.service === '60min' ? '60 min' : 'Personalizat');
+  return `<div class="item-card">
+    <div class="item-top">
+      <div class="item-title">${escapeHTML(b.dog)} <span class="item-sub">· ${escapeHTML(b.owner)}</span></div>
+      ${statusSelectHTML(b)}
+    </div>
+    <div class="item-meta">
+      <a href="tel:${escapeHTML(b.phone)}" class="meta-chip">📞 ${escapeHTML(b.phone || '—')}</a>
+      <a href="https://wa.me/${(b.phone || '').replace(/[^0-9]/g,'')}" target="_blank" class="meta-chip">💬 WhatsApp</a>
+      <span class="meta-chip">${serviceLabel} · ${b.price || 0} lei</span>
+      <span class="meta-chip">📅 ${formatDate(b.date, b.time)}</span>
+    </div>
+    ${b.notes ? `<div class="item-notes">${escapeHTML(b.notes)}</div>` : ''}
+    ${!compact ? `<div class="item-actions">
+      <button class="icon-btn" onclick="openBookingModal('${b.id}')" title="Editează">✏️</button>
+      <button class="icon-btn danger" onclick="deleteBooking('${b.id}')" title="Șterge">🗑️</button>
+    </div>` : ''}
+  </div>`;
+}
+function renderBookings() {
+  const q = (document.getElementById('bookingSearch').value || '').toLowerCase();
+  const statusF = document.getElementById('statusFilter').value;
+  let list = data.bookings.filter(b => {
+    const matchQ = !q || (b.dog||'').toLowerCase().includes(q) || (b.owner||'').toLowerCase().includes(q) || (b.phone||'').toLowerCase().includes(q);
+    const matchS = statusF === 'toate' || b.status === statusF;
+    return matchQ && matchS;
+  });
+  list.sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999') || (a.time || '99:99').localeCompare(b.time || '99:99'));
+  const container = document.getElementById('bookingsList');
+  if (list.length === 0) {
+    container.innerHTML = data.bookings.length === 0
+      ? emptyState('🐾', 'Nicio rezervare încă', 'Cererile primite prin WhatsApp pot fi notate aici, ca să ții evidența programului.', 'openBookingModal()', '+ Rezervare nouă')
+      : emptyState('🔍', 'Niciun rezultat', 'Încearcă alt termen de căutare sau alt filtru.', '', '');
+  } else {
+    container.innerHTML = list.map(b => bookingCardHTML(b, false)).join('');
+  }
+}
+function updateStatus(id, status) {
+  const b = data.bookings.find(x => x.id === id);
+  if (!b) return;
+  b.status = status;
+  saveData(); renderAll();
+  showToast('Status actualizat: ' + STATUS_LABELS[status]);
+}
+function openBookingModal(id) {
+  document.getElementById('bookingForm').reset();
+  document.getElementById('bk-id').value = id || '';
+  document.getElementById('bookingModalTitle').textContent = id ? 'Editează rezervarea' : 'Rezervare nouă';
+  if (id) {
+    const b = data.bookings.find(x => x.id === id);
+    if (b) {
+      document.getElementById('bk-owner').value = b.owner || '';
+      document.getElementById('bk-phone').value = b.phone || '';
+      document.getElementById('bk-dog').value = b.dog || '';
+      document.getElementById('bk-breed').value = b.breed || '';
+      document.getElementById('bk-date').value = b.date || '';
+      document.getElementById('bk-time').value = b.time || '';
+      document.getElementById('bk-service').value = b.service || '30min';
+      document.getElementById('bk-price').value = b.price || 60;
+      document.getElementById('bk-status').value = b.status || 'noua';
+      document.getElementById('bk-notes').value = b.notes || '';
+    }
+  } else {
+    document.getElementById('bk-service').value = '30min';
+    document.getElementById('bk-price').value = 60;
+    document.getElementById('bk-status').value = 'noua';
+  }
+  document.getElementById('bookingModalOverlay').classList.add('open');
+}
+function closeBookingModal() { document.getElementById('bookingModalOverlay').classList.remove('open'); }
+function autoFillPrice() {
+  const s = document.getElementById('bk-service').value;
+  const priceInput = document.getElementById('bk-price');
+  if (s === '30min') priceInput.value = 60;
+  else if (s === '60min') priceInput.value = 100;
+}
+function saveBooking(e) {
+  e.preventDefault();
+  const id = document.getElementById('bk-id').value;
+  const existing = id ? data.bookings.find(x => x.id === id) : null;
+  const booking = {
+    id: id || ('b_' + Date.now()),
+    owner: document.getElementById('bk-owner').value.trim(),
+    phone: document.getElementById('bk-phone').value.trim(),
+    dog: document.getElementById('bk-dog').value.trim(),
+    breed: document.getElementById('bk-breed').value.trim(),
+    date: document.getElementById('bk-date').value,
+    time: document.getElementById('bk-time').value,
+    service: document.getElementById('bk-service').value,
+    price: Number(document.getElementById('bk-price').value) || 0,
+    status: document.getElementById('bk-status').value,
+    notes: document.getElementById('bk-notes').value.trim(),
+    createdAt: existing ? (existing.createdAt || Date.now()) : Date.now()
+  };
+  if (id) {
+    const idx = data.bookings.findIndex(x => x.id === id);
+    if (idx > -1) data.bookings[idx] = booking;
+  } else {
+    data.bookings.push(booking);
+  }
+  saveData();
+  closeBookingModal();
+  renderAll();
+  showToast(id ? 'Rezervare actualizată' : 'Rezervare adăugată');
+}
+function deleteBooking(id) {
+  if (!confirm('Ștergi această rezervare?')) return;
+  data.bookings = data.bookings.filter(x => x.id !== id);
+  saveData(); renderAll();
+  showToast('Rezervare ștearsă');
+}
+
+/* ── RENDER: CLIENTS ───────────────────── */
+function clientCardHTML(c) {
+  const count = data.bookings.filter(b => b.phone && c.phone && b.phone === c.phone).length;
+  return `<div class="item-card">
+    <div class="item-top">
+      <div class="item-title">${escapeHTML(c.dog)} <span class="item-sub">· ${escapeHTML(c.breed || 'rasă necunoscută')}</span></div>
+      <span class="meta-chip">${count} rezervări</span>
+    </div>
+    <div class="item-meta">
+      <span class="meta-chip">👤 ${escapeHTML(c.owner)}</span>
+      <a href="tel:${escapeHTML(c.phone)}" class="meta-chip">📞 ${escapeHTML(c.phone || '—')}</a>
+      <a href="https://wa.me/${(c.phone || '').replace(/[^0-9]/g,'')}" target="_blank" class="meta-chip">💬 WhatsApp</a>
+    </div>
+    ${c.notes ? `<div class="item-notes">${escapeHTML(c.notes)}</div>` : ''}
+    <div class="item-actions">
+      <button class="icon-btn" onclick="openClientModal('${c.id}')" title="Editează">✏️</button>
+      <button class="icon-btn danger" onclick="deleteClient('${c.id}')" title="Șterge">🗑️</button>
+    </div>
+  </div>`;
+}
+function renderClients() {
+  const q = (document.getElementById('clientSearch').value || '').toLowerCase();
+  let list = data.clients.filter(c => !q || (c.dog||'').toLowerCase().includes(q) || (c.owner||'').toLowerCase().includes(q) || (c.phone||'').toLowerCase().includes(q));
+  const container = document.getElementById('clientsList');
+  if (list.length === 0) {
+    container.innerHTML = data.clients.length === 0
+      ? emptyState('🐶', 'Niciun client salvat', 'Adaugă clienții tăi ca să ții evidența câinilor și a proprietarilor.', 'openClientModal()', '+ Client nou')
+      : emptyState('🔍', 'Niciun rezultat', 'Încearcă alt termen de căutare.', '', '');
+  } else {
+    container.innerHTML = list.map(clientCardHTML).join('');
+  }
+}
+function openClientModal(id) {
+  document.getElementById('clientForm').reset();
+  document.getElementById('cl-id').value = id || '';
+  document.getElementById('clientModalTitle').textContent = id ? 'Editează clientul' : 'Client nou';
+  if (id) {
+    const c = data.clients.find(x => x.id === id);
+    if (c) {
+      document.getElementById('cl-dog').value = c.dog || '';
+      document.getElementById('cl-owner').value = c.owner || '';
+      document.getElementById('cl-phone').value = c.phone || '';
+      document.getElementById('cl-breed').value = c.breed || '';
+      document.getElementById('cl-notes').value = c.notes || '';
+    }
+  }
+  document.getElementById('clientModalOverlay').classList.add('open');
+}
+function closeClientModal() { document.getElementById('clientModalOverlay').classList.remove('open'); }
+function saveClient(e) {
+  e.preventDefault();
+  const id = document.getElementById('cl-id').value;
+  const existing = id ? data.clients.find(x => x.id === id) : null;
+  const client = {
+    id: id || ('c_' + Date.now()),
+    dog: document.getElementById('cl-dog').value.trim(),
+    owner: document.getElementById('cl-owner').value.trim(),
+    phone: document.getElementById('cl-phone').value.trim(),
+    breed: document.getElementById('cl-breed').value.trim(),
+    notes: document.getElementById('cl-notes').value.trim(),
+    createdAt: existing ? (existing.createdAt || Date.now()) : Date.now()
+  };
+  if (id) {
+    const idx = data.clients.findIndex(x => x.id === id);
+    if (idx > -1) data.clients[idx] = client;
+  } else {
+    data.clients.push(client);
+  }
+  saveData();
+  closeClientModal();
+  renderClients(); renderDashboard();
+  showToast(id ? 'Client actualizat' : 'Client adăugat');
+}
+function deleteClient(id) {
+  if (!confirm('Ștergi acest client?')) return;
+  data.clients = data.clients.filter(x => x.id !== id);
+  saveData(); renderClients(); renderDashboard();
+  showToast('Client șters');
+}
+
+/* ── SETTINGS ──────────────────────────── */
+function changePassword(e) {
+  e.preventDefault();
+  const p1 = document.getElementById('newPass1').value;
+  const p2 = document.getElementById('newPass2').value;
+  if (p1 !== p2) { showToast('Parolele nu coincid', 'error'); return; }
+  if (p1.length < 4) { showToast('Parola trebuie să aibă minim 4 caractere', 'error'); return; }
+  data.settings.adminPassword = p1;
+  saveData();
+  document.getElementById('newPass1').value = '';
+  document.getElementById('newPass2').value = '';
+  showToast('Parolă actualizată cu succes');
+}
+function exportData() {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  a.href = url;
+  a.download = `plimbari-admin-backup-${d.toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  showToast('Backup descărcat');
+}
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (!confirm('Importarea va înlocui toate datele curente. Continui?')) { e.target.value = ''; return; }
+  const reader = new FileReader();
+  reader.onload = function (ev) {
+    try {
+      const parsed = JSON.parse(ev.target.result);
+      if (!parsed.bookings || !parsed.clients) throw new Error('Format invalid');
+      data = parsed;
+      if (!data.settings) data.settings = {};
+      saveData(); renderAll();
+      showToast('Date importate cu succes');
+    } catch (err) {
+      showToast('Fișier invalid. Importul a eșuat.', 'error');
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+}
+function resetAllData() {
+  if (!confirm('Sigur ștergi toate rezervările și clienții? Această acțiune nu poate fi anulată.')) return;
+  data.bookings = []; data.clients = [];
+  saveData(); renderAll();
+  showToast('Toate datele au fost șterse');
+}
+
+/* ── MODAL CLOSE HELPERS ───────────────── */
+document.getElementById('bookingModalOverlay').addEventListener('click', e => { if (e.target.id === 'bookingModalOverlay') closeBookingModal(); });
+document.getElementById('clientModalOverlay').addEventListener('click', e => { if (e.target.id === 'clientModalOverlay') closeClientModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeBookingModal(); closeClientModal(); } });
+</script>
+</body>
+</html>
