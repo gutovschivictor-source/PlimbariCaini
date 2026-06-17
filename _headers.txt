@@ -1,2 +1,0 @@
-/admin.html
-  Basic-Auth: victor:parola-ta-puternica-aici
