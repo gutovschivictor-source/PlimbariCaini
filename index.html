@@ -210,10 +210,12 @@ nav {
   display:flex; align-items:center; justify-content:space-between;
   padding:1rem 3.5rem;
   background:var(--white);
-  border-bottom:1.5px solid rgba(255,173,89,.13);
+  border-bottom: 5px solid rgb(255 173 105 / 42%);
   transition:box-shadow .3s, padding .3s;
+box-shadow:0 8px 0px rgba(0,0,0,0.08);
+
 }
-nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
+nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 8px 0px rgba(0,0,0,0.08); }
 
 .nav-logo {
     display: flex;
@@ -332,12 +334,13 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
   text-decoration:none;
   box-shadow:0 2px 0px rgba(255,255,255,1);
   transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
-  animation:fadeUp 1s ease .5s both;
+    animation:fadeUp 1s ease .5s;
   border:3px solid rgba(255,255,255,1);
 
 
 }
-.whatsapp-float:hover { transform: scale(1.1); }
+
+.whatsapp-float:hover { transform: scale(1.1);background:#ffc595; }
 .dogi-img { width:28px; filter:brightness(0) invert(1.2); }
 .dog-img  { width:18px; filter:invert(55%) sepia(60%) saturate(800%) hue-rotate(10deg) brightness(95%); }
 .dogg-img { width:18px; filter: invert(62%) sepia(28%) saturate(3559%) hue-rotate(342deg) brightness(87%) contrast(79%); }
@@ -348,6 +351,7 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 4px 24px rgba(74,44,10,.08); }
   align-items:center; padding:9rem 4rem 5rem;
   position:relative; overflow:hidden; gap:4rem;
   background:var(--hero);
+
 }
 .hero::before {
   content:''; position:absolute; top:-30%; right:-5%;
@@ -1018,10 +1022,10 @@ section { padding:7rem 4rem; position:relative; }
   width:100%; background:var(--hero); color:var(--white); border:none;
   border-radius:var(--r-md); padding:1rem;
   font-family:'Nunito',sans-serif; font-size:.97rem; font-weight:800; cursor:pointer;
-  box-shadow:0 6px 20px rgba(255,173,89,.4);
+  box-shadow: 0 2px 0px rgb(219 147 86);
   transition:all .25s cubic-bezier(.34,1.56,.64,1); letter-spacing:.01em;
 }
-.form-submit:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,173,89,.5); background:var(--hero-dark); }
+.form-submit:hover { transform:translateY(-2px); background:var(--hero-dark); }
 .form-submit:active { transform:translateY(1px); }
 
 .form-success { display:none; text-align:center; padding:2rem; }
@@ -1033,6 +1037,7 @@ section { padding:7rem 4rem; position:relative; }
 footer {
   background:var(--ink); padding:2.8rem 4rem;
   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;
+  box-shadow: inset 0 5px 0px rgb(255 173 105 / 10%);
 }
 .footer-logo { font-family:'Nunito',sans-serif; font-size:1.1rem; font-weight:900; color:var(--white); display:flex; align-items:center; gap:.65rem; letter-spacing:-.01em; }
 .footer-logo .logo-circle { width:34px;height:34px; }
@@ -1062,8 +1067,8 @@ footer {
   .contact-inner { grid-template-columns:1fr; }
 }
 @media (max-width:768px) {
-  nav { padding:1rem 1.5rem; }
-  nav.scrolled { padding:.7rem 1.5rem; }
+  nav { padding:0.5rem 1.5rem; }
+  nav.scrolled { padding:.4rem 1.5rem; }
   .nav-links { display:none; }
   .hamburger { display:flex; }
   section { padding:5rem 1.5rem; }
@@ -1112,8 +1117,8 @@ footer {
   </a>
   <ul class="nav-links">
     <li><a href="#services">Servicii</a></li>
-    <li><a href="#how">Cum funcționează</a></li>
     <li><a href="#pricing">Prețuri</a></li>
+    <li><a href="#how">Cum funcționează</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#rezerva" class="nav-cta">Rezervă acum</a></li>
   </ul>
@@ -1684,6 +1689,53 @@ function playSubmitSound() {
   tailGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
   tail.start(now + 0.06); tail.stop(now + 0.7);
 }
+function playIncorrectSound() {
+  const now = _audioCtx.currentTime;
+
+  function note(freqStart, freqEnd, startTime, dur, vol) {
+    const osc = _audioCtx.createOscillator();
+    const gain = _audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freqStart, now + startTime);
+    osc.frequency.exponentialRampToValueAtTime(freqEnd, now + startTime + dur);
+
+    gain.gain.setValueAtTime(0.0001, now + startTime);
+    gain.gain.exponentialRampToValueAtTime(vol, now + startTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + startTime + dur);
+
+    osc.connect(gain);
+    gain.connect(_audioCtx.destination);
+    osc.start(now + startTime);
+    osc.stop(now + startTime + dur + 0.02);
+  }
+
+  note(500, 420, 0, 0.14, 0.22);
+  note(420, 330, 0.13, 0.18, 0.2);
+}
+function playIncorrectSound() {
+  const now = _audioCtx.currentTime;
+
+  function note(freqStart, freqEnd, startTime, dur, vol) {
+    const osc = _audioCtx.createOscillator();
+    const gain = _audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freqStart, now + startTime);
+    osc.frequency.exponentialRampToValueAtTime(freqEnd, now + startTime + dur);
+
+    gain.gain.setValueAtTime(0.0001, now + startTime);
+    gain.gain.exponentialRampToValueAtTime(vol, now + startTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + startTime + dur);
+
+    osc.connect(gain);
+    gain.connect(_audioCtx.destination);
+    osc.start(now + startTime);
+    osc.stop(now + startTime + dur + 0.02);
+  }
+
+  note(500, 420, 0, 0.14, 0.22);
+  note(420, 330, 0.13, 0.18, 0.2);
+}
+
 function submitForm() {
   const fields = [
     document.getElementById('ownerName'),
@@ -1691,8 +1743,9 @@ function submitForm() {
     document.getElementById('dogName'),
     document.getElementById('service')
   ];
-  for (const field of fields) {
+for (const field of fields) {
     if (!field.value.trim()) {
+      playIncorrectSound();
       field.focus();
       field.style.borderColor = 'var(--hero-dark)';
       field.style.boxShadow = '0 0 0 4px rgba(255,173,89,.2)';
