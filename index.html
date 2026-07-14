@@ -1690,6 +1690,8 @@ function playSubmitSound() {
   tailGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
   tail.start(now + 0.06); tail.stop(now + 0.7);
 }
+function playIncorrectSound() {
+  const now = _audioCtx.currentTime;
 
   function note(freqStart, freqEnd, startTime, dur, vol) {
     const osc = _audioCtx.createOscillator();
