@@ -242,14 +242,17 @@ nav.scrolled { padding:.7rem 3.5rem; box-shadow:0 8px 0px rgba(0,0,0,0.08); }
 .nav-links a {
   text-decoration:none; color:var(--gray); font-size:.87rem; font-weight:600;
   padding:.42rem .9rem; border-radius:50px; transition:color .2s, background .2s;
+
 }
 .nav-links a:hover { color:var(--hero-deep); background:var(--hero-pale); }
 .nav-cta {
-  background:var(--hero) !important; color:var(--white) !important;
-  font-weight:700 !important; padding:.5rem 1.35rem !important;
-  border-radius:50px !important;
-  box-shadow:0 4px 14px rgba(255,173,89,.35) !important;
-  transition:all .2s ease !important;
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--hero) !important; color: var(--white) !important;
+  font-weight: 700 !important; font-size: .87rem !important;
+  padding: .5rem 1.35rem !important; border-radius: 50px !important;
+  box-shadow: inset 0 -2px 0px rgb(200 116 53 / 50%) !important;
+  text-decoration: none;
+  transition: all .2s ease !important;
 }
 .nav-cta:hover { background:var(--hero-dark)!important; transform:translateY(-1px)!important; }
 
@@ -561,7 +564,7 @@ section { padding:7rem 4rem; position:relative; }
   border:2px solid rgba(255,173,89,.5);
   transition:all .3s cubic-bezier(.34,1.56,.64,1);
   position:relative; overflow:hidden;
-
+box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
 
 
 }
@@ -982,6 +985,7 @@ section { padding:7rem 4rem; position:relative; }
   background:var(--off); border-radius:var(--r-md);
   border:2px solid rgba(255,173,89,.5); text-decoration:none; color:inherit;
   transition:all .25s ease;
+box-shadow: inset 0 -2px 0px rgba(255,173,89,.5);
 }
 .contact-item:hover { background:#fff;border-color:var(--hero); transform:translateX(5px);  box-shadow:0 3px 0px rgba(255,173,89,1);
   transition:all .3s cubic-bezier(.34,1.56,.64,1); }
@@ -997,6 +1001,7 @@ section { padding:7rem 4rem; position:relative; }
 .booking-form {
   background:var(--off); border-radius:var(--r-lg); padding:2.3rem;
   border:2px solid rgba(255,173,89,.5);
+box-shadow: inset 0 -2px 0px rgba(255,173,89,.5);
 }
 .booking-form h3 {
     font-family: 'Nunito', sans-serif;
@@ -1167,7 +1172,7 @@ footer {
     <p class="hero-desc">Grijă reală, joacă și siguranță — chiar și când tu nu ai timp. Plimbări individuale și în grup, cu atenție personalizată.</p>
     <div class="hero-buttons">
       <a href="#rezerva" class="btn-primary">Rezervă acum</a>
-      <a href="#services" class="btn-secondary">Descoperă serviciile →</a>
+      <a href="#services" class="btn-secondary">Descoperă serviciile</a>
     </div>
   </div>
 
