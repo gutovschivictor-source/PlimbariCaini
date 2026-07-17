@@ -17,6 +17,14 @@
 <link rel="canonical" href="https://gutovschivictor-source.github.io/PlimbariCaini/">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+.badge-best{
+  position:absolute; top:-13px; right:16px;
+  background:var(--hero); color:var(--white);
+  font-family:'Nunito',sans-serif; font-size:.68rem; font-weight:700;
+  letter-spacing:1.4px; text-transform:uppercase;
+  padding:4px 13px; border-radius:20px; z-index:25;
+  box-shadow:0 3px 0 var(--hero-deep), 0 5px 12px rgba(201,116,53,.4);
+}
 .form-submit { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
 .form-submit #fs-icon { display:flex; align-items:center; transition: transform 0.7s cubic-bezier(0.2,0,0.4,1), opacity 0.4s ease 0.35s; }
 .form-submit #fs-icon svg { width:17px; height:17px; fill:white; }
@@ -695,6 +703,8 @@ box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
   position: relative;
   z-index: 2;
   text-shadow: 1px 2px 0 rgba(0,0,0,0.15);
+  margin-top: 14px; /* coboară textul în capac */
+
 }
 .pkg-body {
   padding: 22px 20px 22px;
@@ -738,9 +748,10 @@ box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
 .pkg-ribbon-knot {
   width: 15px; height: 15px;
   border-radius: 50%;
-  margin-top: -1px;
+  margin-top: 1px;
   position: relative; z-index: 2001;
   box-shadow: inset 0 2px 0px rgba(255,255,255,0.5), 0 -2px 0px #c97435;
+
 }
 .pkg-ribbon-v {
   width: 35px; height: 12px;
@@ -867,9 +878,9 @@ box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
   text-decoration: none;
   border: 3px solid rgba(255,255,255,0.5);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.25);
 }
-.pkg-cta:hover { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+.pkg-cta:hover { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.25); }
 .pkg-cta:active { transform: translateY(4px); box-shadow: none; }
 
 .card-gold { box-shadow: 0 8px 0 var(--hero-deep); }
@@ -901,7 +912,7 @@ box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
 .card-premium .pkg-sub { color: var(--hero-light); }
 .card-premium .pkg-divider { background: rgba(255,255,255,0.4); }
 .card-premium .pkg-features li { color: rgba(255,255,255,0.9); }
-.card-premium .pkg-price-badge { background: var(--brown-mid); box-shadow: 0 4px 0 #4e311a; }
+.card-premium .pkg-price-badge { background: var(--brown-mid); box-shadow:0 4px 0 #341f07; }
 .card-premium .pkg-price-label { color: var(--hero-light); }
 .card-premium .pkg-price-value { color: var(--white); }
 .card-premium .pkg-cta { background: var(--hero); color: var(--brown); border-color: rgba(255,255,255,0.5); }
@@ -912,8 +923,13 @@ box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
   box-shadow: inset 0 2px 0px rgba(255,255,255,0.5), 0 -2px 0px var(--hero-deep);
 }
 
-.card-premium .pkg-ribbon-knot {
-  box-shadow: inset 0 2px 0px rgba(255,255,255,0.5), 0 -2px 0px var(--brown);
+.card-premium .pkg-ribbon-knot,
+.card-premium .pkg-ribbon-v{
+  background:var(--white);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.5), 0 -2px 0 var(--brown);
+}
+.pkg-ribbon-v {
+  margin-top: -5px;
 }
 .card-premium .pkg-ribbon-v {
   box-shadow: inset 0 2px 0px rgba(255,255,255,0.5), 0 -2px 0px var(--brown);
@@ -921,7 +937,7 @@ box-shadow: inset 0 -2px 0px rgba(255, 173, 89, .5);
 
 .badge-best {
   position: absolute;
-  top: -14px; right: 18px;
+  top: -10px; right: 10px;
   background: var(--hero);
   color: var(--white);
   font-family: 'Nunito', sans-serif;
@@ -1093,6 +1109,7 @@ footer {
   .pkg-card { width:auto; max-width:285px; flex:0 0 285px; }
 }
 @media (prefers-reduced-motion:reduce) { *{animation:none!important;transition:none!important;} }
+
 </style>
 </head>
 <body>
@@ -1265,6 +1282,7 @@ footer {
         </div>
 
         <div class="pkg-card card-premium reveal reveal-delay-2">
+<div class="badge-best">Popular</div>
           <div class="pkg-ribbon-wrap">
             <div class="pkg-ribbon-bow"></div>
             <div class="pkg-ribbon-knot"></div>
